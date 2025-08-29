@@ -1,22 +1,23 @@
 <html>
-    <head>
-        <title>FamilyBank</title>
-    </head>
-    <body>
-        <h1>Login</h1>
-        <section>
-            <div>
-                <input id="usuario" placeholder="ingrese usuario"><br>
-                <input id="dni" placeholder="ingrese contraseña">
-            </div>
-            
-            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR0s-kO1jku4nqZFjtosbYBOleODEUpB18JoA&s">
+<head>
+    <title>FamilyBank</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <img src="logo.jpg" class="imagen">
 
-            <p>Registrar un usuario nuevo</p>
 
-            <button onclick="registro()">REGISTRARSE</button>
-        </section>
-        
-        <script src="dom.js"></script>
-    </body>
+    <section class="caja">
+        <div>
+            <input class="input" id="usuario" placeholder="Ingrese usuario"><br>
+            <input class="input" id="dni" placeholder="Ingrese contraseña">
+        </div>
+
+        <p class="texto">Registrar un usuario nuevo</p>
+
+        <button class="button" onclick="registro()">REGISTRARSE</button>
+    </section>
+
+    <script src="dom.js"></script>
+</body>
 </html>
