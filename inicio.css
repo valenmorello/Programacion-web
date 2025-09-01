@@ -1,0 +1,125 @@
+* {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      background: #a0c6ff;
+      color: #333;
+    }
+
+    /* Header */
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: #4a90e2;
+      padding: 2% 5%;
+      color: white;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      font-weight: bold;
+      font-size: 120%;
+    }
+
+    .logo img {
+      height: 80%;
+      max-height: 50%;
+      margin-left: 5%;
+    }
+
+    .usuario {
+  display: flex;
+  align-items: center;     /* centra verticalmente */
+  justify-content: flex-end; /* todo el bloque se alinea a la derecha */
+  gap: 2%;                /* espacio entre foto y texto */
+  width: 20%;             /* el bloque usuario ocupa el 20% del header */
+}
+
+.usuario button {
+  background: transparent;
+  border: none;
+  color: white;
+  font-size: 90%;          /* relativo al contenedor */
+  font-weight: bold;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+.usuario img {
+  width: 20%;              /* tamaño proporcional dentro del bloque usuario */
+  height: auto;
+  border-radius: 50%;
+  border: 0.5% solid white;
+  object-fit: cover;
+}
+
+.usuario button:hover {
+  opacity: 0.8;
+}
+
+
+
+    /* Saldo */
+    .saldo {
+      text-align: left;
+      margin: 8% 50%;
+      margin-left: 5%;
+    }
+
+    .saldo h2 {
+      font-size: 150%;
+      color: #555;
+      margin-bottom: 2%;
+    }
+
+    .saldo p {
+      font-size: 250%;
+      font-weight: bold;
+      color: #2c3e50;
+    }
+
+    /* Botones */
+    .acciones {
+  display:flex;
+  gap: 5%; /* espacio entre botones */
+  margin-left: 30%;
+  margin-top: 0%;
+
+}
+
+/* Botones */
+.acciones button {
+  padding: 2% 4%;
+  font-size: 90%;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: bold;
+  color: white;
+  transition: all 0.3s ease;
+}
+
+/* Colores de cada botón */
+.btn-transferir {
+  background: #27ae60;
+}
+.btn-actividad {
+  background: #f39c12;
+}
+.btn-recargar {
+  background: #3498db;
+}
+
+/* Hover bonito */
+.acciones button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+  opacity: 0.9;
+}
