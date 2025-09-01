@@ -1,0 +1,41 @@
+body {
+    background-color: #d6e8ff;
+    display: flex;
+    justify-content: center; 
+    align-items: center;
+    min-height: 100vh;
+    font-family: Arial, sans-serif;
+}
+h1{
+    font-size: 30px;
+    color:#000852;
+    font-family:monospace;
+    text-align: center;
+    margin-right: 10px;
+}
+.movimientos {
+    width: 400px;
+    background: #fff;
+    border-radius: 12px;
+
+}
+.movimiento {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 18px;
+    border-bottom: 1px solid #ddd;
+}
+
+.nombre {
+    font-weight: bold;
+    color: #000852;
+}
+.monto {
+    font-weight: bold;
+    color: #444;
+}
+.fecha {
+    font-size: 0.85em;
+    color: #666;
+}
