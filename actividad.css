@@ -1,91 +1,103 @@
-
-main {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding-top: 100px;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
 }
+
+body {
+    background-color: #d6e8ff;
+}
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #000852;
+    padding: 2% 5%;
+    color: #d6e8ff;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 100;
+}
+
 .logo img {
-  height: 100px;
-  max-height: 50%;
-  margin-left: 5%;
+    height: 100px;
+    max-height: 50%;
 }
 
 .usuario {
-  display: flex;;    
-  justify-content: flex-end; 
-  gap: 2%;                /
-
+    display: flex;    
+    justify-content: flex-end; 
+    gap: 10px;
 }
 
 .usuario button {
-  background: transparent;
-  border: none;
-  color: #ffffff;
-  font-size: 15px;          
-  font-weight: bold;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
+    background: transparent;
+    border: none;
+    color: #ffffff;
+    font-size: 15px;          
+    font-weight: bold;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
 }
 
 .usuario img {
-  width: 90px;              
-  height: auto;
-  border-radius: 50%;
-  border: 0.5% solid white;
-  object-fit: cover;
-  text-align: right;
+    width: 50px;              
+    height: auto;
+    border-radius: 50%;
+    border: 2px solid white;
+    object-fit: cover;
 }
 
 .usuario button:hover {
-  opacity: 0.8;
+    opacity: 0.8;
 }
-  
-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background:#000852;
-  padding: 2% 5%;
-  color: #d6e8ff;
-}body {
-    background-color: #d6e8ff;
+
+main {
     display: flex;
-    justify-content: center; 
-    align-items: center;
-    min-height: 100vh;
-    font-family: Arial, sans-serif;
-}
-h1{
-    font-size: 30px;
-    color:#000852;
-    font-family:monospace;
-    text-align: center;
-    margin-right: 10px;
+    justify-content: center;
+    align-items: flex-start;
+    padding-top: 100px; 
 }
 .movimientos {
     width: 400px;
     background: #fff;
     border-radius: 12px;
-
+    padding: 20px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
 }
+
+.movimientos h1 {
+    font-size: 30px;
+    color: #000852;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
 .movimiento {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 12px 18px;
+    padding: 12px 0;
     border-bottom: 1px solid #ddd;
+}
+
+.movimiento:last-child {
+    border-bottom: none;
 }
 
 .nombre {
     font-weight: bold;
     color: #000852;
 }
+
 .monto {
     font-weight: bold;
     color: #444;
 }
+
 .fecha {
     font-size: 0.85em;
     color: #666;
