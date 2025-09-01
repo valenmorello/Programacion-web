@@ -5,3 +5,5 @@ function registrarse (){
 function loguearse (){
     window.location.assign('login.html')
 }
+
+funcidsfkjdskh
