@@ -4,19 +4,21 @@
         <link rel="stylesheet" href="styles.css">
     </head>
     <body>
-        <img src="logo.jpg" class="imagen">
-        <h1>Bienvenido a FamilyBank</h1>
-        <section class="caja">
-            <div>
+        
+        <section class="login">
+            <img src="logo.jpg" class="imagen">
+            <div class="registro">
                 <input class="input" id="usuario" placeholder="Ingrese usuario"><br>
-                <input class="input" id="dni" placeholder="Ingrese contraseña"><br>
-                <input class="input" id="usuario" placeholder="Ingrese usuario"><br>
-                <input class="input" id="dni" placeholder="Ingrese contraseña">
+                <input class="input" id="contraseña" placeholder="Ingrese contraseña"><br>
+                <input class="input" id="codigofamiliar" placeholder="Ingrese codigo familiar"><br>
+                <select class="select" name="usuario" id="usuario">
+                    <option value="padre"> <p>PADRE</p></option>
+                    <option value="hijo"> <P>HIJO</P></option>
+                 </select><br>
+      
             </div>
 
-            <p class="texto">Registrar usuario nuevo</p>
-
-            <button class="button" onclick="registro()">REGISTRARSE</button>
+            <button class="button" onclick="registro()">CREAR USUARIO</button>
         </section>
         
         <script src="dom.js"></script>

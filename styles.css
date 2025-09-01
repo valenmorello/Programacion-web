@@ -6,7 +6,12 @@ body {
                  
 }
 
-.contenedor {
+h1{
+    font-size: 30px;
+    color:#000852;
+    font-family:monospace;
+}
+.log {
     text-align: center;
 }
 
@@ -17,10 +22,10 @@ body {
 }
 
 .imagen {
-    width: 180px;
+    width: 200px;
     height: 50px;
-    display:block;
-      
+    
+    
 }
 
 .input {
@@ -37,7 +42,7 @@ body {
     border: none;
     border-radius: 5px;
     padding: 10px;
-    margin-left: 10px;
+    margin-left: 28px;
     cursor: pointer;
     color: aliceblue;
     align-items: center;
@@ -48,5 +53,14 @@ body {
     color: black;
     font-size: 14px;
     display: block;
-    align-items: center;
+    align-items: center
 }
+.select{
+    border-radius: 5px;
+    padding: 10px;
+    text-align: center;
+    align-items: center;
+    display: flex;
+    margin-left:45px
+}   
+
