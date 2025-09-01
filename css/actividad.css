@@ -18,6 +18,11 @@ main {
 
 }
 
+header button {
+  border: 0;
+  background:#000852;
+}
+
 .usuario button {
   background: transparent;
   border: none;

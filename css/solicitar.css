@@ -1,0 +1,137 @@
+* {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+}
+
+body {
+  background:  #d6e8ff;
+  color: #333;
+  margin: 0;
+}
+
+main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 100px;
+}
+
+  
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background:#000852;
+  padding: 2% 5%;
+  color: #d6e8ff;
+}
+
+header button {
+  border: 0;
+  background:#000852;
+}
+
+
+
+.logo img {
+  height: 100px;
+  max-height: 50%;
+  margin-left: 5%;
+}
+
+.usuario {
+  display: flex;;    
+  justify-content: flex-end; 
+  gap: 2%;                /
+
+}
+
+.usuario button {
+  background: transparent;
+  border: none;
+  color: #ffffff;
+  font-size: 15px;          
+  font-weight: bold;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+.usuario img {
+  width: 90px;              
+  height: auto;
+  border-radius: 50%;
+  border: 0.5% solid white;
+  object-fit: cover;
+  text-align: right;
+}
+
+.usuario button:hover {
+  opacity: 0.8;
+}
+
+.section {
+  background-color: #d6e8ff; 
+  border-radius: 20px; 
+  width: 500px;
+  border: 3px solid #000852; 
+  justify-content: center; 
+  
+}
+.saldo {
+  text-align: center;  
+  margin-bottom: 10px;  
+  margin-top: 5px;    
+}     
+
+.saldo h2 {
+  font-size: 20px;
+  color: #000852;
+  margin-bottom: 20px;  
+}
+
+.saldo p {
+  font-size: 25px;
+  font-weight: bold;
+  color: #2c3e50;
+  margin: 0;
+}
+
+ 
+
+
+
+
+.acciones button {
+  padding: 2% 4%;
+  font-size: 90%;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: bold;
+  color: white;
+  transition: all 0.3s ease;
+  display:flex;
+  gap: 2%;
+  margin-top: 0%;
+  margin-bottom: 4px;
+}
+
+
+.button{
+  background:#000852;
+}
+/*esto es para la animacion de los botones*/
+.acciones {
+  display: flex;
+  justify-content: center; 
+  gap: 10px;              
+}
+
+.acciones button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+  opacity: 0.9;
+}

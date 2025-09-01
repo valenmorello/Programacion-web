@@ -3,18 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <title>FamilyBank</title>
-    <link rel="stylesheet" href="actividad.css">
+    <link rel="stylesheet" href="/css/actividad.css">
 </head>
 <body>
     <header>
     <div class="logo">
-      <img src="logoinicio.jpg" class="imagen" alt="Logo">    
+        <button onclick="inicio()">
+            <img src="/Images/logoinicio.jpg" class="imagen" alt="Logo">   
+        </button>
     </div>
     <div class="usuario">
-        <button>
-            <img src="user.png" alt="Usuario">
+        <button onclick="cuenta()">
+            <img src="/Images/user.png" alt="Usuario">
         </button>
-        <button>Hola ...!</button>
+        <button onclick="cuenta()">Hola ...!</button>
     </div>
   </header>
     
@@ -37,5 +39,6 @@
         </div>
 
     </section>
+    <script src="/dom.js"></script>
 </body>
 </html>

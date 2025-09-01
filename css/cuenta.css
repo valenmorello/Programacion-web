@@ -28,6 +28,11 @@ header {
   color: #d6e8ff;
 }
 
+header button {
+  border: 0;
+  background:#000852;
+}
+
 
 
 .logo img {
