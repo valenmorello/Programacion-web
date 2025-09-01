@@ -29,6 +29,7 @@ body {
     border-radius: 5px;
     padding: 12px;
     margin-bottom: 3px;
+    align-items: center;
 }
 
 .button {
@@ -39,10 +40,13 @@ body {
     margin-left: 10px;
     cursor: pointer;
     color: aliceblue;
+    align-items: center;
 }
 
 .texto {
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
     color: black;
     font-size: 14px;
+    display: block;
+    align-items: center;
 }
