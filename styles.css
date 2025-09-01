@@ -64,3 +64,13 @@ h1{
     margin-left:45px
 }   
 
+.button1{
+    background-color: rgb(20, 20, 71);
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+    
+    cursor: pointer;
+    color: aliceblue;
+    align-items: center;
+}
