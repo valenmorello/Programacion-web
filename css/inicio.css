@@ -42,22 +42,24 @@ header button {
 }
 
 .usuario {
-  display: flex;;    
+  display: flex;
   justify-content: flex-end; 
-  gap: 2%;                /
-
+  align-items: center;   /* centra verticalmente */
+  gap: 5%;               /* espacio entre imagen y texto */
 }
 
 .usuario button {
   background: transparent;
   border: none;
   color: #ffffff;
-  font-size: 15px;          
+  font-size: 150%;         
   font-weight: bold;
   cursor: pointer;
   display: flex;
   align-items: center;
+  white-space: nowrap;   /* 👉 evita que el texto se corte */
 }
+
 
 .usuario img {
   width: 90px;              
