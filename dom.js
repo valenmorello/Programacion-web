@@ -25,3 +25,7 @@ function inicio (){
 function solicitar (){
     window.location.assign('solicitar.html')
 }
+
+function cerrarSesion (){
+    window.location.assign('index.html')
+}
