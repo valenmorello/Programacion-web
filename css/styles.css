@@ -1,93 +1,107 @@
 body {
-    background-color: #d6e8ff;
-    display: flex;
-    justify-content: center; 
-    align-items: center;     
-                 
+      background-color: #d6e8ff;
+      display: flex;
+      justify-content: center; 
+      align-items: center;   
+      height: 100vh;   /* 👉 asegura que todo quede centrado */
+      margin: 0;
+      font-family: Arial, sans-serif;
+      flex-direction: column;
+    }
+
+    h1 {
+      font-size: 30px;
+      color: #000852;
+      margin-bottom: 20px;
+    }
+
+    .log {
+      padding: 40px 30px;
+      width: 90%;
+      max-width: 400px;
+      text-align: center;   
+    }
+
+    .titulo {
+      font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+      color: black;
+      font-size: 40px;
+      margin-bottom: 15px;
+    }
+
+    .imagen {
+      width: 180px;
+      height: auto;
+      margin-bottom: 20px;
+    }
+
+    .input-datos {
+      padding: 3%;
+  font-size: 100%;
+  border: 2px solid #000852;
+  border-radius: 10px;
+  text-align: center;
+  margin-bottom: 3%;
+    }
+
+    .acciones {
+      display: flex;
+      flex-direction: column;   
+      align-items: center;      
+      margin-top: 20px;                  
+    }
+
+    .acciones button {
+  padding: 2% 4%;
+  font-size: 15px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: bold;
+  color: white;
+  display:flex;
+  gap: 2%;
+  margin-bottom: 5px;
 }
 
-h1{
-    font-size: 30px;
-    color:#000852;
-    font-family:monospace;
-}
-.log {
-    text-align: center;
+    .button{
+  background:#000852;
 }
 
-.titulo {
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    color: black;
-    font-size: 40px;
-}
+    .acciones button:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+      opacity: 0.9;
+    }
 
-.imagen {
-    width: 200px;
-    height: 50px;
-    
-    
-}
+    .select {
+      padding: 10px;
+      background-color: #000852;
+      border-radius: 10px;
+      font-size: 100%;
+      text-align: center;
+      color: white;
+      cursor: pointer;
+    }
 
-.input {
-    width: 200px;
-    height: 50px;
-    border-radius: 5px;
-    padding: 12px;
-    margin-bottom: 3px;
-    align-items: center;
-}
+    footer {
+      position: fixed;   
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      background-color: #000852;
+      color: #fff;
+      text-align: center;
+      padding: 15px 10px;
+      font-size: 14px;
+      border-top: 2px solid #d6e8ff;
+    }
 
-.button {
-    background-color: rgb(20, 20, 71);
-    border: none;
-    border-radius: 5px;
-    padding: 10px;
-    margin-left: 28px;
-    cursor: pointer;
-    color: aliceblue;
-    align-items: center;
-}
-
-.texto {
-    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-    color: black;
-    font-size: 14px;
-    display: block;
-    align-items: center
-}
-.select{
-    border-radius: 5px;
-    padding: 10px;
-    text-align: center;
-    align-items: center;
-    display: flex;
-    margin-left:45px
-}   
-
-.button1{
-    background-color: rgb(20, 20, 71);
-    border: none;
-    border-radius: 5px;
-    padding: 10px;
-    
-    cursor: pointer;
-    color: aliceblue;
-    align-items: center;
-}
-
-@media (max-width: 600px) {
- 
-   header { 
-    flex-direction: column; 
-    text-align: center; 
-  } 
-  .usuario img { 
-    width: 50px; 
-  } 
-  .input{
-    width: 200px;
-    height: 60px;
-  }
-  
-  
-}
+    @media (max-width: 600px) {
+      .input-datos {
+        max-width: 250px;
+      }
+      .acciones button {
+        width: 120px;
+      }
+    }

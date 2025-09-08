@@ -7,22 +7,29 @@
     </head>
     <body>
     
-        <section class="login">
+        <section class="log">
+            <section class="titulo">
+                <h1>Bienvenido a FamilyBank!</h1>
+                <h1>Registro:</h1>
+            </section>
             <img src="../Images/logo.jpg" class="imagen">
-            <div class="registro">
-                <input class="input" id="usuario" placeholder="Ingrese usuario"><br>
-                <input class="input" id="contraseña" placeholder="Ingrese contraseña"><br>
-                <input class="input" id="codigofamiliar" placeholder="Ingrese codigo familiar"><br>
-                <select class="select" name="usuario" id="usuario">
+            <div class="datos">
+                <input type="text" class="input-datos" id="usuario" placeholder="Ingrese usuario">
+                <input type="text" class="input-datos" id="contraseña" placeholder="Ingrese contraseña">
+                <input type="number" class="input-datos" id="codigoFamiliar" placeholder="Ingrese codigo familiar">
+            </div>
+            <select class="select" name="usuario" id="usuario">
                     <option value="padre"> <p>PADRE</p></option>
                     <option value="hijo"> <P>HIJO</P></option>
                  </select><br>
-      
+            <div class="acciones">
+                <button class="button" onclick="loguearse()">Crear usuario</button>
             </div>
-
-            <button class="button" onclick="loguearse()">CREAR USUARIO</button>
         </section>
         
         <script src="../dom.js"></script>
     </body>
+    <footer>
+        <p>© 2025 FamilyBank | Desarrollado por Tomás Maraval, Valentina Morello y Felicitas Orlando.</p>
+    </footer>
 </html>

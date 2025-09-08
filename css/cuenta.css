@@ -9,6 +9,7 @@ body {
   background:  #d6e8ff;
   color: #333;
   margin: 0;
+  min-height: 1000px;
 }
 
 main {
@@ -80,7 +81,7 @@ header button {
   justify-content: center; 
   
   width: 40%;
-  min-height: 400px;
+  min-height: 420px;
   
 }
 .textos {
@@ -93,14 +94,14 @@ header button {
 .textos h2 {
   font-size: 30px;
   color: #000852;
-  margin-bottom: 20px;  
+  margin-bottom: 4%;  
 }
 
 .textos p {
   font-size: 25px;
   font-weight: bold;
   color: #000852;
-  margin: 0;
+  margin-bottom: 2%;
 }
 
 .datos{
@@ -149,3 +150,16 @@ header button {
   box-shadow: 0 6px 12px rgba(0,0,0,0.2);
   opacity: 0.9;
 }
+
+footer {
+      position: fixed;   
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      background-color: #000852;
+      color: #fff;
+      text-align: center;
+      padding: 15px 10px;
+      font-size: 14px;
+      border-top: 2px solid #d6e8ff;
+    }

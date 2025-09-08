@@ -9,6 +9,7 @@ body {
   background:  #d6e8ff;
   color: #333;
   margin: 0;
+  min-height: 1000px;
 }
 
 main {
@@ -160,3 +161,16 @@ header button {
   box-shadow: 0 6px 12px rgba(0,0,0,0.2);
   opacity: 0.9;
 }
+
+footer {
+      position: fixed;   
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      background-color: #000852;
+      color: #fff;
+      text-align: center;
+      padding: 15px 10px;
+      font-size: 14px;
+      border-top: 2px solid #d6e8ff;
+    }
