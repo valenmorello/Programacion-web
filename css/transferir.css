@@ -17,7 +17,6 @@ main {
   align-items: center;
   padding-top: 100px;
 }
-
   
 header {
   display: flex;
@@ -99,10 +98,11 @@ header button {
   margin: 0;
 }
 
- 
-
-
-
+.etiqueta{
+  font-size: 20px;
+  color: #000852;
+  margin-bottom: 20px; 
+}
 
 .acciones button {
   padding: 2% 4%;
@@ -119,7 +119,6 @@ header button {
   margin-bottom: 4px;
 }
 
-
 .button{
   background:#000852;
 }
@@ -134,4 +133,15 @@ header button {
   transform: translateY(-3px);
   box-shadow: 0 6px 12px rgba(0,0,0,0.2);
   opacity: 0.9;
+}
+
+/*-------------------------------*/
+
+.input {
+    width: 200px;
+    height: 50px;
+    border-radius: 5px;
+    padding: 12px;
+    margin-bottom: 3px;
+    align-items: center;
 }
