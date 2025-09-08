@@ -2,11 +2,11 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>FamilyBank</title>
+    <title>FamilyBank - Actividad</title>
     <link rel="stylesheet" href="../css/actividad.css">
 </head>
 <body>
-    <header>
+  <header>
     <div class="logo">
         <button onclick="inicio()">
             <img src="../Images/logoinicio.jpg" class="imagen" alt="Logo">   
@@ -19,28 +19,39 @@
         <button onclick="cuenta()">Hola ...!</button>
     </div>
   </header>
+
   <main>
     <section class="movimientos">
-        <h1> ACTIVIDAD</h1>
-        <div class="movimiento">
-            <p class="nombre">Supermercado</p>
-            <p class="monto">- $4.500</p>
-            <p class="fecha">01/09/2025</p>
-        </div>
-        <div class="movimiento">
-            <p class="nombre">Sueldo</p>
-            <p class="monto">+ $250.000</p>
-            <p class="fecha">30/08/2025</p>
-        </div>
-        <div class="movimiento">
-            <p class="nombre">Valentina Morello</p>
-            <p class="monto">- $2.999</p>
-            <p class="fecha">29/08/2025</p>
-        </div>
-
+        <h1>ACTIVIDAD</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>Destino</th>
+                    <th>Monto</th>
+                    <th>Fecha</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Supermercado</td>
+                    <td>- $4.500</td>
+                    <td>01/09/2025</td>
+                </tr>
+                <tr>
+                    <td>Sueldo</td>
+                    <td>+ $250.000</td>
+                    <td>30/08/2025</td>
+                </tr>
+                <tr>
+                    <td>Valentina Morello</td>
+                    <td>- $2.999</td>
+                    <td>29/08/2025</td>
+                </tr>
+            </tbody>
+        </table>
     </section>
   </main>
-    
-    <script src="/dom.js"></script>
+
+  <script src="/dom.js"></script>
 </body>
 </html>

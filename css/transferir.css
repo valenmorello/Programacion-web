@@ -33,7 +33,6 @@ header button {
 }
 
 
-
 .logo img {
   height: 100px;
   max-height: 50%;
@@ -53,7 +52,7 @@ header button {
 }
 
 .section {
-  background-color: #d6e8ff; 
+  background-color: #ffffff; 
   border-radius: 20px; 
   width: 500px;
   border: 3px solid #000852; 
@@ -62,8 +61,8 @@ header button {
 }
 .saldo {
   text-align: center;  
-  margin-bottom: 10px;  
-  margin-top: 5px;    
+  margin-bottom: 20px;  
+  margin-top: 20px;    
 }     
 
 .saldo h2 {
@@ -79,10 +78,21 @@ header button {
   margin: 0;
 }
 
-.etiqueta{
-  font-size: 20px;
-  color: #000852;
-  margin-bottom: 20px; 
+
+.datos{
+  display: flex;
+  justify-content: center;
+  margin: 20px;
+  gap: 10px; 
+}
+
+.input {
+    width: 200px;
+    height: 50px;
+    border-radius: 5px;
+    padding: 12px;
+    margin-bottom: 3px;
+    align-items: center;
 }
 
 .acciones button {
@@ -97,7 +107,7 @@ header button {
   display:flex;
   gap: 2%;
   margin-top: 0%;
-  margin-bottom: 4px;
+  margin-bottom: 15px;
 }
 
 .button{
@@ -114,26 +124,6 @@ header button {
   box-shadow: 0 6px 12px rgba(0,0,0,0.2);
   opacity: 0.9;
 }
-.input {
-    width: 200px;
-    height: 50px;
-    border-radius: 5px;
-    padding: 12px;
-    margin-bottom: 3px;
-    align-items: center;
-}
-
-
-
-
-
-
-
-
-
-
-
-
 
 .usuario {
   display: flex;
@@ -151,5 +141,5 @@ header button {
   cursor: pointer;
   display: flex;
   align-items: center;
-  white-space: nowrap;   /* 👉 evita que el texto se corte */
+  white-space: nowrap;  
 }
