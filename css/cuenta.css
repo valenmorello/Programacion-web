@@ -74,35 +74,47 @@ header button {
 }
 
 .section {
-  background-color: #d6e8ff; 
+  background-color: #ffffff; 
   border-radius: 20px; 
-  width: 500px;
   border: 3px solid #000852; 
   justify-content: center; 
   
+  width: 40%;
+  min-height: 400px;
+  
 }
-.saldo {
+.textos {
   text-align: center;  
   margin-bottom: 10px;  
-  margin-top: 5px;    
+  margin-top: 10%;
+  margin-bottom: 7%;   
 }     
 
-.saldo h2 {
-  font-size: 20px;
+.textos h2 {
+  font-size: 30px;
   color: #000852;
   margin-bottom: 20px;  
 }
 
-.saldo p {
+.textos p {
   font-size: 25px;
   font-weight: bold;
-  color: #2c3e50;
+  color: #000852;
   margin: 0;
 }
 
- 
+.datos{
+  
+  text-align: center;
+}
 
-
+.input-datos {
+  padding: 3%;
+  font-size: 100%;
+  border: 2px solid #000852;
+  border-radius: 10px;
+  text-align: center;
+}
 
 
 .acciones button {
@@ -127,8 +139,9 @@ header button {
 /*esto es para la animacion de los botones*/
 .acciones {
   display: flex;
-  justify-content: center; 
-  gap: 10px;              
+  flex-direction: column;   /* 👉 uno encima del otro */
+  align-items: center;                /* 👉 espacio entre los botones */
+  margin-top: 20px;                  
 }
 
 .acciones button:hover {
