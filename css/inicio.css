@@ -134,46 +134,28 @@ header button {
 }
 /*responsive*/
 @media (max-width: 600px) {
-    header {
-        flex-direction: column;  
-        text-align: center;
-    }
-
-    .usuario img {
-        width: 50px; 
-    }
-
-    .section{
-        width: 300px;
-        height: 280px;
-    }
-    .button{
-        width: 88px;
-    }
-}
-
-@media (max-width: 1200px) {
-  .section{
-      width: 500px;
-      height: 380px;
-    }
-  .acciones button{
-      width: 120px;
-      height: 70px;
-      text-align: center;
-      font-size: 20px;
-
+  .acciones button {
+    width: 100px;
+    height: 60px;
+    font-size: 14px;
   }
+
   .saldo h2 {
-      font-size: 50px;
-      color: #000852;
-      margin-bottom: 20px;  
+    font-size: 24px;
   }
 
   .saldo p {
-    font-size: 48px;
-    font-weight: bold;
-    color: #000852;
-    margin: 0;
+    font-size: 22px;
+  }
+   header { 
+    flex-direction: column; 
+    text-align: center; 
+  } 
+  .usuario img { 
+    width: 50px; 
+  } 
+  .section{ 
+    width: 280px; 
+    height: 260px; 
   }
 }
