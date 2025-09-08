@@ -74,3 +74,19 @@ h1{
     color: aliceblue;
     align-items: center;
 }
+@media (max-width: 600px) {
+ 
+   header { 
+    flex-direction: column; 
+    text-align: center; 
+  } 
+  .usuario img { 
+    width: 50px; 
+  } 
+  .input{
+    width: 200px;
+    height: 60px;
+  }
+  
+  
+}
