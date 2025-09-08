@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FamilyBank</title>
+  
+  <link rel="stylesheet" href="../css/iniciopadre.css">
+</head>
+<body>
+  <header>
+    <div class="logo">
+      <button onclick="inicio()">
+            <img src="../Images/logoinicio.jpg" class="imagen" alt="Logo">   
+      </button>   
+    </div>
+    <div class="usuario">
+        <button onclick="cuenta()">
+            <img src="../Images/user.png" alt="Usuario">
+        </button>
+        <button onclick="cuenta()">Hola ...!</button>
+    </div>
+  </header>
+
+  <main>
+    <section class="section1">
+      <div class="saldo">
+        <h2>Saldo disponible</h2>
+        <p>$ 12,350.75</p>
+      </div>
+
+      <div class="acciones">
+        <button class="button" onclick="transferencia()">Transferir</button>
+        <button class="button" onclick="actividad()">Ver actividad</button>
+        <button class="button" onclick="solicitar()">Solicitar</button>
+      </div>
+    </section>
+    
+    <section class="section2">
+        <button onclick="actividad()">
+          <img class="img_hijo" src="../Images/user.png" alt="Usuario">
+          <h2>Juan</h2>
+        </button>
+        <button onclick="actividad()">
+          <img class="img_hijo" src="../Images/user.png" alt="Usuario">
+          <h2>Maria</h2>
+        </button>
+        <button onclick="actividad()">
+          <img class="img_hijo" src="../Images/user.png" alt="Usuario">
+          <h2>Agustin</h2>
+        </button>
+    </section>
+
+  </main>
+  <script src="/dom.js"></script>
+</body>
+</html>

@@ -1,0 +1,195 @@
+* {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+}
+
+body {
+  background:  #d6e8ff;
+  color: #333;
+  margin: 0;
+}
+
+main {
+  display: flex;
+  flex-direction: column; 
+  justify-content: center;
+  align-items: center;
+  padding-top: 25px;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background:#000852;
+  padding: 2% 5%;
+  color: #d6e8ff;
+}
+
+header button {
+  border: 0;
+  background:#000852;
+}
+
+.logo img {
+  height: 100px;
+  max-height: 50%;
+  margin-left: 5%;
+}
+
+.usuario {
+  display: flex;
+  justify-content: flex-end; 
+  align-items: center;   /* centra verticalmente */
+  gap: 5%;               /* espacio entre imagen y texto */
+}
+
+.usuario button {
+  background: transparent;
+  border: none;
+  color: #ffffff;
+  font-size: 150%;         
+  font-weight: bold;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  white-space: nowrap;   /* 👉 evita que el texto se corte */
+}
+
+.usuario img {
+  width: 90px;              
+  height: auto;
+  border-radius: 50%;
+  border: 0.5% solid white;
+  object-fit: cover;
+  text-align: right;
+}
+
+.section1 {
+  position: relative;
+  justify-content: center;
+  align-items: center;
+  background-color: #ffffff; 
+  border-radius: 20px; 
+  width: 40%;
+  height: 300px;
+  border: 3px solid #000852; 
+  margin: 25px;
+}
+
+.saldo {
+  text-align: center;  
+  margin-bottom: 10px;  
+  margin-top: 10%;
+  margin-bottom: 7%;   
+}     
+
+.saldo h2 {
+  font-size: 30px;
+  color: #000852;
+  margin-bottom: 20px;  
+}
+
+.saldo p {
+  font-size: 28px;
+  font-weight: bold;
+  color: #000852;
+  margin: 0;
+}
+
+ 
+.acciones button {
+  padding: 2% 4%;
+  font-size: 15px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: bold;
+  color: white;
+  display:flex;
+  gap: 2%;
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+
+.button{
+  background:#000852;
+}
+/*esto es para la animacion de los botones*/
+.acciones {
+  display: flex;
+  justify-content: center; 
+  gap: 10px;              
+}
+
+.acciones button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+  opacity: 0.9;
+}
+
+.section2 {
+  padding: 10px;
+  display: flex;
+  justify-content: center; 
+  align-items: center;
+  background-color: #000852; 
+  border-radius: 20px; 
+  width: 80%;
+  height: 200px;
+  border: 3px solid #ffffff; 
+  margin: 25px;
+}
+
+.section2 button {
+  width:max-content;
+  padding: 20px;
+  margin: 10px;
+  font-size: 15px;
+  cursor: pointer;
+  font-weight: bold;
+  color: #000852;
+  background-color: #d6e8ff;
+  border-radius: 10px;
+}
+
+.section2 button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+  opacity: 0.9;
+}
+
+.img_hijo{
+  width: 50%;              
+  height: auto;
+}
+
+/*responsive*/
+@media (max-width: 600px) {
+  .acciones button {
+    width: 100px;
+    height: 60px;
+    font-size: 14px;
+  }
+
+  .saldo h2 {
+    font-size: 24px;
+  }
+
+  .saldo p {
+    font-size: 22px;
+  }
+   header { 
+    flex-direction: column; 
+    text-align: center; 
+  } 
+  .usuario img { 
+    width: 50px; 
+  } 
+  .section1{ 
+    width: 280px; 
+    height: 260px; 
+  }
+}
