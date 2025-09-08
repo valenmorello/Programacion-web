@@ -1,3 +1,15 @@
+* {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+}
+
+body {
+  background:  #d6e8ff;
+  color: #333;
+  margin: 0;
+}
 
 main {
   display: flex;
@@ -5,17 +17,28 @@ main {
   align-items: center;
   padding-top: 100px;
 }
-.logo img {
-  height: 100px;
-  max-height: 50%;
-  margin-left: 5%;
-}
 
+  
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background:#000852;
+  padding: 2% 5%;
+  color: #d6e8ff;
+}
 
 header button {
   border: 0;
   background:#000852;
+}
 
+
+
+.logo img {
+  height: 100px;
+  max-height: 50%;
+  margin-left: 5%;
 }
 
 .usuario {
@@ -49,92 +72,72 @@ header button {
 .usuario button:hover {
   opacity: 0.8;
 }
-  
-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background:#000852;
-  padding: 2% 5%;
-  color: #d6e8ff;
-}body {
-    background-color: #d6e8ff;
-    font-family: Arial, sans-serif;
-    margin: 0; 
-    padding: 0;
-    display: flex;
-    flex-direction: column; 
-    min-height: 100vh;
+
+.usuario button:hover {
+    opacity: 0.8;
 }
 
 main {
     display: flex;
     justify-content: center;
     align-items: center;
+    padding: 50px;
 }
 
-h1{
-    font-size: 30px;
-    color:#000852;
-    font-family:monospace;
-    text-align: center;
-    margin-right: 10px;
-}
 .movimientos {
-    width: 400px;
+    width: 500px;
     background: #fff;
     border-radius: 12px;
-
+    padding: 20px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
 }
-.movimiento {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 12px 18px;
+
+h1 {
+    font-size: 26px;
+    color:#000852;
+    text-align: center;
+    margin-bottom: 20px;
+    font-family: monospace;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th, td {
+    text-align: left;
+    padding: 12px;
     border-bottom: 1px solid #ddd;
+    font-size: 16px;
 }
 
-.nombre {
-    font-weight: bold;
-    color: #000852;
+th {
+    background: #000852;
+    color: #fff;
+    text-align: center;
 }
-.monto {
-    font-weight: bold;
-    color: #444;
+
+td {
+    text-align: center;
 }
-.fecha {
-    font-size: 0.85em;
-    color: #666;
-}
+
+
+/* Responsivo */
 @media (max-width: 600px) {
-    header {
-        flex-direction: column;  
-        text-align: center;
+    .movimientos {
+        width: 90%;
     }
 
     .usuario img {
-        width: 50px; 
-    }
-
-    .movimientos {
-        width: 90%;
-        align-items: center; 
+        width: 50px;
     }
 
     h1 {
-        font-size: 22px;
-    }
-     .movimiento p {
-        font-size: 14px;  
+        font-size: 20px;
     }
 
-    .fecha {
-        font-size: 12px;
-    }
-}
-
-@media (max-width: 900px) {
-    .movimientos {
-        width: 70%;
+    th, td {
+        font-size: 14px;
     }
 }
