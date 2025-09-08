@@ -48,9 +48,6 @@ header button {
   text-align: right;
 }
 
-.usuario button:hover {
-  opacity: 0.8;
-}
 
 .section {
   background-color: #d6e8ff; 
