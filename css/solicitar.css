@@ -76,7 +76,8 @@ header button {
 .section {
   background-color: #ffffff; 
   border-radius: 20px; 
-  width: 500px;
+  width: 40%;
+  min-height: 300px;   
   border: 3px solid #000852; 
   justify-content: center; 
   
