@@ -3,30 +3,35 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>FamilyBank</title>
+  <title>Solicitar Dinero - FamilyBank</title>
   <link rel="stylesheet" href="../css/solicitar.css">
 </head>
 <body>
   <header>
     <div class="logo">
       <button onclick="inicio()">
-            <img src="../Images/logoinicio.jpg" class="imagen" alt="Logo">   
+        <img src="../Images/logoinicio.jpg" class="imagen" alt="Logo">   
       </button>   
     </div>
     <div class="usuario">
-        <button onclick="cuenta()">
-            <img src="/Images/user.png" alt="Usuario">
-        </button>
-        <button onclick="cuenta()">Hola ...!</button>
+      <button onclick="cuenta()">
+        <img src="/Images/user.png" alt="Usuario">
+      </button>
+      <button onclick="cuenta()">Hola ...!</button>
     </div>
   </header>
 
   <main>
     <section class="section">
-      
+      <div class="solicitar">
+        <h2>Solicitar dinero</h2>
+        <p>Ingrese la cantidad que desea solicitar:</p>
+        <input type="number" placeholder="$ 0.00" class="input-solicitar">
+        <button class="button" onclick="solicitarDinero()">Solicitar</button>
+      </div>
     </section>
-
   </main>
+
   <script src="/dom.js"></script>
 </body>
 </html>
