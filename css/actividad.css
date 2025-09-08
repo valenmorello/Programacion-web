@@ -21,6 +21,7 @@ main {
 header button {
   border: 0;
   background:#000852;
+
 }
 
 .usuario button {
@@ -56,12 +57,20 @@ header {
   color: #d6e8ff;
 }body {
     background-color: #d6e8ff;
-    display: flex;
-    justify-content: center; 
-    align-items: center;
-    min-height: 100vh;
     font-family: Arial, sans-serif;
+    margin: 0; 
+    padding: 0;
+    display: flex;
+    flex-direction: column; 
+    min-height: 100vh;
 }
+
+main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 h1{
     font-size: 30px;
     color:#000852;
@@ -94,4 +103,36 @@ h1{
 .fecha {
     font-size: 0.85em;
     color: #666;
+}
+@media (max-width: 600px) {
+    header {
+        flex-direction: column;  
+        text-align: center;
+    }
+
+    .usuario img {
+        width: 50px; 
+    }
+
+    .movimientos {
+        width: 90%;
+        align-items: center; 
+    }
+
+    h1 {
+        font-size: 22px;
+    }
+     .movimiento p {
+        font-size: 14px;  
+    }
+
+    .fecha {
+        font-size: 12px;
+    }
+}
+
+@media (max-width: 900px) {
+    .movimientos {
+        width: 70%;
+    }
 }
