@@ -17,7 +17,6 @@ main {
   align-items: center;
   padding-top: 100px;
 }
-
   
 header {
   display: flex;
@@ -40,26 +39,6 @@ header button {
   max-height: 50%;
   margin-left: 5%;
 }
-
-.usuario {
-  display: flex;
-  justify-content: flex-end; 
-  align-items: center;   /* centra verticalmente */
-  gap: 5%;               /* espacio entre imagen y texto */
-}
-
-.usuario button {
-  background: transparent;
-  border: none;
-  color: #ffffff;
-  font-size: 150%;         
-  font-weight: bold;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  white-space: nowrap;   /* 👉 evita que el texto se corte */
-}
-
 .usuario img {
   width: 90px;              
   height: auto;
@@ -100,10 +79,11 @@ header button {
   margin: 0;
 }
 
- 
-
-
-
+.etiqueta{
+  font-size: 20px;
+  color: #000852;
+  margin-bottom: 20px; 
+}
 
 .acciones button {
   padding: 2% 4%;
@@ -120,11 +100,10 @@ header button {
   margin-bottom: 4px;
 }
 
-
 .button{
   background:#000852;
 }
-/*esto es para la animacion de los botones*/
+/esto es para la animacion de los botones/
 .acciones {
   display: flex;
   justify-content: center; 
@@ -135,4 +114,43 @@ header button {
   transform: translateY(-3px);
   box-shadow: 0 6px 12px rgba(0,0,0,0.2);
   opacity: 0.9;
+}
+.input {
+    width: 200px;
+    height: 50px;
+    border-radius: 5px;
+    padding: 12px;
+    margin-bottom: 3px;
+    align-items: center;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+.usuario {
+  display: flex;
+  justify-content: flex-end; 
+  align-items: center;   /* centra verticalmente */
+  gap: 5%;               /* espacio entre imagen y texto */
+}
+
+.usuario button {
+  background: transparent;
+  border: none;
+  color: #ffffff;
+  font-size: 150%;         
+  font-weight: bold;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  white-space: nowrap;   /* 👉 evita que el texto se corte */
 }
