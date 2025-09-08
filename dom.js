@@ -21,3 +21,7 @@ function transferencia (){
 function inicio (){
     window.location.assign('inicio.html')
 }
+
+function solicitar (){
+    window.location.assign('solicitar.html')
+}
