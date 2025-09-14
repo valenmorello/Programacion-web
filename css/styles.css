@@ -102,12 +102,11 @@ body {
       font-size: 14px;
       border-top: 2px solid #d6e8ff;
     }
-
-    @media (max-width: 600px) {
-      .input-datos {
+@media (max-width: 600px) {
+    .input-datos {
         max-width: 250px;
       }
-      .acciones button {
+    .acciones button {
         width: 120px;
       }
     }
