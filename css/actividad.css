@@ -143,27 +143,58 @@ table tr:last-child td:last-child {
 }
 
 @media (max-width: 600px) {
-    .movimientos {
-        width: 90%;
-    }
+@media (max-width: 600px) {
+  header {
+    flex-direction: column;   /* logo arriba, usuario abajo */
+    text-align: center;
+    gap: 10px;
+  }
 
-    .usuario img {
-        width: 50px;
-    }
+  .logo img {
+    height: 60px;   /* logo más chico */
+    margin: 0 auto;
+  }
 
-    h1 {
-        font-size: 20px;
-    }
+  .usuario {
+    flex-direction: column;
+    gap: 5px;
+  }
 
-    th, td {
-        font-size: 14px;
-    }
-    footer {
-      font-size: 12px;
-      padding: 10px;
-    }
+  .usuario img {
+    width: 50px;
+  }
+
+  .usuario button {
+    font-size: 14px;
+  }
+
+  .movimientos {
+    width: 95%;
+    padding: 5%;
+    
+  }
+
+  .titulo h2 {
+    font-size: 22px;
+  }
+
+  table {
+    font-size: 14px;
+    display: block;  
+    margin-left: 30px;
+  }
+
+  th, td {
+    padding: 8px;
+    font-size: 12px;
+  }
+
+  footer {
+    font-size: 12px;
+    padding: 8px;
+  }
 }
-
+}
 footer { 
       margin-top: 10%;
       left: 0;
