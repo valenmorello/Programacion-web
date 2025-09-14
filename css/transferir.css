@@ -55,9 +55,8 @@ header button {
 .section {
   background-color: #ffffff; 
   border-radius: 20px; 
-  border: 3px solid #000852; 
+  border: solid #000852; 
   justify-content: center; 
-  
   width: 40%;
   height: 350px;
   
@@ -91,7 +90,7 @@ header button {
 }
 
 .input {
-    padding: 3%;
+  padding: 3%;
   font-size: 100%;
   border: 2px solid #000852;
   border-radius: 10px;
@@ -120,18 +119,11 @@ header button {
   justify-content: center; 
   gap: 10px;              
 }
-
-.acciones button:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 6px 12px rgba(0,0,0,0.2);
-  opacity: 0.9;
-}
-
 .usuario {
   display: flex;
   justify-content: flex-end; 
-  align-items: center;   /* centra verticalmente */
-  gap: 5%;               /* espacio entre imagen y texto */
+  align-items: center;   
+  gap: 5%;              
 }
 
 .usuario button {
@@ -147,13 +139,73 @@ header button {
 }
 
 footer { 
-      margin-top: 10%;
-      left: 0;
-      width: 100%;
-      background-color: #000852;
-      color: #fff;
-      text-align: center;
-      padding: 15px 10px;
-      font-size: 14px;
-      border-top: 2px solid #d6e8ff;
-    }
+  margin-top: 10%;
+  left: 0;
+  width: 100%;
+  background-color: #000852;
+  color: #fff;
+  text-align: center;
+  padding: 15px 10px;
+  font-size: 14px;
+  border-top: 2px solid #d6e8ff;
+}
+@media (max-width: 480px) {
+  header {
+    flex-direction: column;
+    text-align: center;
+    padding: 10px;
+  }
+
+  .logo img {
+    height: 70px;
+    margin: 10px 0;
+  }
+
+  .usuario {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .usuario img {
+    width: 50px;
+  }
+
+  .section {
+    width: 90%;
+    padding: 15px;
+    display: flex;
+    flex-direction: column; 
+    align-items: center;   
+    justify-content: center;
+  }
+
+  .textos h2 {
+    font-size: 22px;
+  }
+
+  .textos p {
+    font-size: 16px;
+  }
+
+  .datos {
+    width: 100%;        
+    font-size:14px;
+    height: 50px;
+    display: inline;      
+    justify-content: center;  
+    align-items: center;      
+    margin-bottom: 40px;    
+    margin-left: 110px;
+    margin-top: 20px;
+}
+  .acciones button {
+    width: 100%;
+    font-size: 14px;
+    padding: 10px;
+  }
+
+  footer {
+    font-size: 12px;
+    padding: 10px;
+  }
+}

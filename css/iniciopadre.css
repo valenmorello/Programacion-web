@@ -42,8 +42,8 @@ header button {
 .usuario {
   display: flex;
   justify-content: flex-end; 
-  align-items: center;   /* centra verticalmente */
-  gap: 5%;               /* espacio entre imagen y texto */
+  align-items: center; 
+  gap: 5%;               
 }
 
 .usuario button {
@@ -55,7 +55,6 @@ header button {
   cursor: pointer;
   display: flex;
   align-items: center;
-  white-space: nowrap;   /* 👉 evita que el texto se corte */
 }
 
 .usuario img {
@@ -117,17 +116,10 @@ header button {
 .button{
   background:#000852;
 }
-/*esto es para la animacion de los botones*/
 .acciones {
   display: flex;
   justify-content: center; 
   gap: 10px;              
-}
-
-.acciones button:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 6px 12px rgba(0,0,0,0.2);
-  opacity: 0.9;
 }
 
 .section2 {
@@ -155,18 +147,11 @@ header button {
   border-radius: 10px;
 }
 
-.section2 button:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 6px 12px rgba(0,0,0,0.2);
-  opacity: 0.9;
-}
-
 .img_hijo{
   width: 50%;              
   height: auto;
 }
 
-/*responsive*/
 @media (max-width: 600px) {
   .acciones button {
     width: 100px;

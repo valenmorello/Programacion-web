@@ -45,8 +45,8 @@ header button {
 .usuario {
   display: flex;
   justify-content: flex-end; 
-  align-items: center;   /* centra verticalmente */
-  gap: 5%;               /* espacio entre imagen y texto */
+  align-items: center;  
+  gap: 5%;              
 }
 
 .usuario button {
@@ -58,7 +58,6 @@ header button {
   cursor: pointer;
   display: flex;
   align-items: center;
-  white-space: nowrap;   /* 👉 evita que el texto se corte */
 }
 
 .usuario img {
@@ -120,13 +119,6 @@ header button {
   cursor: pointer;
   font-weight: bold;
   color: white;
-  transition: all 0.3s ease;
-}
-
-.button:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 6px 12px rgba(0,0,0,0.2);
-  opacity: 0.9;
 }
 
 
@@ -138,7 +130,6 @@ header button {
   cursor: pointer;
   font-weight: bold;
   color: white;
-  transition: all 0.3s ease;
   display:flex;
   gap: 2%;
   margin-top: 0%;
@@ -149,17 +140,11 @@ header button {
 .button{
   background:#000852;
 }
-/*esto es para la animacion de los botones*/
+
 .acciones {
   display: flex;
   justify-content: center; 
   gap: 10px;              
-}
-
-.acciones button:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 6px 12px rgba(0,0,0,0.2);
-  opacity: 0.9;
 }
 
 footer { 
@@ -172,4 +157,49 @@ footer {
       padding: 15px 10px;
       font-size: 14px;
       border-top: 2px solid #d6e8ff;
-    }
+}
+@media (max-width: 480px) {
+  header {
+    flex-direction: column;
+    text-align: center;
+    padding: 10px;
+  }
+
+  .logo img {
+    height: 70px;
+    margin: 10px 0;
+  }
+
+  .usuario {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .usuario img {
+    width: 50px;
+  }
+
+  .section {
+    width: 90%;
+    padding: 15px;
+    display: flex;
+    flex-direction: column; 
+    align-items: center;   
+    justify-content: center;
+  }
+
+  .input-solicitar {
+    width: 100%;        
+    font-size:14px;
+    height: 50px;
+    display: inline;      
+    justify-content: center;  
+    align-items: center;      
+    margin-bottom: 40px;    
+    margin-top: 20px;
+}
+  footer {
+    font-size: 12px;
+    padding: 10px;
+  }
+}

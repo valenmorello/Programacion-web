@@ -117,21 +117,13 @@ header button {
   margin-bottom: 5px;
 }
 
-
 .button{
   background:#000852;
 }
-/*esto es para la animacion de los botones*/
 .acciones {
   display: flex;
   justify-content: center; 
   gap: 10px;              
-}
-
-.acciones button:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 6px 12px rgba(0,0,0,0.2);
-  opacity: 0.9;
 }
 /*responsive*/
 @media (max-width: 600px) {

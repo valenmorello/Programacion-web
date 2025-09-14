@@ -57,7 +57,10 @@ body {
   .usuario img { 
     width: 50px; 
   } 
-  
+  footer {
+      font-size: 12px;
+      padding: 10px;
+  }
 }
 
 footer { 

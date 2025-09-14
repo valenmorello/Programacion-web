@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Solicitar Dinero - FamilyBank</title>
+  <link rel="stylesheet" href="../css/solicitar.css">
+</head>
+<body>
+  <header>
+    <div class="logo">
+        <button onclick="inicio()">
+            <img src="../Images/logoinicio.jpg" class="imagen" alt="Logo">   
+        </button>
+    </div>
+    <div class="usuario">
+        <button onclick="cuenta()">
+            <img src="../Images/user.png" alt="Usuario">
+        </button>
+        <button onclick="cuenta()">Hola ...!</button>
+    </div>
+  </header>
+
+  <main>
+    <section class="section">
+      <div class="solicitar">
+        <h2>Quitar dinero:</h2>
+        <p>Ingrese la cantidad que desea quitar:</p>
+        <input type="number" placeholder="$ 0.00" class="input-solicitar">
+        <button class="button" onclick="quitarDinero()">Quitar</button>
+      </div>
+    </section>
+  </main>
+
+  <script src="../dom.js"></script>
+</body>
+<footer>
+  <p>© 2025 FamilyBank | Desarrollado por Tomás Maraval, Valentina Morello y Felicitas Orlando.</p>
+</footer>
+</html>

@@ -141,7 +141,7 @@ table tr:last-child td:first-child {
 table tr:last-child td:last-child {
     border-bottom-right-radius: 12px;
 }
-/* Responsivo */
+
 @media (max-width: 600px) {
     .movimientos {
         width: 90%;
@@ -157,6 +157,10 @@ table tr:last-child td:last-child {
 
     th, td {
         font-size: 14px;
+    }
+    footer {
+      font-size: 12px;
+      padding: 10px;
     }
 }
 

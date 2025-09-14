@@ -45,8 +45,8 @@ header button {
 .usuario {
   display: flex;
   justify-content: flex-end; 
-  align-items: center;   /* centra verticalmente */
-  gap: 5%;               /* espacio entre imagen y texto */
+  align-items: center;  
+  gap: 5%;              
 }
 
 .usuario button {
@@ -58,7 +58,6 @@ header button {
   cursor: pointer;
   display: flex;
   align-items: center;
-  white-space: nowrap;   /* 👉 evita que el texto se corte */
 }
 
 .usuario img {
@@ -137,19 +136,15 @@ header button {
 .button{
   background:#000852;
 }
-/*esto es para la animacion de los botones*/
+
 .acciones {
   display: flex;
-  flex-direction: column;   /* 👉 uno encima del otro */
-  align-items: center;                /* 👉 espacio entre los botones */
+  flex-direction: column;   
+  align-items: center;               
   margin-top: 20px;                  
 }
 
-.acciones button:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 6px 12px rgba(0,0,0,0.2);
-  opacity: 0.9;
-}
+
 
 footer { 
       margin-top: 10%;
@@ -162,3 +157,61 @@ footer {
       font-size: 14px;
       border-top: 2px solid #d6e8ff;
     }
+@media (max-width: 600px) {
+  header {
+    flex-direction: column;
+    text-align: center;
+    padding: 10px;
+  }
+
+  .logo img {
+    height: 70px;
+    margin: 10px 0;
+  }
+
+  .usuario {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .usuario img {
+    width: 50px;
+  }
+
+  .section {
+    width: 90%;
+    padding: 15px;
+    min-height: auto; /* se ajusta al contenido */
+  }
+
+  .textos h2 {
+    font-size: 22px;
+  }
+
+  .textos p {
+    font-size: 16px;
+  }
+
+  .input-datos {
+    width: 90%;
+    font-size: 14px;
+    margin-bottom: 10px;
+  }
+
+  .acciones {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .acciones button {
+    width: 100%;
+    font-size: 14px;
+    padding: 10px;
+  }
+
+  footer {
+    font-size: 12px;
+    padding: 10px;
+  }
+}
+
