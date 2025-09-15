@@ -58,7 +58,7 @@ header button {
   border: solid #000852; 
   justify-content: center; 
   width: 40%;
-  height: 350px;
+  min-height: 350px;
   
 }
 .saldo {
@@ -82,11 +82,12 @@ header button {
 }
 
 
-.datos{
+.datos {
   display: flex;
-  justify-content: center;
-  margin: 20px;
-  gap: 10px; 
+  flex-direction: column; 
+  align-items: center;    
+  gap: 15px;              
+  margin: 20px 0;         
 }
 
 .input {

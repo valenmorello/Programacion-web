@@ -35,20 +35,26 @@ function editar (){
 }
 
 function transferencia (){
+    window.location.assign('transferir.html')
+}
+
+function transferirDinero (){
     let userDestino = document.getElementById('usuarioDestino').value
     let monto = document.getElementById('monto').value
 
-    window.location.assign('transferir.html')
 }
 
 function inicio (){
     window.location.assign('inicio.html')
 }
 
-function solicitar (){
+function solicitud (){
+    window.location.assign('solicitar.html')
+}
+
+function solicitarDinero (){
     let montoSolicitar = document.getElementById('montoSolicitar').value
 
-    window.location.assign('solicitar.html')
 }
 
 function quitar (){
