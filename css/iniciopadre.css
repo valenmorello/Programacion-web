@@ -161,6 +161,8 @@ footer {
       padding: 15px 10px;
       font-size: 14px;
       border-top: 2px solid #d6e8ff;
+      text-align: center;
+    
 }
 
 @media (max-width: 600px) {
@@ -189,7 +191,8 @@ footer {
     height: 260px; 
   }
   .section2{
-    width:90%
+    width:80%;
+    height:120px
   }
   .section2 button{
     width:90%;
@@ -198,4 +201,8 @@ footer {
     font-size: 15px;
    
 }
+  footer {
+    font-size: 12px;
+    padding: 10px;
+  }
 }
