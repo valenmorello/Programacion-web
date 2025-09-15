@@ -151,6 +151,17 @@ header button {
   width: 50%;              
   height: auto;
 }
+footer { 
+      margin-top: 10%;
+      left: 0;
+      width: 100%;
+      background-color: #000852;
+      color: #fff;
+      text-align: center;
+      padding: 15px 10px;
+      font-size: 14px;
+      border-top: 2px solid #d6e8ff;
+}
 
 @media (max-width: 600px) {
   .acciones button {
@@ -177,4 +188,14 @@ header button {
     width: 280px; 
     height: 260px; 
   }
+  .section2{
+    width:90%
+  }
+  .section2 button{
+    width:90%;
+    padding: 0px;
+    margin: 0px;
+    font-size: 15px;
+   
+}
 }

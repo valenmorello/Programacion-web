@@ -149,16 +149,40 @@ footer {
   .saldo p {
     font-size: 22px;
   }
-   header { 
-    flex-direction: column; 
-    text-align: center; 
-  } 
-  .usuario img { 
-    width: 50px; 
-  } 
-  .section{ 
-    width: 280px; 
-    height: 260px; 
+  header {
+    flex-direction: column;
+    text-align: center;
+    padding: 10px;
   }
+
+  .logo img {
+    height: 70px;
+    margin: 10px 0;
+  }
+
+  .usuario {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .usuario img {
+    width: 50px;
+  }
+  .section {
+    width: 90%;
+    display: flex;
+    flex-direction: column; 
+    align-items: center;   
+    justify-content: center;
+  }
+  .saldo{
+    display: flex;
+    justify-content: center; 
+    gap: 10px;              
 }
+  footer {
+    font-size: 12px;
+    padding: 10px;
+  }
+  }
 
