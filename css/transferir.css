@@ -1,51 +1,73 @@
 * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
 }
 
 body {
-  background:  #d6e8ff;
+  background: #d6e8ff;
   color: #333;
-  margin: 0;
+  display: flex;
+  flex-direction: column;
   min-height: 100vh;
 }
 
 main {
+  flex: 1; /* ocupa espacio restante */
   display: flex;
   justify-content: center;
   align-items: center;
-  padding-top: 100px;
+  padding-top: 5%;
 }
   
 header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background:#000852;
+  background: #000852;
   padding: 2% 5%;
   color: #d6e8ff;
+  width: 100%;
 }
 
 header button {
   border: 0;
-  background:#000852;
+  background: #000852;
+  width: 100%;
 }
-
 
 .logo img {
-  height: 100px;
-  max-height: 50%;
-  margin-left: 5%;
+  height: 20%;
+  max-height: 100px;
 }
+
+.usuario {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 5%;
+}
+
 .usuario img {
-  width: 90px;              
+  width: 15%;
+  max-width: 90px;
   height: auto;
   border-radius: 50%;
-  border: 0.5% solid white;
+  border: 2px solid white;
   object-fit: cover;
-  text-align: right;
+}
+
+.usuario button {
+  background: transparent;
+  border: none;
+  color: #ffffff;
+  font-size: 120%;
+  font-weight: bold;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  white-space: nowrap;
 }
 
 .usuario button:hover {
@@ -55,38 +77,35 @@ header button {
 .section {
   background-color: #ffffff; 
   border-radius: 20px; 
-  border: solid #000852; 
-  justify-content: center; 
+  border: 3px solid #000852; 
   width: 40%;
-  height: 350px;
-  
+  max-width: 500px;
+  padding: 5%;
 }
+
 .saldo {
-  text-align: center;  
-  margin-bottom: 10px;  
-  margin-top: 10%;
+  text-align: center;
   margin-bottom: 7%;  
 }
 
 .saldo h2 {
-  font-size: 30px;
+  font-size: 150%;
   color: #000852;
-  margin-bottom: 20px;  
+  margin-bottom: 5%;
 }
 
 .saldo p {
-  font-size: 28px;
+  font-size: 140%;
   font-weight: bold;
   color: #000852;
-  margin: 0;
 }
 
-
-.datos{
+.datos {
   display: flex;
   justify-content: center;
-  margin: 20px;
-  gap: 10px; 
+  gap: 5%;
+  flex-wrap: wrap; /* 👉 permite que se acomoden en pantallas chicas */
+  margin-bottom: 5%;
 }
 
 .input {
@@ -95,70 +114,53 @@ header button {
   border: 2px solid #000852;
   border-radius: 10px;
   text-align: center;
+  flex: 1 1 40%; /* 👉 ocupa 40% y baja si no entra */
+  min-width: 100px;
+}
+
+.acciones {
+  display: flex;
+  justify-content: center;
+  gap: 5%;
+  flex-wrap: wrap;
 }
 
 .acciones button {
-  padding: 2% 4%;
-  font-size: 15px;
+  padding: 3% 6%;
+  font-size: 100%;
   border: none;
   border-radius: 10px;
   cursor: pointer;
   font-weight: bold;
   color: white;
-  display:flex;
-  gap: 2%;
-  margin-top: 15px;
-  margin-bottom: 5%;
 }
 
-.button{
-  background:#000852;
-}
-.acciones {
-  display: flex;
-  justify-content: center; 
-  gap: 10px;              
-}
-.usuario {
-  display: flex;
-  justify-content: flex-end; 
-  align-items: center;   
-  gap: 5%;              
+.button {
+  background: #000852;
 }
 
-.usuario button {
-  background: transparent;
-  border: none;
-  color: #ffffff;
-  font-size: 150%;         
-  font-weight: bold;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  white-space: nowrap;  
-}
-
-footer { 
-  margin-top: 10%;
-  left: 0;
-  width: 100%;
-  background-color: #000852;
-  color: #fff;
+footer {
+  background: #000852;
+  color: white;
   text-align: center;
-  padding: 15px 10px;
-  font-size: 14px;
-  border-top: 2px solid #d6e8ff;
+  padding: 3%;
+  font-size: 90%;
+  margin-top: auto;
+  width: 100%;
 }
-@media (max-width: 480px) {
+
+/* 📱 Responsive */
+@media (max-width: 600px) {
   header {
     flex-direction: column;
     text-align: center;
-    padding: 10px;
+    gap: 10px;
+    width: 100%;
   }
 
   .logo img {
-    height: 70px;
-    margin: 10px 0;
+    height: 55%;
+    max-height: 70px;
   }
 
   .usuario {
@@ -167,45 +169,94 @@ footer {
   }
 
   .usuario img {
-    width: 50px;
+    width: 100px;
+    
   }
 
   .section {
     width: 90%;
-    padding: 15px;
-    display: flex;
+    padding: 5%;
+  }
+  .acciones {
     flex-direction: column; 
-    align-items: center;   
-    justify-content: center;
+    width: 100%;
+  }
+  .saldo h2 {
+    font-size: 120%;
   }
 
-  .textos h2 {
-    font-size: 22px;
+  .saldo p {
+    font-size: 110%;
+  }
+  .footer{
+    width: 100%;
+  }
+  .datos {
+    flex-direction: column; 
+    gap: 5px;
+    width: 100%;
   }
 
-  .textos p {
-    font-size: 16px;
+
+  .acciones button {
+    width: 100%;
+    font-size: 90%;
+    padding: 10px;
+  }
+}
+@media (max-width: 250px) {
+  header {
+    padding: 5%;
+    gap: 5px;
+  }
+
+  .logo img,
+  .usuario img {
+    max-width: 90px;
+  }
+
+  .usuario button {
+    font-size: 80%;
+  }
+
+  .section {
+    width: 100%;
+    padding: 5%;
+    border-radius: 10px;
+  }
+
+  .saldo h2 {
+    font-size: 100%;
+  }
+
+  .saldo p {
+    font-size: 90%;
   }
 
   .datos {
-    width: 100%;        
-    font-size:14px;
-    height: 50px;
-    display: inline;      
-    justify-content: center;  
-    align-items: center;      
-    margin-bottom: 40px;    
-    margin-left: 145px;
-    margin-top: 20px;
-}
+    flex-direction: column; 
+    gap: 5px;
+    width: 100%;
+  }
+
+  .input {
+    width: 100%; 
+    min-width: unset;
+  }
+
+  .acciones {
+    flex-direction: column; 
+    width: 100%;
+  }
+
   .acciones button {
     width: 100%;
-    font-size: 14px;
-    padding: 10px;
+    font-size: 80%;
+    padding: 8px;
   }
 
   footer {
-    font-size: 12px;
-    padding: 10px;
+    font-size: 70%;
+    padding: 5px;
   }
 }
