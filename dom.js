@@ -1,16 +1,20 @@
 function registrarse (){
+    window.location.assign('registro.html')
+}
+
+function registro (){
     let user = document.getElementById('usuario').value
     let password = document.getElementById('contraseña').value
     let code = document.getElementById('codigoFamiliar').value
     
     alert(`Bienvenido, ${user}`)
-    window.location.assign('registro.html')
+    window.location.assign('inicio.html')
 }
 
 function loguearse (){
     let user = document.getElementById('usuario').value
     let password = document.getElementById('contraseña').value
-    
+
     alert(`Bienvenido, ${user}`)
     window.location.assign('inicio.html')
 }
@@ -20,10 +24,14 @@ function actividad (){
 }
 
 function cuenta (){
+    window.location.assign('cuenta.html')
+}
+
+function editar (){
     let newUser = document.getElementById('usuarioNuevo').value
     let newPassword = document.getElementById('contraseñaNueva').value
 
-    window.location.assign('cuenta.html')
+
 }
 
 function transferencia (){
@@ -54,3 +62,4 @@ function cerrarSesion (){
 function hijo(){
     window.location.assign('padre2.html')
 }
+
