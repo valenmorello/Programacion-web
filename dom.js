@@ -4,6 +4,8 @@ function registrarse (){
 
 function registro (){
     let user = document.getElementById('usuario').value
+    let nombre = document.getElementById('nombre').value
+    let apellido = document.getElementById('apellido').value
     let password = document.getElementById('contraseña').value
     let code = document.getElementById('codigoFamiliar').value
     
