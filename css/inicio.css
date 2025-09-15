@@ -48,6 +48,13 @@ header button {
   align-items: center;                
 }
 
+
+.usuario p {
+  color: #ffffff;
+  font-size: 150%;         
+  font-weight: bold; 
+}
+
 .usuario button {
   background: transparent;
   border: none;

@@ -72,13 +72,13 @@ header button {
 .section {
   background-color: #ffffff; 
   border-radius: 20px; 
-  border: 3px solid #000852; 
+  border: solid #000852; 
   justify-content: center; 
-  
   width: 40%;
-  min-height: 420px;
+  min-height: 350px;
   
 }
+
 .textos {
   text-align: center;  
   margin-bottom: 10px;  
@@ -99,9 +99,12 @@ header button {
   margin-bottom: 2%;
 }
 
-.datos{
-  
-  text-align: center;
+.datos {
+  display: flex;
+  flex-direction: column; 
+  align-items: center;    
+  gap: 15px;              
+  margin: 20px 0;         
 }
 
 .input-datos {
@@ -115,30 +118,25 @@ header button {
 
 .acciones button {
   padding: 2% 4%;
-  font-size: 90%;
+  font-size: 15px;
   border: none;
   border-radius: 10px;
   cursor: pointer;
   font-weight: bold;
   color: white;
-  transition: all 0.3s ease;
   display:flex;
   gap: 2%;
-  margin-top: 0%;
-  margin-bottom: 4px;
+  margin-bottom: 5%;
 }
-
 
 .button{
   background:#000852;
 }
-
 .acciones {
-  display: flex;
-  flex-direction: column;   
-  align-items: center;               
-  margin-top: 20px;                  
-}
+      display: flex;
+      flex-direction: column;   
+      align-items: center;                 
+    }
 
 
 
