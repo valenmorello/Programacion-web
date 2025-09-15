@@ -181,7 +181,7 @@ footer {
   .section {
     width: 90%;
     padding: 15px;
-    min-height: auto; /* se ajusta al contenido */
+    min-height: auto; 
   }
 
   .textos h2 {
