@@ -45,8 +45,8 @@ header button {
 .usuario {
   display: flex;
   justify-content: flex-end; 
-  align-items: center;   /* centra verticalmente */
-  gap: 5%;               /* espacio entre imagen y texto */
+  align-items: center;   
+  gap: 5%;               
 }
 
 .usuario button {
@@ -58,7 +58,6 @@ header button {
   cursor: pointer;
   display: flex;
   align-items: center;
-  white-space: nowrap;   /* 👉 evita que el texto se corte */
 }
 
 
