@@ -1,4 +1,4 @@
-/* HEADER */
+
 main {
   display: flex;
   justify-content: center;
@@ -43,11 +43,12 @@ header button {
   object-fit: cover;
   text-align: right;
 }
-/* BODY*/
+
 body {
   background:  #d6e8ff;
 }
-/*RESPONSIVE DEL HEADER*/
+
+
 @media (max-width: 600px) {
  
    header { 

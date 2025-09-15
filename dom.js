@@ -25,13 +25,15 @@ function inicio (){
 function solicitar (){
     window.location.assign('solicitar.html')
 }
+
 function quitar (){
     window.location.assign('quitar.html')
 }
+
 function cerrarSesion (){
     window.location.assign('index.html')
 }
+
 function hijo(){
     window.location.assign('padre2.html')
 }
-

@@ -45,8 +45,7 @@ header button {
 .usuario {
   display: flex;
   justify-content: flex-end; 
-  align-items: center;  
-  gap: 5%;              
+  align-items: center;                
 }
 
 .usuario button {
@@ -60,6 +59,7 @@ header button {
   align-items: center;
 }
 
+
 .usuario img {
   width: 90px;              
   height: auto;
@@ -67,10 +67,6 @@ header button {
   border: 0.5% solid white;
   object-fit: cover;
   text-align: right;
-}
-
-.usuario button:hover {
-  opacity: 0.8;
 }
 
 .section {
@@ -181,7 +177,7 @@ footer {
   .section {
     width: 90%;
     padding: 15px;
-    min-height: auto; /* se ajusta al contenido */
+    min-height: auto; 
   }
 
   .textos h2 {

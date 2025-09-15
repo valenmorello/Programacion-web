@@ -42,8 +42,7 @@ header button {
 .usuario {
   display: flex;
   justify-content: flex-end; 
-  align-items: center; 
-  gap: 5%;               
+  align-items: center;                
 }
 
 .usuario button {
@@ -56,6 +55,7 @@ header button {
   display: flex;
   align-items: center;
 }
+
 
 .usuario img {
   width: 90px;              

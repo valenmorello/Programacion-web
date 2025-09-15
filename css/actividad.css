@@ -45,8 +45,8 @@ header button {
 .usuario {
   display: flex;
   justify-content: flex-end; 
-  align-items: center;   /* centra verticalmente */
-  gap: 5%;               /* espacio entre imagen y texto */
+  align-items: center;   
+  gap: 5%;               
 }
 
 .usuario button {
@@ -58,7 +58,7 @@ header button {
   cursor: pointer;
   display: flex;
   align-items: center;
-  white-space: nowrap;   /* 👉 evita que el texto se corte */
+  white-space: nowrap;   
 }
 
 .usuario img {
@@ -88,10 +88,10 @@ main {
    background-color: #ffffff; 
    border-radius: 20px; 
    width: 40%;
-   min-height: 300px;        /* mejor min-height que height fijo */
+   min-height: 300px;       
    border: 3px solid #000852; 
    justify-content: center; 
-   padding: 3% 5% 2% 5%;     /* 👉 espacio interno (arriba, lados, abajo) */
+   padding: 3% 5% 2% 5%;     
 }
 
 .titulo {
@@ -111,7 +111,7 @@ table {
     border-collapse: collapse;
     border-radius: 12px;     
     overflow: hidden;
-    margin-bottom: 20px;     /* 👉 espacio debajo de la tabla */
+    margin-bottom: 20px;     
 }
 
 th, td {
@@ -145,13 +145,13 @@ table tr:last-child td:last-child {
 @media (max-width: 600px) {
 @media (max-width: 600px) {
   header {
-    flex-direction: column;   /* logo arriba, usuario abajo */
+    flex-direction: column;   
     text-align: center;
     gap: 10px;
   }
 
   .logo img {
-    height: 60px;   /* logo más chico */
+    height: 60px;   
     margin: 0 auto;
   }
 
