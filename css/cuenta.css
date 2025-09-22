@@ -16,7 +16,7 @@ main {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding-top: 100px;
+  padding-top: 80px;
 }
 
   
@@ -33,8 +33,6 @@ header button {
   border: 0;
   background:#000852;
 }
-
-
 
 .logo img {
   height: 100px;
@@ -79,42 +77,51 @@ header button {
   
 }
 
-.textos {
-  text-align: center;  
-  margin-bottom: 10px;  
-  margin-top: 10%;
-  margin-bottom: 7%;   
+.datos {
+  text-align: center;
+  font-size: 150%;         
+  font-weight: bold;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  color: #000852;
 }     
 
-.textos h2 {
-  font-size: 30px;
+.datos h2 {
+  font-size: 50px;
   color: #000852;
+  margin-top: 5%;
   margin-bottom: 4%;  
 }
 
-.textos p {
-  font-size: 25px;
+.formulario{
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* 2 columnas */
+  margin: 2% 5% 2% 5%;
+  justify-items: center;
+}
+
+.formulario label {
+  font-size: 150%;         
   font-weight: bold;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
   color: #000852;
-  margin-bottom: 2%;
-}
+  margin: 5%;
+}     
 
-.datos {
-  display: flex;
-  flex-direction: column; 
-  align-items: center;    
-  gap: 15px;              
-  margin: 20px 0;         
-}
-
-.input-datos {
+.datos_input{
+  width: 90%;
   padding: 3%;
   font-size: 100%;
   border: 2px solid #000852;
   border-radius: 10px;
   text-align: center;
+  margin:5% 0% 5% 0%;
 }
 
+.acciones{
+  display: flex;
+  justify-content: center; 
+  gap: 10px;
+}
 
 .acciones button {
   padding: 2% 4%;
@@ -126,18 +133,12 @@ header button {
   color: white;
   display:flex;
   gap: 2%;
-  margin-bottom: 5%;
+  margin: 3% 5% 5% 5% ;
 }
 
 .button{
   background:#000852;
 }
-.acciones {
-      display: flex;
-      flex-direction: column;   
-      align-items: center;                 
-    }
-
 
 
 footer { 
@@ -186,7 +187,7 @@ footer {
     font-size: 16px;
   }
 
-  .input-datos {
+  .datos_input {
     width: 90%;
     font-size: 14px;
     margin-bottom: 10px;
@@ -198,7 +199,7 @@ footer {
   }
 
   .acciones button {
-    width: 100%;
+    width: 80%;
     font-size: 14px;
     padding: 10px;
   }

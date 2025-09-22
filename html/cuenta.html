@@ -23,21 +23,22 @@
 
   <main>
     <section class="section">
-      <div class="textos">
-        <h2>Datos del usuario:</h2>
-        <p>Usuario: ...</p>
-        <p>Nombre: ...</p>
-        <p>Apellido: ...</p>
-        <p>Contraseña: ...</p>
-        <p>Código familiar: #000000</p>
-      </div>
       <div class="datos">
-        <input type="text" class="input-datos" id="nombreNuevo" placeholder="Nombre a cambiar">
-        <input type="text" class="input-datos" id="apellidoNuevo" placeholder="Apellido a cambiar">
-        <input type="text" class="input-datos" id="contraseñaNueva" placeholder="Contraseña a cambiar">
+        <h2>Tus Datos</h2>
+        <p>Usuario: feliorlando</p>
+        <p>Código familiar: #123456</p>
       </div>
+      <form action="" class="formulario">
+        <label>Nombre:</label>
+        <input type="text" class="datos_input" id="nombreNuevo" placeholder="Felicitas">
+        <label>Apellido:</label>
+        <input type="text" class="datos_input" id="apellidoNuevo" placeholder="Orlando Linares">
+        <label>Contraseña:</label>
+        <input type="text" class="datos_input" id="contraseñaNueva" placeholder="*********">
+      </form>
+      
       <div class="acciones">
-        <button class="button" onclick="editar()">Editar</button>
+        <button class="button" onclick="guardar()">Guardar Cambios</button>
         <button class="button" onclick="cerrarSesion()">Cerrar sesión</button>
       </div>
     </section>
