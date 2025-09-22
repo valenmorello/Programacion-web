@@ -16,7 +16,7 @@ main {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding-top: 100px;
+  padding-top: 70px;
 }
   
 header {
@@ -24,7 +24,7 @@ header {
   justify-content: space-between;
   align-items: center;
   background:#000852;
-  padding: 2% 5%;
+  padding: 1% 5%;
   color: #d6e8ff;
 }
 
