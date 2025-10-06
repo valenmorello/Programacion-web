@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Transferir - FamilyBank</title>
-  <link rel="stylesheet" href="../css/transferir.css">
+  <title>Solicitar Dinero - FamilyBank</title>
+  <link rel="stylesheet" href="../css/solicitar.css">
 </head>
 <body>
   <header>
@@ -23,22 +23,20 @@
 
   <main>
     <section class="section">
-     <div class="saldo">
-        <p>Saldo disponible:</p>
-        <p id="saldoActual">$ 0</p>
+      <div class="solicitar">
+        <h2>Ingresar dinero:</h2>
+          <div class="saldo">
+            <p>Saldo disponible:</p>
+            <p id="saldoActual">$ 0</p>
 
       </div>
-      <div class="datos">
-        <input class="input" id="usuarioDestino" placeholder="Ingrese usuario">
-        <input class="input" id="monto" type= "number" placeholder="Ingrese monto">
-        <input class="input" id="motivo" placeholder="Ingrese motivo">
-      </div> 
-      <div class="acciones">
-        <button class="button" onclick="transferirDinero()">Transferir</button>
+        <p>Ingrese la cantidad que desea solicitar:</p>
+        <input type="number" placeholder="$ 0.00" class="input-solicitar" id="montoIngresar">
+        <button class="button" onclick="ingresar()">Ingresar</button>
       </div>
     </section>
-
   </main>
+
   <script src="../dom.js"></script>
 </body>
 <footer>
