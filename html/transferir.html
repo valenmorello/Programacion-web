@@ -6,7 +6,7 @@
   <title>Transferir - FamilyBank</title>
   <link rel="stylesheet" href="../css/transferir.css">
 </head>
-<body>
+<body onload="cargarNombre()">
   <header>
     <div class="logo">
         <button onclick="inicio()">
@@ -17,7 +17,7 @@
         <button onclick="cuenta()">
             <img src="../Images/user.png" alt="Usuario">
         </button>
-        <button onclick="cuenta()">Hola ...!</button>
+        <button id="cuenta" onclick="cuenta()"></button>
     </div>
   </header>
 
@@ -30,7 +30,7 @@
       </div>
       <div class="datos">
         <input class="input" id="usuarioDestino" placeholder="Ingrese usuario">
-        <input class="input" id="monto" placeholder="Ingrese monto">
+        <input type="number" placeholder="Ingrese Monto $ 0.00" class="input" id="montoSolicitar">
         <input class="input" id="motivo" placeholder="Ingrese motivo">
       </div>
       <div class="acciones">
