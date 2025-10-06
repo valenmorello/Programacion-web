@@ -106,7 +106,7 @@ function hijo(){
     window.location.assign('padre2.html')
 }
 function aingresar(){
-    window.location.assign(ingresar.html)
+    window.location.assign("ingresar.html")
 }
 
 function cargarNombre (){
