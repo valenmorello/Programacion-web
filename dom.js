@@ -12,17 +12,13 @@ function registro (){
     usuarioGuardado={user,nombre,apellido,password,code}
     alert(`Bienvenido, ${user}`)
     window.location.assign('inicio.html')
+    localStorage.setItem('user', user)
 }
 
 function loguearse (){
     let user = document.getElementById('usuario').value
     let password = document.getElementById('contraseña').value
-    if (usuarioGuardado && user === usuarioGuardado.user && password === usuarioGuardado.password) {
-        alert(`Bienvenido, ${user}`)
-        window.location.assign('inicio.html')}
-    else{
-        alert("Usuario o contraseña incorrectos")
-    }
+
 }
 
 function actividad (){
@@ -36,8 +32,6 @@ function cuenta (){
 function editar (){
     let newUser = document.getElementById('usuarioNuevo').value
     let newPassword = document.getElementById('contraseñaNueva').value
-
-
 }
 
 function transferencia (){
@@ -70,7 +64,6 @@ function solicitud (){
 
 function solicitarDinero (){
     let montoSolicitar = document.getElementById('montoSolicitar').value
-
 }
 
 function quitar (){
@@ -79,12 +72,14 @@ function quitar (){
 
 function cerrarSesion (){
     window.location.assign('index.html')
+    localStorage.removeItem('user')
 }
 
 function hijo(){
     window.location.assign('padre2.html')
 }
 
-function aingresar(){
-    window.location.assign("ingresar.html")
+function cargarNombre (){
+    let nombrePag = document.getElementById('cuenta')
+    nombrePag.innerHTML = `Hola, ${localStorage.getItem('user')}!`
 }
