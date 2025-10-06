@@ -6,8 +6,8 @@ function registro (){
     let user = document.getElementById('usuario').value
     let nombre = document.getElementById('nombre').value
     let apellido = document.getElementById('apellido').value
-    let password = document.getElementById('contraseña').value
     let code = document.getElementById('codigoFamiliar').value
+    let password = document.getElementById('contraseña').value
     
     alert(`Bienvenido, ${user}`)
     window.location.assign('inicio.html')
@@ -40,9 +40,20 @@ function transferencia (){
     window.location.assign('transferir.html')
 }
 
-function transferirDinero (){
-    let userDestino = document.getElementById('usuarioDestino').value
-    let monto = document.getElementById('monto').value
+function validarTransferencia() {
+  let userDestino = document.getElementById('usuarioDestino').value.trim();
+  let monto = parseFloat(document.getElementById('monto').value);
+  let motivo = document.getElementById('motivo').value.trim();
+
+  if (userDestino.length < 5 || monto < 1 || motivo.length < 1) {
+    alert('Complete los datos!');
+  } else {
+    transferirDinero(userDestino, monto, motivo);
+  }
+}
+
+function transferirDinero (userDestino, monto, motivo){
+    alert(`Transferencia exitosa!`)
 }
 
 function inicio (){
@@ -65,6 +76,23 @@ function cerrarSesion (){
     window.location.assign('index.html')
     localStorage.removeItem('user')
 }
+
+function validarModificaciones (){
+    let nombreNew = document.getElementById('nombreNuevo').value.trim();
+    let apNew = parseFloat(document.getElementById('apellidoNuevo').value);
+    let passNew = document.getElementById('contraseñaNueva').value.trim();
+
+    if (nombreNew.length < 5 || apNew.length < 1 || passNew.length < 1) {
+        alert('Complete los datos!');
+    } else {
+        modificarUser(nombreNew, apNew, passNew);
+    }
+}
+
+function modificarUser (nombreNew, apNew, passNew){
+    alert(`Modificacion exitosa!`)
+}
+
 
 function hijo(){
     window.location.assign('padre2.html')
