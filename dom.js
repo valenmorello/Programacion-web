@@ -1,3 +1,4 @@
+let saldoActual = 0;
 function registrarse (){
     window.location.assign('registro.html')
 }
@@ -8,7 +9,7 @@ function registro (){
     let apellido = document.getElementById('apellido').value
     let password = document.getElementById('contraseña').value
     let code = document.getElementById('codigoFamiliar').value
-    
+    usuarioGuardado={user,nombre,apellido,password,code}
     alert(`Bienvenido, ${user}`)
     window.location.assign('inicio.html')
     localStorage.setItem('user', user)
@@ -18,9 +19,6 @@ function loguearse (){
     let user = document.getElementById('usuario').value
     let password = document.getElementById('contraseña').value
 
-    alert(`Bienvenido, ${user}`)
-    window.location.assign('inicio.html')
-    localStorage.setItem('user', user)
 }
 
 function actividad (){
@@ -42,7 +40,18 @@ function transferencia (){
 
 function transferirDinero (){
     let userDestino = document.getElementById('usuarioDestino').value
-    let monto = document.getElementById('monto').value
+    let montoTransferir = document.getElementById('monto').value
+    let userEmisor=document.getElementById("usuarioEmisor").value
+    
+
+}
+
+function ingresar() {
+  let montoIngreso = parseFloat(document.getElementById("montoIngresar").value);
+  let saldoTexto = document.getElementById("saldoActual").textContent;
+  let saldoActual = parseFloat(saldoTexto.replace("$", "").trim());
+  let nuevoSaldo = saldoActual + montoIngreso;
+  document.getElementById("saldoActual").textContent = `$ ${nuevoSaldo.toFixed(2)}`;
 }
 
 function inicio (){
