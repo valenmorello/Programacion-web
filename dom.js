@@ -11,6 +11,7 @@ function registro (){
     
     alert(`Bienvenido, ${user}`)
     window.location.assign('inicio.html')
+    localStorage.setItem('user', user)
 }
 
 function loguearse (){
@@ -19,6 +20,7 @@ function loguearse (){
 
     alert(`Bienvenido, ${user}`)
     window.location.assign('inicio.html')
+    localStorage.setItem('user', user)
 }
 
 function actividad (){
@@ -32,8 +34,6 @@ function cuenta (){
 function editar (){
     let newUser = document.getElementById('usuarioNuevo').value
     let newPassword = document.getElementById('contraseñaNueva').value
-
-
 }
 
 function transferencia (){
@@ -43,7 +43,6 @@ function transferencia (){
 function transferirDinero (){
     let userDestino = document.getElementById('usuarioDestino').value
     let monto = document.getElementById('monto').value
-
 }
 
 function inicio (){
@@ -56,7 +55,6 @@ function solicitud (){
 
 function solicitarDinero (){
     let montoSolicitar = document.getElementById('montoSolicitar').value
-
 }
 
 function quitar (){
@@ -65,9 +63,14 @@ function quitar (){
 
 function cerrarSesion (){
     window.location.assign('index.html')
+    localStorage.removeItem('user')
 }
 
 function hijo(){
     window.location.assign('padre2.html')
 }
 
+function cargarNombre (){
+    let nombrePag = document.getElementById('cuenta')
+    nombrePag.innerHTML = `Hola, ${localStorage.getItem('user')}!`
+}
