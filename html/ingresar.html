@@ -3,10 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Transferir - FamilyBank</title>
-  <link rel="stylesheet" href="../css/transferir.css">
+  <title>Solicitar Dinero - FamilyBank</title>
+  <link rel="stylesheet" href="../css/solicitar.css">
 </head>
-<body onload="cargarNombre()">
+<body>
   <header>
     <div class="logo">
         <button onclick="inicio()">
@@ -17,28 +17,26 @@
         <button onclick="cuenta()">
             <img src="../Images/user.png" alt="Usuario">
         </button>
-        <button id="cuenta" onclick="cuenta()"></button>
+        <button onclick="cuenta()">Hola ...!</button>
     </div>
   </header>
 
   <main>
     <section class="section">
-     <div class="saldo">
-        <p>Saldo disponible:</p>
-        <p id="saldoActual">$ 0</p>
+      <div class="solicitar">
+        <h2>Ingresar dinero:</h2>
+          <div class="saldo">
+            <p>Saldo disponible:</p>
+            <p id="saldoActual">$ 0</p>
 
       </div>
-      <div class="datos">
-        <input class="input" id="usuarioDestino" placeholder="Ingrese usuario">
-        <input type="number" placeholder="Ingrese Monto $ 0.00" class="input" id="monto">
-        <input class="input" id="motivo" placeholder="Ingrese motivo">
-      </div> 
-      <div class="acciones">
-        <button class="button" onclick="validarTransferencia()">Transferir</button>
+        <p>Ingrese la cantidad que desea solicitar:</p>
+        <input type="number" placeholder="$ 0.00" class="input-solicitar" id="montoIngresar">
+        <button class="button" onclick="ingresar()">Ingresar</button>
       </div>
     </section>
-
   </main>
+
   <script src="../dom.js"></script>
 </body>
 <footer>
