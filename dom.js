@@ -34,7 +34,7 @@ function registro (){
                 console.log(num)
             } 
         }
-        for (let k = 0; k < nums.length; k++){
+        for (let k = 0; k < esps.length; k++){
             console.log(password.value[i], esps[k])
             if (password.value[i] == esps[k]){
                 esp = true
@@ -59,10 +59,49 @@ function registro (){
 }
 
 function loguearse (){
-    let user = document.getElementById('usuario').value
-    let password = document.getElementById('contraseña').value
+    let u = "minombre"
+    let p = "contraseña123"
 
-}
+    let user = document.getElementById('usuario')
+    let password = document.getElementById('contraseña')
+
+
+    if (user.value == u && password.value == p){
+        alert(`Bienvenido, ${user.value}`)
+        window.location.assign('inicio.html')
+        localStorage.setItem('user', user.value)
+        }
+
+    else if (user.value.length < 1 || password.value.length < 1){
+            alert(`Completar campos`)
+            if (user.value.length < 1){
+                user.style.border =  "2px solid #ff0000ff";
+            }
+            if (password.value.length < 1){
+                password.style.border =  "2px solid #ff0000ff";
+            }
+        }
+
+    else if (user.value != u){
+            alert(`User not found`)
+
+            user.value = ""
+            password.value = ""
+
+            user.style.border =  "2px solid #ff0000ff";
+            password.style.border =  "2px solid #000852";
+        }    
+
+    else if (user.value == u && password.value != p){
+            alert(`Contraseña Incorrecta`)
+
+            password.value = ""
+
+            user.style.border =  "2px solid #000852";
+            password.style.border =  "2px solid #ff0000ff";
+        }
+    }
+
 
 function actividad (){
     window.location.assign('actividad.html')
