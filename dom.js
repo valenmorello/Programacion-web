@@ -48,9 +48,16 @@ function registro (){
     } else if (num == false || esp == false){
         alert('Incluya al menos un número y un caracter especial.')
     } else if (num == true && esp == true && password.value == confirmación.value && code.length == 6){
-        alert(`Bienvenido, ${user}`)
-        window.location.assign('inicio.html')
-        localStorage.setItem('user', user)
+        if(document.getElementById("usuario_select").value == "hijo"){
+            alert(`Bienvenido, ${user}`)
+            window.location.assign('inicio.html')
+            localStorage.setItem('user', user)
+        }
+        else if (document.getElementById("usuario_select").value == "padre"){
+            alert(`Bienvenido, ${user}`)
+            window.location.assign('iniciopadre.html')
+            localStorage.setItem('user', user)
+        }
     } else {
         alert('Contraseñas no coincidentes.')
     }
