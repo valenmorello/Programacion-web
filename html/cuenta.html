@@ -6,7 +6,7 @@
     <title>Usuario - FamilyBank</title>
     <link rel="stylesheet" href="../css/cuenta.css">
 </head>
-<body onload="cargarNombre()">
+<body onload="cargarNombre(), cargarDatos()">
   <header>
     <div class="logo">
         <button onclick="inicio()">
@@ -25,8 +25,8 @@
     <section class="section">
       <div class="datos">
         <h2>Tus Datos</h2>
-        <p>Usuario: feliorlando</p>
-        <p>Código familiar: #123456</p>
+        <p id="datosUser">Usuario: feliorlando</p>
+        <p id="datosCode">Código familiar: #123456</p>
       </div>
       <form action="" class="formulario">
         <label>Nombre:</label>

@@ -7,7 +7,7 @@
   
   <link rel="stylesheet" href="../css/iniciopadre.css">
 </head>
-<body onload="cargarNombre()">
+<body onload="cargarNombre(), cargarCodigo()">
   <header>
     <div class="logo">
       <button onclick="inicio()">
@@ -16,7 +16,7 @@
     </div>
     <div class="usuario">
       
-        <p>#000000</p>
+        <p id="code">#000000</p>
         <button onclick="cuenta()">
             <img src="../Images/user.png" alt="Usuario">
         </button>

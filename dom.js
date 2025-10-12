@@ -14,6 +14,21 @@ password.addEventListener('input', function() {
     }
 });
 
+let eyeBtn = document.getElementById("eyeBtn");
+let input = document.getElementById("confirmar");
+
+eyeBtn.addEventListener("click", () => {
+  if (input.type === "password" && password.type === 'password') {
+    input.type = "text";
+    password.type = "text";
+    eyeBtn.textContent = "Ocultar contraseñas 🙈"; 
+  } else {
+    input.type = "password";
+    password.type = "password"
+    eyeBtn.textContent = "Visualizar contraseñas 👁️";
+  }
+});
+
 function registro (){
     let user = document.getElementById('usuario').value
     let nombre = document.getElementById('nombre').value
@@ -23,19 +38,20 @@ function registro (){
 
     let num = false
     let esp = false
+    let carN = false
+    let carA = false
     let nums = '0123456789'
     let esps = '/?.><,;:][}{=_-+*&^%$#@!~'
+    let numEsps = '0123456789/?.><,;:][}{=_-+*&^%$#@!~'
 
     for (let i = 0; i < password.value.length; i++){
         for (let j = 0; j < nums.length; j++){
-            console.log(password.value[i], nums[j])
             if (password.value[i] == nums[j]){
                 num = true
                 console.log(num)
             } 
         }
         for (let k = 0; k < esps.length; k++){
-            console.log(password.value[i], esps[k])
             if (password.value[i] == esps[k]){
                 esp = true
                 console.log(esp)
@@ -43,10 +59,28 @@ function registro (){
         }
     }
 
+    for (let i = 0; i < nombre.length; i++){
+        for (let k = 0; k < numEsps.length; k++){
+            if (nombre[i] == numEsps[k]){
+                carN = true
+            } 
+        }
+    }
+
+    for (let i = 0; i < apellido.length; i++){
+        for (let k = 0; k < numEsps.length; k++){
+            if (apellido[i] == numEsps[k]){
+                carA = true
+            } 
+        }
+    }
+
     if (code.length != 6){
         alert('Ingrese codigo de 6 digitos')
-    } else if (num == false || esp == false){
-        alert('Incluya al menos un número y un caracter especial.')
+    } else if (carA == true || carN == true){
+        alert('Ingrese solo letras en Nombre, Apellido')
+    } else if (num == false || esp == false || password.value.length <= 6){
+        alert('Incluya al menos un número y un caracter especial. Minimo 6 caracteres.')
     } else if (num == true && esp == true && password.value == confirmación.value && code.length == 6){
         if(document.getElementById("usuario_select").value == "hijo"){
             alert(`Bienvenido, ${user}`)
@@ -57,6 +91,7 @@ function registro (){
             alert(`Bienvenido, ${user}`)
             window.location.assign('iniciopadre.html')
             localStorage.setItem('user', user)
+            localStorage.setItem('code', code)
         }
     } else {
         alert('Contraseñas no coincidentes.')
@@ -199,5 +234,17 @@ function aingresar(){
 
 function cargarNombre (){
     let nombrePag = document.getElementById('cuenta')
+    nombrePag.innerHTML = `Hola, ${localStorage.getItem('user')}!`
+}
+
+function cargarCodigo (){
+    let codePag = document.getElementById('code')
+    codePag.innerHTML = `#${localStorage.getItem('code')}`
+}
+
+function cargarDatos (){
+    let codePag = document.getElementById('datosCode')
+    let nombrePag = document.getElementById('datosUser')
+    codePag.innerHTML = `#${localStorage.getItem('code')}`
     nombrePag.innerHTML = `Hola, ${localStorage.getItem('user')}!`
 }
