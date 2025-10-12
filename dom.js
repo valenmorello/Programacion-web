@@ -127,6 +127,14 @@ function transferencia (){
     window.location.assign('transferir.html')
 }
 
+function inicio (){
+    window.location.assign('inicio.html')
+}
+
+function solicitud (){
+    window.location.assign('solicitar.html')
+}
+
 function validarTransferencia() {
   let userDestino = document.getElementById('usuarioDestino').value.trim();
   let monto = parseFloat(document.getElementById('monto').value);
@@ -151,13 +159,6 @@ function ingresar() {
   document.getElementById("saldoActual").textContent = `$ ${nuevoSaldo.toFixed(2)}`;
 }
 
-function inicio (){
-    window.location.assign('inicio.html')
-}
-
-function solicitud (){
-    window.location.assign('solicitar.html')
-}
 
 function solicitarDinero (){
     let montoSolicitar = document.getElementById('montoSolicitar').value
