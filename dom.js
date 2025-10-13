@@ -197,6 +197,11 @@ function ingresar() {
 
 function solicitarDinero (){
     let montoSolicitar = document.getElementById('montoSolicitar').value
+    if (montoSolicitar != 0){
+        alert("se ha solicitado el dinero")
+    }else{
+        alert("ingrese los datos")
+    }
 }
 
 function quitar (){
