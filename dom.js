@@ -223,14 +223,14 @@ function cerrarSesion (){
 }
 
 function validarModificaciones (){
-    let nombreNew = document.getElementById('nombreNuevo').value.trim();
-    let apNew = parseFloat(document.getElementById('apellidoNuevo').value);
+    let nombreNew = document.getElementById('nombreNuevo').value;
+    let apNew = document.getElementById('apellidoNuevo').value;
 
     modificarUser(nombreNew, apNew);
 }
 
 function modificarUser (nombreNew, apNew){
-
+    
     if (nombreNew == "" && apNew != ""){
         alert(`Usted ha modificado su Apellido`)
     }
