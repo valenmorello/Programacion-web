@@ -86,12 +86,16 @@ function registro (){
             alert(`Bienvenido, ${user}`)
             window.location.assign('inicio.html')
             localStorage.setItem('user', user)
+            localStorage.setItem('code', code)
+            localStorage.setItem('padre', false)
         }
         else if (document.getElementById("usuario_select").value == "padre"){
             alert(`Bienvenido, ${user}`)
             window.location.assign('iniciopadre.html')
             localStorage.setItem('user', user)
             localStorage.setItem('code', code)
+            localStorage.setItem('padre', true)
+
         }
     } else {
         alert('Contraseñas no coincidentes.')
@@ -163,7 +167,12 @@ function transferencia (){
 }
 
 function inicio (){
-    window.location.assign('inicio.html')
+    if (localStorage.getItem('padre') === 'true'){
+        window.location.assign('iniciopadre.html')
+    } else {
+        window.location.assign('inicio.html')
+    }
+    
 }
 
 function solicitud (){
