@@ -21,11 +21,11 @@ eyeBtn.addEventListener("click", () => {
   if (input.type === "password" && password.type === 'password') {
     input.type = "text";
     password.type = "text";
-    eyeBtn.textContent = "Ocultar contraseñas 🙈"; 
+    eyeBtn.textContent = "Ocultar contraseñas "; 
   } else {
     input.type = "password";
     password.type = "password"
-    eyeBtn.textContent = "Visualizar contraseñas 👁️";
+    eyeBtn.textContent = "Visualizar contraseñas ";
   }
 });
 
@@ -125,7 +125,7 @@ function loguearse (){
         }
 
     else if (user.value != u){
-            alert(`User not found`)
+            alert(`No se encontro usuario`)
 
             user.value = ""
             password.value = ""
@@ -187,12 +187,12 @@ function transferirDinero (userDestino, monto, motivo){
 }
 
 function ingresar() {
-  let montoIngreso = parseFloat(document.getElementById("montoIngresar").value);
+  let montoIngreso = Number(document.getElementById("montoIngresar").value);
   let saldoTexto = document.getElementById("saldoActual").textContent;
-  let saldoActual = parseFloat(saldoTexto.replace("$", "").trim());
   let nuevoSaldo = saldoActual + montoIngreso;
-  document.getElementById("saldoActual").textContent = `$ ${nuevoSaldo.toFixed(2)}`;
+  document.getElementById("saldoActual").textContent = "$ " + nuevoSaldo;
 }
+
 
 
 function solicitarDinero (){
