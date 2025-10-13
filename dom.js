@@ -225,17 +225,21 @@ function cerrarSesion (){
 function validarModificaciones (){
     let nombreNew = document.getElementById('nombreNuevo').value.trim();
     let apNew = parseFloat(document.getElementById('apellidoNuevo').value);
-    let passNew = document.getElementById('contraseñaNueva').value.trim();
 
-    if (nombreNew.length < 1 || apNew.length < 1 || passNew.length < 1) {
-        alert('Complete los datos!');
-    } else {
-        modificarUser(nombreNew, apNew, passNew);
-    }
+    modificarUser(nombreNew, apNew);
 }
 
-function modificarUser (nombreNew, apNew, passNew){
-    alert(`Modificacion exitosa!`)
+function modificarUser (nombreNew, apNew){
+
+    if (nombreNew == "" && apNew != ""){
+        alert(`Usted ha modificado su Apellido`)
+    }
+    else if (apNew == "" && nombreNew != ""){
+        alert(`Usted ha modificado su Nombre`)
+    }
+    else if (apNew != "" && nombreNew != ""){
+        alert(`Usted ha modificado su Nombre y Apellido`)
+    }
 }
 
 
@@ -261,4 +265,5 @@ function cargarDatos (){
     let nombrePag = document.getElementById('datosUser')
     codePag.innerHTML = `#${localStorage.getItem('code')}`
     nombrePag.innerHTML = `Hola, ${localStorage.getItem('user')}!`
+
 }
