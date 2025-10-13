@@ -13,14 +13,17 @@
             </section>
             <img src="../Images/logo.jpg" class="imagen">
         
+            <form name="login" onsubmit="return loguearse(event)">
             <div class="datos">
-                <input type="text" class="input-datos" id="usuario" placeholder="Ingrese usuario">
-                <input type="password" class="input-datos" id="contraseña" placeholder="Ingrese contraseña">
+                <input type="text" class="input-datos" name="usuario" id="usuario" placeholder="Ingrese usuario">
+                <input type="password" class="input-datos" name="contraseña" id="contraseña" placeholder="Ingrese contraseña">
             </div>
             <div class="acciones">
-                <button class="button" onclick="loguearse()">Login</button>
+                <button type="submit" class="button">Login</button>
+                </form>
                 <button class="button" onclick="registrarse()">Registro</button>
             </div>
+            
         </section>
         
         <script src="../dom.js"></script>
