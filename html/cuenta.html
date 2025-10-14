@@ -28,17 +28,18 @@
         <p id="datosUser">Usuario: feliorlando</p>
         <p id="datosCode">Código familiar: #123456</p>
       </div>
-      <form action="" class="formulario">
+      <form class="formulario" name="datos" onsubmit="return validarModificaciones(event)">
         <label>Nombre:</label>
-        <input type="text" class="datos_input" id="nombreNuevo" placeholder="">
+        <input name="nombreNuevo" type="text" class="datos_input" id="nombreNuevo" placeholder="">
         <label>Apellido:</label>
-        <input type="text" class="datos_input" id="apellidoNuevo" placeholder="">
-      </form>
+        <input name="apellidoNuevo" type="text" class="datos_input" id="apellidoNuevo" placeholder="">
+      
       
       <div class="acciones">
-        <button class="button" onclick="validarModificaciones()">Guardar Cambios</button>
+        <button type="submit" class="button">Guardar Cambios</button>
         <button class="button" onclick="cerrarSesion()">Cerrar sesión</button>
       </div>
+      </form>
     </section>
 
   </main>

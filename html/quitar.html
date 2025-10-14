@@ -24,10 +24,12 @@
   <main>
     <section class="section">
       <div class="solicitar">
-        <h2>Quitar dinero:</h2>
-        <p>Ingrese la cantidad que desea quitar:</p>
-        <input type="number" placeholder="$ 0.00" class="input-solicitar">
-        <button class="button" onclick="quitarDinero()">Quitar</button>
+        <form name="quitar" onsubmit="return quitarDinero(event)">
+          <h2>Quitar dinero:</h2>
+          <p>Ingrese la cantidad que desea quitar:</p>
+          <input name="montoQuitar" type="number" placeholder="$ 0.00" class="input-solicitar">
+          <button type="submit" class="button">Quitar</button>
+        </form>
       </div>
     </section>
   </main>

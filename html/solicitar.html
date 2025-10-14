@@ -24,10 +24,12 @@
   <main>
     <section class="section">
       <div class="solicitar">
-        <h2>Solicitar dinero:</h2>
-        <p>Ingrese la cantidad que desea solicitar:</p>
-        <input type="number" placeholder="$ 0.00" class="input-solicitar" id="montoSolicitar">
-        <button class="button" onclick="solicitarDinero()">Solicitar</button>
+        <form  name="solicitar" onsubmit="return solicitarDinero(event)">
+          <h2>Solicitar dinero:</h2>
+          <p>Ingrese la cantidad que desea solicitar:</p>
+          <input name="montoSolicitar" type="number" placeholder="$ 0.00" class="input-solicitar" id="montoSolicitar">
+          <button type="submit" class="button">Solicitar</button>
+        </form>
       </div>
     </section>
   </main>

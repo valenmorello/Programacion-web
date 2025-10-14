@@ -130,16 +130,20 @@ function validarRegistro (event){
 
 
 function loguearse (event){
-    if (event) event.preventDefault();
+    if (event) event.preventDefault()
     let u = "minombre"
     let p = "contraseña123"
 
-    let user = document.forms['login']['usuario'].value
-    let password = document.forms['login']['contraseña'].value
+    let user = document.forms['login']['usuario']
+    let password = document.forms['login']['contraseña']
+    document.getElementById('errorUser').innerHTML = '';
+    document.getElementById('errorPass').innerHTML = '';
+    user.style.border =  "2px solid #000852"
+    password.style.border =  "2px solid #000852"
 
     let valido = true
 
-    
+    console.log(user, password)
     if (user.value.length < 1 || password.value.length < 1){
         alert(`Completar campos`)
         valido = false
@@ -158,9 +162,8 @@ function loguearse (event){
         password.value = ""
         user.style.border =  "2px solid #ff0000ff";
         password.style.border =  "2px solid #000852";
-    }    
-
-    if (user.value == u && password.value != p){
+    } 
+    else if (user.value == u && password.value != p){
         document.getElementById('errorPass').innerHTML = 'Contraseña incorrecta.'
         valido = false
         password.value = ""
@@ -177,7 +180,6 @@ function loguearse (event){
         window.location.assign('inicio.html')
         localStorage.setItem('user', user.value)
         return true
-        
     }
 
 }
@@ -214,14 +216,16 @@ function solicitud (){
 }
 
 function validarTransferencia() {
-  let userDestino = document.getElementById('usuarioDestino').value.trim();
-  let monto = parseFloat(document.getElementById('monto').value);
-  let motivo = document.getElementById('motivo').value.trim();
+  let userDestino = document.forms['transferir']['usuarioDestino'].value;
+  let monto = parseFloat(document.forms['transferir']['monto'].value)
+  let motivo = document.forms['transferir']['motivo'].value
 
-  if (userDestino.length < 5 || monto < 1 || motivo.length < 1) {
+  if (userDestino.length < 1 || monto < 1 || motivo.length < 1) {
     alert('Complete los datos!');
+    return false
   } else {
     transferirDinero(userDestino, monto, motivo);
+    return true
   }
 }
 
@@ -229,21 +233,31 @@ function transferirDinero (userDestino, monto, motivo){
     alert(`Transferencia exitosa!`)
 }
 
-function ingresar() {
-  let montoIngreso = Number(document.getElementById("montoIngresar").value);
-  let saldoTexto = document.getElementById("saldoActual").textContent;
-  let nuevoSaldo = saldoActual + montoIngreso;
-  document.getElementById("saldoActual").textContent = "$ " + nuevoSaldo;
+function ingresar(event) {
+  if (event) event.preventDefault();
+  let montoIngreso = parseFloat(document.forms['ingresar']['montoIngresar'].value)
+  let saldoActual = document.getElementById('saldoActual')
+  //let nuevoSaldo = saldoActual + montoIngreso;
+  document.getElementById('saldoActual').innerHTML = "$ " + montoIngreso;
+
+  if (montoIngreso > 0){
+    alert('Se ha ingresado el dinero!')
+    return true
+  } else {
+    alert('Complete el monto!')
+    return false
+  }
 }
 
 
 
-function solicitarDinero (){
-    let montoSolicitar = document.getElementById('montoSolicitar').value
+function solicitarDinero (event){
+    if (event) event.preventDefault();
+    let montoSolicitar = document.forms['solicitar']['montoSolicitar'].value
     if (montoSolicitar != 0){
-        alert("se ha solicitado el dinero")
+        alert("Se ha solicitado el dinero!")
     }else{
-        alert("ingrese los datos")
+        alert("Ingrese los datos")
     }
 }
 
@@ -251,14 +265,27 @@ function quitar (){
     window.location.assign('quitar.html')
 }
 
+function quitarDinero (event){
+    if (event) event.preventDefault();
+    let quitar = document.forms['quitar']['montoQuitar'].value
+    if (quitar > 0){
+        alert('Dinero quitado!')
+        return true
+    } else {
+        alert('Complete el campo!')
+        return false
+    }
+}
+
 function cerrarSesion (){
     window.location.assign('index.html')
     localStorage.removeItem('user')
 }
 
-function validarModificaciones (){
-    let nombreNew = document.getElementById('nombreNuevo').value;
-    let apNew = document.getElementById('apellidoNuevo').value;
+function validarModificaciones (event){
+    if (event) event.preventDefault();
+    let nombreNew = document.forms['datos']['nombreNuevo'].value;
+    let apNew = document.forms['datos']['apellidoNuevo'].value;
 
     modificarUser(nombreNew, apNew);
 }
@@ -267,12 +294,17 @@ function modificarUser (nombreNew, apNew){
     
     if (nombreNew == "" && apNew != ""){
         alert(`Usted ha modificado su Apellido`)
+        return true
     }
     else if (apNew == "" && nombreNew != ""){
         alert(`Usted ha modificado su Nombre`)
+        return true
     }
     else if (apNew != "" && nombreNew != ""){
         alert(`Usted ha modificado su Nombre y Apellido`)
+        return true
+    } else {
+        return false
     }
 }
 

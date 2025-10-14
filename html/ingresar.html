@@ -28,12 +28,13 @@
         <h2>Ingresar dinero:</h2>
           <div class="saldo">
             <p>Saldo disponible:</p>
-            <p id="saldoActual">$ 0</p>
-
-      </div>
-        <p>Ingrese la cantidad que desea solicitar:</p>
-        <input type="number" placeholder="$ 0.00" class="input-solicitar" id="montoIngresar">
-        <button class="button" onclick="ingresar()">Ingresar</button>
+            <p name="saldoActual" id="saldoActual">$ 0</p>
+          </div>
+        <form name="ingresar" onsubmit="return ingresar(event)">
+          <p>Ingrese la cantidad que desea ingresar:</p>
+          <input name="montoIngresar" type="number" placeholder="$ 0.00" class="input-solicitar" id="montoIngresar">
+          <button type="submit" class="button">Ingresar</button>
+        </form>
       </div>
     </section>
   </main>
