@@ -110,15 +110,13 @@ function validarRegistro (event){
     }
 
     if(document.forms['registro']['select'].value == "hijo"){
-        alert(`Bienvenido, ${user}`)
         window.location.assign('inicio.html')
         localStorage.setItem('user', user)            
         localStorage.setItem('code', code)
         localStorage.setItem('padre', false)
         return true
     }
-    else if (document.forms['registro']['select'].value == "padre"){
-        alert(`Bienvenido, ${user}`)            
+    else if (document.forms['registro']['select'].value == "padre"){        
         window.location.assign('iniciopadre.html')
         localStorage.setItem('user', user)
         localStorage.setItem('code', code)            
@@ -138,6 +136,7 @@ function loguearse (event){
     let password = document.forms['login']['contraseña']
     document.getElementById('errorUser').innerHTML = '';
     document.getElementById('errorPass').innerHTML = '';
+    document.getElementById('login').innerHTML = ''
     user.style.border =  "2px solid #000852"
     password.style.border =  "2px solid #000852"
 
@@ -145,7 +144,7 @@ function loguearse (event){
 
     console.log(user, password)
     if (user.value.length < 1 || password.value.length < 1){
-        alert(`Completar campos`)
+        document.getElementById('login').innerHTML = 'Complete los campos'
         valido = false
         if (user.value.length < 1){
             user.style.border =  "2px solid #ff0000ff";            
@@ -172,14 +171,11 @@ function loguearse (event){
     }
 
     if (valido != true){
-        return false
     }
 
     if (user.value == u && password.value == p){
-        alert(`Bienvenido, ${user.value}`)
         window.location.assign('inicio.html')
         localStorage.setItem('user', user.value)
-        return true
     }
 
 }
@@ -191,11 +187,6 @@ function actividad (){
 
 function cuenta (){
     window.location.assign('cuenta.html')
-}
-
-function editar (){
-    let newUser = document.getElementById('usuarioNuevo').value
-    let newPassword = document.getElementById('contraseñaNueva').value
 }
 
 function transferencia (){
@@ -215,49 +206,47 @@ function solicitud (){
     window.location.assign('solicitar.html')
 }
 
-function validarTransferencia() {
+function validarTransferencia(event) {
   let userDestino = document.forms['transferir']['usuarioDestino'].value;
   let monto = parseFloat(document.forms['transferir']['monto'].value)
   let motivo = document.forms['transferir']['motivo'].value
+  document.getElementById('transferir').innerHTML = ''
+  if (event) event.preventDefault();
 
   if (userDestino.length < 1 || monto < 1 || motivo.length < 1) {
-    alert('Complete los datos!');
-    return false
+    document.getElementById('transferir').innerHTML = 'Complete los datos.'
   } else {
-    transferirDinero(userDestino, monto, motivo);
-    return true
+    document.getElementById('transferir').innerHTML = 'Transferencia exitosa!'
   }
-}
-
-function transferirDinero (userDestino, monto, motivo){
-    alert(`Transferencia exitosa!`)
 }
 
 function ingresar(event) {
   if (event) event.preventDefault();
-  let montoIngreso = parseFloat(document.forms['ingresar']['montoIngresar'].value)
-  let saldoActual = document.getElementById('saldoActual')
+  let montoIngreso = parseFloat(document.forms['ingreso']['montoIngresar'].value)
+  //let saldoActual = parseInt(document.getElementById('saldoActual').value)
   //let nuevoSaldo = saldoActual + montoIngreso;
-  document.getElementById('saldoActual').innerHTML = "$ " + montoIngreso;
-
+  let saldoActual = 0
+  document.getElementById('ingresar').innerHTML = ''
   if (montoIngreso > 0){
-    alert('Se ha ingresado el dinero!')
-    return true
+    document.getElementById('ingresar').innerHTML = 'Se ha ingresado el dinero!'
+    saldoActual += montoIngreso
+    document.getElementById('saldoActual').innerHTML = "$ " + saldoActual;
+   
   } else {
-    alert('Complete el monto!')
-    return false
+    document.getElementById('ingresar').innerHTML = 'Complete el monto!'
   }
 }
 
 
 
 function solicitarDinero (event){
+    document.getElementById('solicitar').innerHTML = ''
     if (event) event.preventDefault();
     let montoSolicitar = document.forms['solicitar']['montoSolicitar'].value
     if (montoSolicitar != 0){
-        alert("Se ha solicitado el dinero!")
+        document.getElementById('solicitar').innerHTML = 'Se ha solicitado el dinero!'
     }else{
-        alert("Ingrese los datos")
+        document.getElementById('solicitar').innerHTML = 'Complete los datos!'
     }
 }
 
@@ -266,13 +255,14 @@ function quitar (){
 }
 
 function quitarDinero (event){
+    document.getElementById('quitar').innerHTML = ''
     if (event) event.preventDefault();
     let quitar = document.forms['quitar']['montoQuitar'].value
     if (quitar > 0){
-        alert('Dinero quitado!')
+        document.getElementById('quitar').innerHTML = 'Dinero quitado!'
         return true
     } else {
-        alert('Complete el campo!')
+        document.getElementById('quitar').innerHTML = 'Complete el campo!'
         return false
     }
 }
@@ -280,12 +270,14 @@ function quitarDinero (event){
 function cerrarSesion (){
     window.location.assign('index.html')
     localStorage.removeItem('user')
+    localStorage.removeItem('code')
 }
 
 function validarModificaciones (event){
     if (event) event.preventDefault();
     let nombreNew = document.forms['datos']['nombreNuevo'].value;
     let apNew = document.forms['datos']['apellidoNuevo'].value;
+    document.getElementById('cambioDatos').innerHTML = ''
 
     modificarUser(nombreNew, apNew);
 }
@@ -293,15 +285,15 @@ function validarModificaciones (event){
 function modificarUser (nombreNew, apNew){
     
     if (nombreNew == "" && apNew != ""){
-        alert(`Usted ha modificado su Apellido`)
+        document.getElementById('cambioDatos').innerHTML = 'Usted ha modificado su apellido!'
         return true
     }
     else if (apNew == "" && nombreNew != ""){
-        alert(`Usted ha modificado su Nombre`)
+        document.getElementById('cambioDatos').innerHTML = 'Usted ha modificado su nombre!'
         return true
     }
     else if (apNew != "" && nombreNew != ""){
-        alert(`Usted ha modificado su Nombre y Apellido`)
+        document.getElementById('cambioDatos').innerHTML = 'Usted ha modificado su nombre y apellido!'
         return true
     } else {
         return false

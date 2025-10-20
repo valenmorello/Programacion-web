@@ -28,7 +28,7 @@
         <p id="saldoActual">$ 0</p>
 
       </div>
-      <form name="transferir" onsubmit="return validarTransferencia()">
+      <form name="transferir" onsubmit="return validarTransferencia(event)">
         <div class="datos">
           <input class="input" name='usuarioDestino' id="usuarioDestino" placeholder="Ingrese usuario">
           <input type="number" name="monto" placeholder="Ingrese Monto $ 0.00" class="input" id="monto">
@@ -37,6 +37,7 @@
         <div class="acciones">
           <button type="submit" class="button">Transferir</button>
         </div>
+        <span id="transferir"></span>
       </form>
     </section>
 
