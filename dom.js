@@ -31,13 +31,6 @@ eyeBtn.addEventListener("click", () => {
 
 function validarRegistro (event){
     if (event) event.preventDefault();
-    let num = false
-    let esp = false
-    let carN = false
-    let carA = false
-    let nums = '0123456789'
-    let esps = '/?.><,;:][}{=_-+*&^%$#@!~'
-    let numEsps = '0123456789/?.><,;:][}{=_-+*&^%$#@!~'
     document.getElementById('errorUser').innerHTML = '';
     document.getElementById('errorNom').innerHTML = '';
     document.getElementById('errorApe').innerHTML = '';
@@ -47,37 +40,9 @@ function validarRegistro (event){
 
     let user = document.forms['registro']['usuario'].value
     let nombre = document.forms['registro']['nombre'].value
-    for (let i = 0; i < nombre.length; i++){
-        for (let k = 0; k < numEsps.length; k++){
-            if (nombre[i] == numEsps[k]){
-                carN = true
-            } 
-        }
-    }
-
     let apellido = document.forms['registro']['apellido'].value
-    for (let i = 0; i < apellido.length; i++){
-        for (let k = 0; k < numEsps.length; k++){
-            if (apellido[i] == numEsps[k]){
-                carA = true
-            } 
-        }
-    }
-
     let code = document.getElementById('codigoFamiliar').value
 
-    for (let i = 0; i < contraseña.value.length; i++){
-        for (let j = 0; j < nums.length; j++){
-            if (contraseña.value[i] == nums[j]){
-                num = true
-            } 
-        }
-        for (let k = 0; k < esps.length; k++){
-            if (contraseña.value[i] == esps[k]){
-                esp = true
-            } 
-        }
-    }
 
     let valido = true
 
@@ -85,19 +50,19 @@ function validarRegistro (event){
         document.getElementById('errorUser').innerHTML = 'Usuario existente'
         valido = false
     }
-    if (carN == true){
+    if (/[\d!@#$%^&*()_+\-=\[\]{};:"'\\|,.<>\/?~`]/.test(nombre)){
         document.getElementById('errorNom').innerHTML = 'Ingrese solo letras'
         valido = false
     }
-    if (carA == true){
+    if (/[\d!@#$%^&*()_+\-=\[\]{};:"'\\|,.<>\/?~`]/.test(apellido)){
         document.getElementById('errorApe').innerHTML = 'Ingrese solo letras'
         valido = false
     }
-    if (code.length != 6){
+    if (/.{6}/.test(code)){
         document.getElementById('errorCode').innerHTML = 'Codigo de 6 digitos'
         valido = false
     }
-    if (num == false || esp == false || contraseña.value.length < 6){
+    if (!/\d/.test(contraseña.value) || !/[!@#$%^&*()_+\-=\[\]{};:"'\\|,.<>\/?~`]/.test(contraseña.value) || !/.{6,}/.test(contraseña.value)){
         document.getElementById('errorPass').innerHTML = 'Incluya al menos un número y un caracter especial. Minimo 6 caracteres.'
         valido = false
     }
@@ -143,7 +108,7 @@ function loguearse (event){
     let valido = true
 
     console.log(user, password)
-    if (user.value.length < 1 || password.value.length < 1){
+    if (!/.{1.}/.test(user.value) || !/.{1.}/.test(password.value)){
         document.getElementById('login').innerHTML = 'Complete los campos'
         valido = false
         if (user.value.length < 1){
@@ -227,7 +192,7 @@ function ingresar(event) {
   //let nuevoSaldo = saldoActual + montoIngreso;
   let saldoActual = 0
   document.getElementById('ingresar').innerHTML = ''
-  if (montoIngreso > 0){
+  if (montoIngreso >= 1){
     document.getElementById('ingresar').innerHTML = 'Se ha ingresado el dinero!'
     saldoActual += montoIngreso
     document.getElementById('saldoActual').innerHTML = "$ " + saldoActual;
@@ -243,7 +208,7 @@ function solicitarDinero (event){
     document.getElementById('solicitar').innerHTML = ''
     if (event) event.preventDefault();
     let montoSolicitar = document.forms['solicitar']['montoSolicitar'].value
-    if (montoSolicitar != 0){
+    if (montoSolicitar >= 1){
         document.getElementById('solicitar').innerHTML = 'Se ha solicitado el dinero!'
     }else{
         document.getElementById('solicitar').innerHTML = 'Complete los datos!'
@@ -258,7 +223,7 @@ function quitarDinero (event){
     document.getElementById('quitar').innerHTML = ''
     if (event) event.preventDefault();
     let quitar = document.forms['quitar']['montoQuitar'].value
-    if (quitar > 0){
+    if (quitar >= 1){
         document.getElementById('quitar').innerHTML = 'Dinero quitado!'
         return true
     } else {
