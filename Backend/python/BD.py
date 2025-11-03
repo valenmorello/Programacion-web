@@ -34,7 +34,7 @@ def consultarDB(mydb,sQuery="", val=None, title=False):  #recibe la consulta y l
                 mycursor.execute(sQuery)
             else:
                 mycursor.execute(sQuery,val)
-            myresult = mycursor.fetchall() #obtiene los nombres de las columnas                 
+            myresult = mycursor.fetchall()                  
             
             if title:
                 myresult.insert(0,mycursor.column_names)
