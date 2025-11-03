@@ -7,12 +7,23 @@ let contraseña = document.forms['registro']['contraseña']
 let confirmar = document.forms['registro']['confirmar'];
 let confirmarDiv = document.getElementById('confirm-container');
 let eyeBtn = document.getElementById("eyeBtn");
+let select = document.forms['registro']['select']
+let codigo = document.forms['registro']['codigoFamiliar']
 
 contraseña.addEventListener('input', function() {
     if (contraseña.value.length > 0) {
         confirmarDiv.style.display = 'block';
     } else {
         confirmarDiv.style.display = 'none';
+    }
+});
+
+select.addEventListener('change', function() {
+    const valor = select.value
+    if (valor == 'hijo') {
+        codigo.style.display = 'block';
+    } else {
+        codigo.style.display = 'none';
     }
 });
 
