@@ -7,12 +7,23 @@ let contraseña = document.forms['registro']['contraseña']
 let confirmar = document.forms['registro']['confirmar'];
 let confirmarDiv = document.getElementById('confirm-container');
 let eyeBtn = document.getElementById("eyeBtn");
+let select = document.forms['registro']['select']
+let codigo = document.forms['registro']['codigoFamiliar']
 
 contraseña.addEventListener('input', function() {
     if (contraseña.value.length > 0) {
         confirmarDiv.style.display = 'block';
     } else {
         confirmarDiv.style.display = 'none';
+    }
+});
+
+select.addEventListener('change', function() {
+    const valor = select.value
+    if (valor == 'hijo') {
+        codigo.style.display = 'block';
+    } else {
+        codigo.style.display = 'none';
     }
 });
 
@@ -42,6 +53,8 @@ function validarRegistro (event){
     let nombre = document.forms['registro']['nombre'].value
     let apellido = document.forms['registro']['apellido'].value
     let code = document.getElementById('codigoFamiliar').value
+    let rol = document.forms['registro']['select'].value
+    let imagen = document.forms['registro']['imagen'];
 
 
     let valido = true
@@ -58,9 +71,11 @@ function validarRegistro (event){
         document.getElementById('errorApe').innerHTML = 'Ingrese solo letras'
         valido = false
     }
-    if (/.{6}/.test(code)){
-        document.getElementById('errorCode').innerHTML = 'Codigo de 6 digitos'
-        valido = false
+    if (rol == 'hijo') {
+        if (!/^\d{6}$/.test(code)) {
+            document.getElementById('errorCode').innerHTML = 'Código de 6 dígitos (solo números)';
+            valido = false;
+        }
     }
     if (!/\d/.test(contraseña.value) || !/[!@#$%^&*()_+\-=\[\]{};:"'\\|,.<>\/?~`]/.test(contraseña.value) || !/.{6,}/.test(contraseña.value)){
         document.getElementById('errorPass').innerHTML = 'Incluya al menos un número y un caracter especial. Minimo 6 caracteres.'

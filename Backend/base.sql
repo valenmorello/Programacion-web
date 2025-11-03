@@ -1,4 +1,4 @@
--- Active: 1761576574446@@mysql-tomasmaraval.alwaysdata.net@3306@tomasmaraval_familybank
+-- Active: 1761570068921@@mysql-tomasmaraval.alwaysdata.net@3306@tomasmaraval_familybank
 SHOW DATABASES;
 use tomasmaraval_familybank;
 
@@ -34,3 +34,4 @@ SELECT * FROM `usuarios` WHERE `codigo_Familiar`= 123456
 
 SELECT * FROM `usuarios` WHERE `codigo_Familiar`= 123654
 
+INSERT into 'actividades' 
