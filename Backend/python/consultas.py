@@ -1,8 +1,15 @@
-#EJEMPLO
-sQuery= """
-    INSERT INTO base
-    (id, nombre, apellido, email, pass)
-    VALUES
-    (%s,%s,%s,%s,%s,)
-"""
-val = ("valor1","valor2","valor3","valor4") #el execute reemplaza los valores
+from BD import *
+
+def registro(usuario, nombre, apellido, codfam, contraseña):
+    sQuery="""
+        INSERT INTO usuario
+        (usuario, nombre, apellido, codfam, contraseña)
+        VALUES
+        (%s,%s,%s,%s,%s,)"""
+    val = (usuario, nombre, apellido, codfam, contraseña)
+    mydb = conectarDB(BASE)
+    res = ejecutarDB(mydb, sQuery,val)
+    cerrarBD(mydb)
+    return res
+
+

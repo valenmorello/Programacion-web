@@ -44,12 +44,6 @@ def consultarDB(mydb,sQuery="", val=None, title=False):  #recibe la consulta y l
 
 
 def ejecutarDB(mydb,sQuery="",val=None):
-    ''' # Realiza las consultas 'INSERT' 'UPDATE' 'DELETE'
-        # recibe 'mydb' una conexion a una base de datos
-        # recibe 'sQuery' la cadena con la consulta (query) sql.
-        # recibe 'val' valores separados anti sql injection
-        # retorna la cantidad de filas afectadas con la query.
-    '''
     res=None
     try:
         mycursor = mydb.cursor()
@@ -62,7 +56,7 @@ def ejecutarDB(mydb,sQuery="",val=None):
     except mysql.connector.Error as e:
         mydb.rollback()
         print("ERROR ->",e)    
-    return res
+    return res #retorna las filas afectadas
 
 
 
