@@ -21,7 +21,7 @@ def conectarDB (configDB=None):
             print("Error -->", e)
     return mydb
 
-def cerrarBD(mydb):
+def cerrarDB(mydb):
     if mydb!=None:
         mydb.close()
 
