@@ -1,9 +1,17 @@
 from BD import *
 
+def obtener_datos(dato, tabla, columna, valor):
+    sQuery="SELECT {} FROM {} WHERE {}=%s".format(dato,tabla,columna)
+    val = (valor)
+    mydb = conectarDB(BASE)
+    res = consultarDB(mydb,sQuery,val)
+    cerrarDB(mydb)
+    return res
+
 def registro(nombre_usuario, nombre, apellido, codfam, contrasenia):
     sQuery="""
         INSERT INTO usuario
-        (nombre_usuario, nombres, apellido, codigofamiliar, contrasenia)
+        (Null, nombre_usuario, nombres, apellido, codigofamiliar, contrasenia)
         VALUES
         (%s,%s,%s,%s,%s,)"""
     val = (nombre_usuario, nombre, apellido, codfam, contrasenia)
@@ -41,19 +49,11 @@ def saldoactual(nombre_usuario):
     cerrarDB(mydb)
     return res
 
-def verificacion_de_ususario(usuario_receptor):
-    sQuery="""
-    SELECT nombre FROM usuario WHERE nombre_usuario=%s
-    SELECT apellido FROM usuario WHERE nombre_usuario=%s
-    """
-    val = (usuario_receptor,usuario_receptor)
-    mydb = conectarDB(BASE) 
-    res = consultarDB(mydb,sQuery,val)
-    cerrarDB(mydb)
-    return res
-
-def transferencia(usuario_emisor, usuario_receptor, monto):
+def transferencia(usuario_emisor, usuario_receptor, monto, motivo, fecha):
     res = None
+    id_emisor = obtener_datos("id","usuario","nombre_usuario",usuario_emisor)
+    id_receptor = obtener_datos("id","usuario","nombre_usuario",usuario_receptor)
+
     saldoemisor = saldoactual(usuario_emisor)
     saldoreceptor = saldoactual(usuario_receptor)
     
@@ -64,14 +64,20 @@ def transferencia(usuario_emisor, usuario_receptor, monto):
         sQuery ="""
         UPDATE usuario SET 'saldo'=%s WHERE nombre_usuario=%s
         UPDATE usuario SET 'saldo'=%s WHERE nombre_usuario=%s
+
+        INSERT INTO actividad
+        (id, emisor, receptor, motivo, fecha, monto)
+        VALUES
+        (Null,%s,%s,%s,%s,%s)
         """
-        val = (saldoemisor, usuario_emisor, saldoreceptor, usuario_receptor)
+        val = (saldoemisor, usuario_emisor, saldoreceptor, usuario_receptor,
+                id_emisor, id_receptor,motivo,fecha,monto)
+        
         mydb=conectarDB(BASE)
         res=ejecutarDB(mydb,sQuery,val)      
         cerrarDB(mydb)
 
     return res
-
 
 
 
