@@ -24,7 +24,7 @@ def usuario_existe():
     pass #COMPLETAR
 
 def modificarnombre(nombre_usuario, nuevonombre):
-    sQuery="UPDATE usuario SET nombres=%s WHERE nombre_usuario=%s"
+    sQuery="UPDATE `usuario` SET nombres=%s WHERE nombre_usuario=%s"
     val = (nuevonombre, nombre_usuario)
     mydb=conectarDB(BASE)
     res=ejecutarDB(mydb,sQuery,val)       # update
