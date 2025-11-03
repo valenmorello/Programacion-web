@@ -64,3 +64,6 @@ def ejecutarDB(mydb,sQuery="",val=None):
         print("ERROR ->",e)    
     return res
 
+
+
+#FLASK, Direcciones locales
