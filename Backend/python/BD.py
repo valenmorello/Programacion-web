@@ -1,10 +1,10 @@
 import mysql.connector
 import mysql.vendor
 
-BASE={ "host":"localhost", 
-      "user":"root",
-      "pass":"",
-      "dbname":"base"
+BASE={ "host":"mysql-tomasmaraval.alwaysdata.net", 
+      "user":"437721",
+      "pass":"canalla06",
+      "dbname":"tomasmaraval_familybank"
 }
 
 def conectarDB (configDB=None):
