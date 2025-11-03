@@ -14,6 +14,10 @@
                 <h1>REGISTRO</h1>
             </section>
             <form name="registro" onsubmit="return validarRegistro(event)">
+                <select class="select" name="select" id="select">
+                        <option value="padre"> <p>PADRE</p></option>
+                        <option value="hijo"> <P>HIJO</P></option>
+                </select><br>
                 <div class="datos">
                     <input type="text" class="input-datos" name="usuario" id="usuario" placeholder="Ingrese usuario">
                     <span id="errorUser"></span>
@@ -31,11 +35,10 @@
                         <br>
                         <button type="button" id="eyeBtn" aria-label="Mostrar contraseña">Visualizar contraseñas</button>
                     </div>
+                    <input type="file" class="input-datos" name="imagen" id="imagen" placeholder="Ingrese imagen">
+                    
                 </div>
-                <select class="select" name="select" id="usuario_select">
-                        <option value="padre"> <p>PADRE</p></option>
-                        <option value="hijo"> <P>HIJO</P></option>
-                </select><br>
+                
                 <div class="acciones">
                     <button type="submit" class="button">Crear usuario</button>
                 </div>

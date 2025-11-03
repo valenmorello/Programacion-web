@@ -53,6 +53,8 @@ function validarRegistro (event){
     let nombre = document.forms['registro']['nombre'].value
     let apellido = document.forms['registro']['apellido'].value
     let code = document.getElementById('codigoFamiliar').value
+    let rol = document.forms['registro']['select'].value
+    let imagen = document.forms['registro']['imagen'];
 
 
     let valido = true
@@ -69,9 +71,11 @@ function validarRegistro (event){
         document.getElementById('errorApe').innerHTML = 'Ingrese solo letras'
         valido = false
     }
-    if (/.{6}/.test(code)){
-        document.getElementById('errorCode').innerHTML = 'Codigo de 6 digitos'
-        valido = false
+    if (rol == 'hijo') {
+        if (!/^\d{6}$/.test(code)) {
+            document.getElementById('errorCode').innerHTML = 'Código de 6 dígitos (solo números)';
+            valido = false;
+        }
     }
     if (!/\d/.test(contraseña.value) || !/[!@#$%^&*()_+\-=\[\]{};:"'\\|,.<>\/?~`]/.test(contraseña.value) || !/.{6,}/.test(contraseña.value)){
         document.getElementById('errorPass').innerHTML = 'Incluya al menos un número y un caracter especial. Minimo 6 caracteres.'
