@@ -1,194 +1,207 @@
+/* Reset */
 * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: Arial, sans-serif;
-}
-
-body {
-  background:  #d6e8ff;
-  color: #333;
   margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", "Segoe UI", sans-serif;
+}
+
+/* Fondo general */
+body {
+  background: linear-gradient(135deg, #e3f0ff, #f9fbff);
+  color: #1c1c1c;
   min-height: 100vh;
-}
-
-main {
   display: flex;
-  justify-content: center;
-  align-items: center;
-  padding-top: 70px;
+  flex-direction: column;
 }
 
-
+/* HEADER */
 header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background:#000852;
-  padding: 1% 5%;
-  color: #d6e8ff;
+   background: #131b45;
+  padding: 15px 6%;
+  color: #ffffff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
 }
 
 header button {
-  border: 0;
-  background:#000852;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  color: inherit;
+  font-size: 1rem;
 }
 
-
-
+/* Logo */
 .logo img {
-  height: 100px;
-  max-height: 50%;
-  margin-left: 5%;
+  height: 70px;
+  width: auto;
 }
 
+/* Usuario */
 .usuario {
   display: flex;
-  justify-content: flex-end; 
-  align-items: center;                
+  align-items: center;
+  gap: 15px;
 }
 
-
 .usuario p {
+  font-size: 1.1rem;
+  font-weight: 500;
   color: #ffffff;
-  font-size: 150%;         
-  font-weight: bold; 
 }
 
 .usuario button {
-  background: transparent;
+  background: none;
   border: none;
   color: #ffffff;
-  font-size: 150%;         
-  font-weight: bold;
+  font-size: 1rem;
   cursor: pointer;
   display: flex;
   align-items: center;
+  gap: 5px;
 }
-
 
 .usuario img {
-  width: 90px;              
-  height: auto;
+  width: 55px;
+  height: 55px;
   border-radius: 50%;
-  border: 0.5% solid white;
+  border: 2px solid #ffffff;
   object-fit: cover;
-  text-align: right;
 }
 
+/* MAIN */
+main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 60px 20px;
+  flex: 1;
+}
 
+/* Tarjeta principal */
 .section {
-  background-color: #ffffff; 
-  border-radius: 20px; 
-  width: 40%;
-  height: 300px;
-  border: 3px solid #000852; 
-  justify-content: center; 
-  
+  background-color: #ffffff;
+  border-radius: 16px;
+  width: 100%;
+  max-width: 420px;
+  border: 1px solid #d4d8ef;
+  padding: 35px 25px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: 0 4px 12px rgba(11, 29, 99, 0.08);
 }
+
+/* SALDO */
 .saldo {
-  text-align: center;  
-  margin-bottom: 10px;  
-  margin-top: 10%;
-  margin-bottom: 7%;   
-   
-}     
+  text-align: center;
+  margin-bottom: 25px;
+}
 
 .saldo h2 {
-  font-size: 30px;
-  color: #000852;
-  margin-bottom: 20px;  
+  font-size: 1.6rem;
+  color: #0b1d63;
+  font-weight: 600;
+  margin-bottom: 10px;
+  letter-spacing: 0.3px;
 }
 
 .saldo p {
-  font-size: 28px;
-  font-weight: bold;
-  color: #000852;
-  margin: 0;
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: #1c1c1c;
 }
 
- 
-.acciones button {
-  padding: 2% 4%;
-  font-size: 15px;
-  border: none;
-  border-radius: 10px;
-  cursor: pointer;
-  font-weight: bold;
-  color: white;
-  display:flex;
-  gap: 2%;
-  margin-top: 15px;
-  margin-bottom: 5px;
-}
-
-.button{
-  background:#000852;
-}
+/* ACCIONES */
 .acciones {
   display: flex;
-  justify-content: center; 
-  gap: 10px;              
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 12px;
 }
-footer { 
-      margin-top: 10%;
-      left: 0;
-      width: 100%;
-      background-color: #000852;
-      color: #fff;
-      text-align: center;
-      padding: 15px 10px;
-      font-size: 14px;
-      border-top: 2px solid #d6e8ff;
+
+.acciones button {
+  background-color: #0b1d63;
+  color: #ffffff;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 18px;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
 }
-@media (max-width: 600px) {
-  .acciones button {
-    width: 100px;
-    height: 40px;
-    font-size: 14px;
-  }
 
-  .saldo h2 {
-    font-size: 24px;
-  }
+.acciones button:hover {
+  background-color: #152e91;
+}
 
-  .saldo p {
-    font-size: 22px;
-  }
+/* FOOTER */
+footer {
+ background: #131b45;
+  color: #ffffff;
+  text-align: center;
+  padding: 15px 10px;
+  font-size: 0.9rem;
+  border-top: 2px solid #e2e6ff;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
   header {
     flex-direction: column;
     text-align: center;
-    padding: 10px;
+    padding: 20px 10px;
+    gap: 10px;
   }
 
   .logo img {
-    height: 70px;
-    margin: 10px 0;
+    height: 60px;
   }
 
   .usuario {
     flex-direction: column;
-    gap: 10px;
+    gap: 8px;
   }
 
   .usuario img {
     width: 50px;
-  }
-  .section {
-    width: 90%;
-    display: flex;
-    flex-direction: column; 
-    align-items: center;   
-    justify-content: center;
-  }
-  .saldo{
-    display: flex;
-    justify-content: center; 
-    gap: 10px;              
-}
-  footer {
-    font-size: 12px;
-    padding: 10px;
-  }
+    height: 50px;
   }
 
+  .section {
+    width: 90%;
+    padding: 25px 20px;
+  }
+
+  .saldo h2 {
+    font-size: 1.4rem;
+  }
+
+  .saldo p {
+    font-size: 1.2rem;
+  }
+
+  .acciones button {
+    width: 100%;
+    max-width: 220px;
+    font-size: 0.95rem;
+  }
+
+  footer {
+    font-size: 0.8rem;
+  }
+}
+
+@media (max-width: 400px) {
+  .saldo h2 {
+    font-size: 1.2rem;
+  }
+
+  .saldo p {
+    font-size: 1.1rem;
+  }
+}

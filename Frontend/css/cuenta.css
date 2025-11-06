@@ -1,212 +1,173 @@
 * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Inter', 'Arial', sans-serif;
 }
 
 body {
-  background:  #d6e8ff;
-  color: #333;
-  margin: 0;
+  background: linear-gradient(135deg, #e3f0ff, #f9fbff);
+  color: #2b2b2b;
   min-height: 100vh;
-}
-
-main {
   display: flex;
-  justify-content: center;
-  align-items: center;
-  padding-top: 50px;
+  flex-direction: column;
 }
 
-  
+/* HEADER */
 header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background:#000852;
-  padding: 1% 5%;
-  color: #d6e8ff;
-}
-
-header button {
-  border: 0;
-  background:#000852;
+  background: #131b45;
+  padding: 1rem 2rem;
+  color: #ffffff;
 }
 
 .logo img {
-  height: 100px;
-  max-height: 50%;
-  margin-left: 5%;
+  height: 70px;
 }
 
 .usuario {
   display: flex;
-  justify-content: flex-end; 
-  align-items: center;                
+  align-items: center;
+  gap: 1rem;
 }
 
 .usuario button {
-  background: transparent;
+  background: none;
   border: none;
   color: #ffffff;
-  font-size: 150%;         
-  font-weight: bold;
+  font-size: 1rem;
+  font-weight: 500;
   cursor: pointer;
-  display: flex;
-  align-items: center;
 }
 
-
 .usuario img {
-  width: 90px;              
-  height: auto;
+  width: 50px;
+  height: 50px;
   border-radius: 50%;
-  border: 0.5% solid white;
+  border: 2px solid #ffffff;
   object-fit: cover;
-  text-align: right;
+}
+
+/* MAIN */
+main {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 2rem 1rem;
 }
 
 .section {
-  background-color: #ffffff; 
-  border-radius: 20px; 
-  border: solid #000852; 
-  justify-content: center; 
-  width: 40%;
-  min-height: 350px;
-  
+  background: #f9faff;
+  border-radius: 16px;
+  border: 1px solid #d8e1ff;
+  width: 45%;
+  min-width: 300px;
+  padding: 2rem;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
 }
 
 .datos {
   text-align: center;
-  font-size: 150%;         
-  font-weight: bold;
-  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-  color: #000852;
-}     
-
-.datos h2 {
-  font-size: 50px;
-  color: #000852;
-  margin-top: 5%;
-  margin-bottom: 4%;  
+  color: #1c2e8a;
+  margin-bottom: 1rem;
 }
 
-.formulario{
+.datos h2 {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+}
+
+.formulario {
   display: grid;
-  grid-template-columns: repeat(2, 1fr); /* 2 columnas */
-  margin: 2% 5% 2% 5%;
-  justify-items: center;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.2rem;
+  margin: 1.5rem 0;
 }
 
 .formulario label {
-  font-size: 150%;         
-  font-weight: bold;
-  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-  color: #000852;
-  margin: 5%;
-}     
-
-.datos_input{
-  width: 90%;
-  padding: 3%;
-  font-size: 100%;
-  border: 2px solid #000852;
-  border-radius: 10px;
+  color: #1c2e8a;
+  font-weight: 500;
   text-align: center;
-  margin:5% 0% 5% 0%;
+  font-size: 1rem;
 }
 
-.acciones{
+.datos_input {
+  width: 90%;
+  padding: 0.7rem;
+  border: 1px solid #a7b8ff;
+  border-radius: 8px;
+  text-align: center;
+  font-size: 1rem;
+  background-color: #ffffff;
+}
+
+.acciones {
   display: flex;
-  justify-content: center; 
-  gap: 10px;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-top: 1rem;
 }
 
 .acciones button {
-  padding: 2% 4%;
-  font-size: 15px;
+  background: #1c2e8a;
+  color: #ffffff;
+  padding: 0.8rem 1.6rem;
   border: none;
-  border-radius: 10px;
+  border-radius: 8px;
+  font-size: 0.95rem;
   cursor: pointer;
-  font-weight: bold;
-  color: white;
-  display:flex;
-  gap: 2%;
-  margin: 3% 5% 5% 5% ;
+  font-weight: 600;
 }
 
-.button{
-  background:#000852;
+.acciones button:hover {
+  background: #2a3faf;
 }
 
+footer {
+  margin-top: 5%;
+  width: 100%;
+  background: #131b45;
+  color: #fff;
+  text-align: center;
+  padding: 1rem;
+  font-size: 0.9rem;
+  border-top: 3px solid #cfdfff;
+}
 
-footer { 
-      margin-top: 10%;
-      left: 0;
-      width: 100%;
-      background-color: #000852;
-      color: #fff;
-      text-align: center;
-      padding: 15px 10px;
-      font-size: 14px;
-      border-top: 2px solid #d6e8ff;
-    }
-@media (max-width: 600px) {
+/* RESPONSIVE */
+@media (max-width: 700px) {
   header {
     flex-direction: column;
     text-align: center;
-    padding: 10px;
+    gap: 0.5rem;
   }
 
   .logo img {
-    height: 70px;
-    margin: 10px 0;
+    height: 60px;
   }
 
   .usuario {
     flex-direction: column;
-    gap: 10px;
-  }
-
-  .usuario img {
-    width: 50px;
   }
 
   .section {
     width: 90%;
-    padding: 15px;
-    min-height: auto; 
+    padding: 1.5rem;
   }
 
-  .textos h2 {
-    font-size: 22px;
-  }
-
-  .textos p {
-    font-size: 16px;
+  .formulario {
+    grid-template-columns: 1fr;
   }
 
   .datos_input {
-    width: 90%;
-    font-size: 14px;
-    margin-bottom: 10px;
-  }
-
-  .acciones {
-    flex-direction: column;
-    gap: 10px;
+    width: 100%;
   }
 
   .acciones button {
-    width: 80%;
-    font-size: 14px;
-    padding: 10px;
-  }
-
-  footer {
-    font-size: 12px;
-    padding: 10px;
+    width: 100%;
   }
 }
-
