@@ -1,24 +1,19 @@
 * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Segoe UI", Arial, sans-serif;
 }
+
 
 body {
-  background:  #d6e8ff;
+  background: linear-gradient(135deg, #e3f0ff, #f9fbff);
   color: #333;
-  margin: 0;
   min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
-main {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding-top: 70px;
-}
-  
 header {
   display: flex;
   justify-content: space-between;
@@ -29,184 +24,154 @@ header {
 }
 
 header button {
-  border: 0;
-  background:#000852;
+  border: none;
+  background: transparent;
+  color: #fff;
+  cursor: pointer;
 }
-
 
 .logo img {
-  height: 100px;
-  max-height: 50%;
-  margin-left: 5%;
-}
-.usuario img {
-  width: 90px;              
-  height: auto;
-  border-radius: 50%;
-  border: 0.5% solid white;
-  object-fit: cover;
-  text-align: right;
+  height: 80px;
 }
 
-.usuario button:hover {
-  opacity: 0.8;
-}
-
-.section {
-  background-color: #ffffff; 
-  border-radius: 20px; 
-  border: solid #000852; 
-  justify-content: center; 
-  width: 40%;
-  min-height: 350px;
-  
-}
-.saldo {
-  text-align: center;  
-  margin-bottom: 10px;  
-  margin-top: 10%;
-  margin-bottom: 7%;  
-}
-
-.saldo h2 {
-  font-size: 30px;
-  color: #000852;
-  margin-bottom: 20px;  
-}
-
-.saldo p {
-  font-size: 28px;
-  font-weight: bold;
-  color: #000852;
-  margin: 0;
-}
-
-
-.datos {
-  display: flex;
-  flex-direction: column; 
-  align-items: center;    
-  gap: 15px;              
-  margin: 20px 0;         
-}
-
-.input {
-  padding: 3%;
-  font-size: 100%;
-  border: 2px solid #000852;
-  border-radius: 10px;
-  text-align: center;
-}
-
-.acciones button {
-  padding: 2% 4%;
-  font-size: 15px;
-  border: none;
-  border-radius: 10px;
-  cursor: pointer;
-  font-weight: bold;
-  color: white;
-  display:flex;
-  gap: 2%;
-  margin-top: 15px;
-  margin-bottom: 5%;
-}
-
-.button{
-  background:#000852;
-}
-.acciones {
-  display: flex;
-  justify-content: center; 
-  gap: 10px;              
-}
 .usuario {
   display: flex;
-  justify-content: flex-end; 
-  align-items: center;   
-  gap: 5%;              
+  align-items: center;
+  gap: 16px;
 }
 
 .usuario button {
   background: transparent;
   border: none;
-  color: #ffffff;
-  font-size: 150%;         
+  color: #fff;
+  font-size: 10px;
   font-weight: bold;
   cursor: pointer;
-  display: flex;
-  align-items: center;
-  white-space: nowrap;  
 }
 
-footer { 
-  margin-top: 10%;
-  left: 0;
-  width: 100%;
-   background: #131b45;
+.usuario img {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  border: 2px solid #fff;
+  object-fit: cover;
+}
+main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-grow: 1;
+  padding: 50px 0;
+}
+
+.section {
+  background: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 6px 20px rgba(0, 8, 82, 0.1);
+  width: 90%;
+  max-width: 480px;
+  padding: 30px 25px;
+  text-align: center;
+  border: 1.5px solid rgba(0, 8, 82, 0.15);
+  min-height: 220px; /
+
+}
+.saldo {
+  margin-bottom: 30px;
+}
+
+.saldo h2 {
+    font-size: 22px;
+}
+
+.saldo p {
+    font-size: 18px;
+}
+.datos {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.input {
+  width: 80%;
+  padding: 10px;
+  font-size: 16px;
+  border: 1.5px solid #000852;
+  border-radius: 10px;
+  text-align: center;
+}
+
+
+.acciones {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+}
+
+.acciones button {
+  padding: 10px 20px;
+  background: #000852;
+  color: #fff;
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.acciones button:hover {
+  background: #1e2a7a;
+}
+
+
+footer {
+  background: #131b45;
   color: #fff;
   text-align: center;
   padding: 15px 10px;
   font-size: 14px;
   border-top: 2px solid #d6e8ff;
 }
+
 @media (max-width: 480px) {
   header {
     flex-direction: column;
     text-align: center;
-    padding: 10px;
+    gap: 10px;
   }
 
   .logo img {
-    height: 70px;
-    margin: 10px 0;
-  }
-
-  .usuario {
-    flex-direction: column;
-    gap: 10px;
+    height: 60px;
   }
 
   .usuario img {
     width: 50px;
+    height: 50px;
   }
 
   .section {
     width: 90%;
-    padding: 15px;
-    display: flex;
-    flex-direction: column; 
-    align-items: center;   
-    justify-content: center;
+    padding: 25px;
   }
 
-  .textos h2 {
+  .saldo h2 {
     font-size: 22px;
   }
 
-  .textos p {
-    font-size: 16px;
+  .saldo p {
+    font-size: 18px;
   }
 
-  .datos {
-    width: 100%;        
-    font-size:14px;
-    height: 50px;
-    display: inline;      
-    justify-content: center;  
-    align-items: center;      
-    margin-bottom: 40px;    
-    margin-left: 145px;
-    margin-top: 20px;
-}
   .acciones button {
-    width: 100%;
-    font-size: 14px;
+    flex: 1;
     padding: 10px;
+    font-size: 14px;
   }
 
   footer {
     font-size: 12px;
-    padding: 10px;
   }
 }

@@ -6,7 +6,7 @@
 }
 
 body {
-  background:  #d6e8ff;
+  background: linear-gradient(135deg, #e3f0ff, #f9fbff);
   color: #333;
   margin: 0;
 }
@@ -30,7 +30,7 @@ header {
 
 header button {
   border: 0;
-  background:#000852;
+  background:#131b45;
 }
 
 .logo img {
@@ -73,66 +73,67 @@ header button {
 }
 
 .section1 {
-  position: relative;
-  justify-content: center;
+  background-color: #ffffff;
+  border-radius: 16px;
+  width: 100%;
+  max-width: 420px;
+  border: 1px solid #d4d8ef;
+  padding: 35px 25px;
+  display: flex;
+  flex-direction: column;
   align-items: center;
-  background-color: #ffffff; 
-  border-radius: 20px; 
-  width: 40%;
-  height: 300px;
-  border: 3px solid #000852; 
+  box-shadow: 0 4px 12px rgba(11, 29, 99, 0.08);
 }
 
 .saldo {
-  text-align: center;  
-  margin-bottom: 10px;  
-  margin-top: 10%;
-  margin-bottom: 7%;   
-}     
+  text-align: center;
+  margin-bottom: 25px;
+}
 
 .saldo h2 {
-  font-size: 30px;
-  color: #000852;
-  margin-bottom: 20px;  
+  font-size: 1.6rem;
+  color: #0b1d63;
+  font-weight: 600;
+  margin-bottom: 10px;
+  letter-spacing: 0.3px;
 }
 
 .saldo p {
-  font-size: 28px;
-  font-weight: bold;
-  color: #000852;
-  margin: 0;
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: #1c1c1c;
 }
 
- 
-.acciones button {
-  padding: 2% 4%;
-  font-size: 15px;
-  border: none;
-  border-radius: 10px;
-  cursor: pointer;
-  font-weight: bold;
-  color: white;
-  display:flex;
-  gap: 2%;
-  margin-top: 15px;
-  margin-bottom: 15px;
-}
-
-.button{
-  background:#000852;
-}
 .acciones {
   display: flex;
-  justify-content: center; 
-  gap: 10px;              
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 12px;
 }
+
+.acciones button {
+  background-color: #0b1d63;
+  color: #ffffff;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 18px;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.acciones button:hover {
+  background-color: #152e91;
+}
+
 
 .section2 {
   padding: 10px;
   display: flex;
   justify-content: center; 
   align-items: center;
-  background-color: #000852; 
+  background-color:#131b45; 
   border-radius: 20px; 
   width: 80%;
   height: 200px;
@@ -148,7 +149,7 @@ header button {
   cursor: pointer;
   font-weight: bold;
   color: #000852;
-  background-color: #d6e8ff;
+  background-color:inear-gradient(135deg, #e3f0ff, #f9fbff);
   border-radius: 10px;
 }
 
