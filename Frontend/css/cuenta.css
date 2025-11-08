@@ -13,14 +13,18 @@ body {
   flex-direction: column;
 }
 
-/* HEADER */
+
 header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   background: #131b45;
-  padding: 1rem 2rem;
+  padding: 20px;
   color: #ffffff;
+}
+header button {
+  border: 0;
+  background:#131b45;
 }
 
 .logo img {
@@ -30,14 +34,14 @@ header {
 .usuario {
   display: flex;
   align-items: center;
-  gap: 1rem;
+  gap: 16px;
 }
 
 .usuario button {
   background: none;
   border: none;
   color: #ffffff;
-  font-size: 1rem;
+  font-size: 16px;
   font-weight: 500;
   cursor: pointer;
 }
@@ -50,7 +54,7 @@ header {
   object-fit: cover;
 }
 
-/* MAIN */
+
 main {
   flex: 1;
   display: flex;
@@ -71,7 +75,7 @@ main {
 
 .datos {
   text-align: center;
-  color: #1c2e8a;
+  color: #131b45;
   margin-bottom: 1rem;
 }
 
@@ -88,7 +92,7 @@ main {
 }
 
 .formulario label {
-  color: #1c2e8a;
+  color:#131b45;
   font-weight: 500;
   text-align: center;
   font-size: 1rem;
@@ -97,7 +101,7 @@ main {
 .datos_input {
   width: 90%;
   padding: 0.7rem;
-  border: 1px solid #a7b8ff;
+  border: 1px solid #131b45;
   border-radius: 8px;
   text-align: center;
   font-size: 1rem;
@@ -113,7 +117,7 @@ main {
 }
 
 .acciones button {
-  background: #1c2e8a;
+  background: #131b45;
   color: #ffffff;
   padding: 0.8rem 1.6rem;
   border: none;
@@ -121,10 +125,11 @@ main {
   font-size: 0.95rem;
   cursor: pointer;
   font-weight: 600;
+  justify-content: center;
 }
 
 .acciones button:hover {
-  background: #2a3faf;
+  background: #131b45;
 }
 
 footer {
