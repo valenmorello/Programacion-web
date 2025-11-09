@@ -43,6 +43,11 @@ SELECT * FROM usuarios WHERE `codigo_Familiar`= 123456
 
 SELECT * FROM usuarios WHERE `codigo_Familiar`= 123654
 
+
+/*MOSTRAR USUARIOS ADMINISTRADORES*/
+SELECT * FROM usuarios where es_padre= TRUE;
+
+
 /* actividades */
 
 INSERT into `actividades` (`id`, `emisor`, `receptor`, `motivo`, `fecha`, `monto`) VALUES (Null, 2, 6, 'Pago uber', '2025-11-03T10:43', 25000), 
@@ -59,6 +64,13 @@ INNER JOIN usuarios AS emisor ON actividades.emisor = emisor.id
 INNER JOIN usuarios AS receptor ON actividades.receptor = receptor.id
 WHERE emisor.id = 2
 
+/*ULTIMAS ACTIVIDADES REGISTRADAS*/
+SELECT emisor.nombre_usuario AS Emisor, receptor.nombre_usuario AS Receptor, actividades.motivo, actividades.monto, actividades.fecha
+FROM actividades 
+INNER JOIN usuarios as emisor  ON actividades.emisor = emisor.id
+INNER JOIN usuarios as receptor ON actividades.receptor = receptor.id
+ORDER BY actividades.fecha DESC
+LIMIT 5;
 
 /*SOLICITUDES*/
 
@@ -66,3 +78,15 @@ INSERT INTO `solicitudes` (`id`, `id_usuario`, `monto`, `fecha`, `estado`)
 VALUES (Null, 12, 10000, '2025-11-03T10:43', 'pendiente'),
 (Null, 14, 50000, '2025-11-03T10:43', 'pendiente'),
 (Null, 10, 500000, '2025-11-03T10:43', 'pendiente');
+
+/*CONTAR SOLICITUDES*/
+SELECT usuario.nombre_usuario AS usuario, COUNT(solicitud.id) AS cantidad de solicitudes;
+FROM usuario 
+INNER JOIN solicitud on usuario.id = solicitud.usuario_id
+
+/*SOLICITUDES PENDIENTES*/
+SELECT solicitud.id, usuario.nombre_usuario, solicitud.monto, solicitud.fecha, solicitud.estado
+FROM solicitud
+INNER JOIN usuario ON solicitud.id_usuario = usuario.id
+WHERE solicitud.estado = 'pendiente';
+
