@@ -149,12 +149,13 @@ UPDATE usuarios SET admitido = 1 WHERE usuarios.id = 10 AND usuarios.es_padre = 
 
 
 /*Monto total solicitasdo por hijo*/
-SELECT usuarios.nombres AS Nombres, SUM(solicitudes.monto) AS MontoTotal FROM usuarios
+SELECT usuarios.nombres AS Nombres, SUM(solicitudes.monto) AS MontoTotal, COUNT(solicitudes.monto) AS Solicitudes
+FROM usuarios
 INNER JOIN solicitudes ON solicitudes.id_usuario = usuarios.id
 GROUP BY usuarios.nombres
-HAVING usuarios.apellido=''
+HAVING usuarios.nombres ='Juana';
 
-
+SELECT * FROM solicitudes
 
 -- Borrar NO TOCAR --
 DELETE * FROM solicitudes 
