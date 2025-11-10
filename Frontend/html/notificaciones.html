@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Actividad - FamilyBank</title>
+        <link rel="stylesheet" href="../css/notificaciones.css">
+    </head>
+<body onload="cargarNombre()">
+  <header>
+    <div class="logo">
+        <button onclick="inicio()">
+            <img src="../Images/logoinicio.jpg" class="imagen" alt="Logo">   
+        </button>
+    </div>
+    <div class="usuario">
+        <button onclick="cuenta()">
+            <img src="../Images/user.png" alt="Usuario">
+        </button>
+        <button id="cuenta" onclick="cuenta()"></button>
+    </div>
+  </header>
+
+  <main>
+    <section class="notificaciones">
+      <h2>Tus notificaciones</h2>
+
+      <div class="tarjeta leida">
+        <p><strong>Solicitud de dinero :</strong> User () ha solicitado $2000.</p>
+        <span>Hace 2 horas</span>
+      </div>
+
+      <div class="tarjeta">
+        <p><strong>Solicitud pendiente:</strong> User () ha solicitado unirse al grupo familiar</p>
+        <div class="solicitudgrupo"> 
+            <button type="submit" class="button" onclick= "aceptar()" > aceptar </button>
+            <button type="submit" class="button" onclick="rechazar()"> no aceptar </button>
+        </div>
+        <span>Hace 1 día</span>
+      </div>
+
+      <div class="tarjeta">
+        <p><strong>Actualización:</strong> Nueva versión del sistema disponible.</p>
+        <span>Hace 3 días</span>
+      </div>
+    </section>
+  </main>
+
+
+  <script src="../dom.js"></script>
+</body>
+<footer>
+    <p>© 2025 FamilyBank | Desarrollado por Tomás Maraval, Valentina Morello y Felicitas Orlando.</p>
+</footer>
+</html>
