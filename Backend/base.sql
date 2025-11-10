@@ -133,9 +133,9 @@ insert into solicitudes (`id`, `id_usuario`, `monto`, `fecha`, `estado`)
 values (null, 11, 20, now(), 'pendiente')
 
 /*Ver solicitudes de grupo familiar*/
-select monto, estado, fecha, id_usuario.codigo_familiar as familia, id_usuario.nombres as hijo from solicitudes
-inner join usuarios as id_usuario on solicitudes.id_usuario = id_usuario.id
-where id_usuario.codigo_familiar = 123654 order by fecha asc ;
+select monto, estado, fecha, usuarios.codigo_familiar as familia, usuarios.nombres as hijo from solicitudes
+inner join usuarios on solicitudes.id_usuario = usuarios.id
+where usuarios.codigo_familiar = 123654 order by fecha asc ;
 
 
 /*Ver hijos aun por admitir (por ID)*/
@@ -158,3 +158,15 @@ where usuarios.codigo_familiar = 123456
 union all 
 select nombres, admitido, 'grupoFam' as tipo_solicitud from usuarios
 where codigo_familiar = 123456
+
+/*Monto total solicitasdo por hijo*/
+SELECT usuarios.nombres AS Nombres, SUM(solicitudes.monto) AS MontoTotal, COUNT(solicitudes.monto) AS Solicitudes
+FROM usuarios
+INNER JOIN solicitudes ON solicitudes.id_usuario = usuarios.id
+GROUP BY usuarios.nombres
+HAVING usuarios.nombres ='Juana';
+
+
+-- Borrar NO TOCAR --
+DELETE * FROM solicitudes 
+WHERE id_usuario = 15 AND estado = 'pendiente'
