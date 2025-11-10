@@ -155,7 +155,6 @@ INNER JOIN solicitudes ON solicitudes.id_usuario = usuarios.id
 GROUP BY usuarios.nombres
 HAVING usuarios.nombres ='Juana';
 
-SELECT * FROM solicitudes
 
 -- Borrar NO TOCAR --
 DELETE * FROM solicitudes 
