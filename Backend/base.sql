@@ -1,14 +1,14 @@
--- Active: 1761576574446@@mysql-tomasmaraval.alwaysdata.net@3306@tomasmaraval_familybank
+-- Active: 1761570068921@@mysql-tomasmaraval.alwaysdata.net@3306@tomasmaraval_familybank
 SHOW DATABASES;
 use tomasmaraval_familybank;
+
+SET time_zone = 'America/Buenos_Aires';
 
 SELECT * FROM usuarios
 
 SELECT * FROM actividades
 
 SELECT * FROM solicitudes
-
-/* */
 
 /*
 INSERT INTO `usuarios` (`id`, `nombres`, `apellido`, `codigo_Familiar`, `es_padre`, `saldo`,  `contrasenia`, `nombre_usuario`, `admitido`, `img`) 
@@ -90,3 +90,49 @@ FROM solicitud
 INNER JOIN usuario ON solicitud.id_usuario = usuario.id
 WHERE solicitud.estado = 'pendiente';
 
+
+
+/*Buscar usuario y contrasenia PARA LOGIN*/
+select nombre_usuario, contrasenia from usuarios where nombre_usuario = 'solmorello' and contrasenia = 'Sol1!'
+
+/*Crear usuarios para REGISTRO*/
+insert into usuarios (`id`, `nombres`, `apellido`, `codigo_familiar`, `es_padre`, `saldo`, `contrasenia`, `nombre_usuario`, `admitido`, `img`) 
+values (null, 'Juan Ramon', 'Ramirez', 999999, 1, 0, 'juanRa02.', 'juanRamirez', 1, 'Frontend/Images/user.pmg')
+
+/*Modificar saldos para TRANSFERENCIA o INGRESOS*/
+update usuarios set saldo = 100000 where id = 16 
+
+/*Modificar datos del usuario*/
+update usuarios set nombres = 'Juana Ramona', apellido = 'Di Maria' where id = 16 
+
+/*Crear actividades*/
+insert into actividades (`id`, `emisor`, `receptor`, `motivo`, `fecha`, `monto`) 
+values (Null, 16, 2, 'Coima', now(), 10)
+
+/*Crear solicitudes*/
+insert into solicitudes (`id`, `id_usuario`, `monto`, `fecha`, `estado`) 
+values (Null, 12, 10000, now(), 'pendiente'),
+
+/*Ver actividades de x persona*/
+select receptor.nombre_usuario as usuario, receptor.nombres as nombre, motivo, monto, fecha
+from actividades 
+inner join usuarios as receptor on actividades.receptor = receptor.id
+where emisor = 16 order by fecha desc
+
+/*Ver nombre_usuario*/
+select nombre_usuario from usuarios where id = 1
+
+/*Ver codigo familiar*/
+select codigo_familiar from usuarios where id = 1
+
+/*Ver nombre_usuario*/
+select nombre_usuario from usuarios where id = 1
+
+/*Crear solicitudes*/
+insert into solicitudes (`id`, `id_usuario`, `monto`, `fecha`, `estado`) 
+values (null, 11, 20, now(), 'pendiente')
+
+/*Ver solicitudes de grupo familiar*/
+select monto, estado, fecha, id_usuario.codigo_familiar as familia, id_usuario.nombres as hijo from solicitudes
+inner join usuarios as id_usuario on solicitudes.id_usuario = id_usuario.id
+where id_usuario.codigo_familiar = 123654 order by fecha asc
