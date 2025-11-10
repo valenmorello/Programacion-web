@@ -1,4 +1,15 @@
+html, body {
+  height: 100%;
+}
 
+body {
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  flex: 1; /* ocupa todo el espacio disponible entre header y footer */
+}
 * {
   margin: 0;
   padding: 0;
@@ -87,7 +98,6 @@ main {
   padding: 60px 20px;
   flex: 1;
 }
-
 
 .section {
   background-color: #ffffff;
