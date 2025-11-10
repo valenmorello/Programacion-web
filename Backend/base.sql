@@ -61,7 +61,7 @@ SELECT emisor.nombre_usuario AS Emisor,  receptor.nombre_usuario AS Receptor,
 actividades.monto AS Monto, actividades.motivo as Motivo, actividades.fecha as Fecha FROM actividades
 INNER JOIN usuarios AS emisor ON actividades.emisor = emisor.id
 INNER JOIN usuarios AS receptor ON actividades.receptor = receptor.id
-WHERE emisor.id = 2
+WHERE emisor.id = 1
 
 /*ULTIMAS ACTIVIDADES REGISTRADAS*/
 SELECT emisor.nombre_usuario AS Emisor, receptor.nombre_usuario AS Receptor, actividades.motivo, actividades.monto, actividades.fecha
@@ -166,7 +166,9 @@ INNER JOIN solicitudes ON solicitudes.id_usuario = usuarios.id
 GROUP BY usuarios.nombres
 HAVING usuarios.nombres ='Juana';
 
-
--- Borrar NO TOCAR --
+/*Borrar NO TOCAR*/
 DELETE * FROM solicitudes 
 WHERE id_usuario = 15 AND estado = 'pendiente'
+
+/*Busco codigo familiar*/
+SELECT `codigo_Familiar` FROM usuarios WHERE `codigo_Familiar` = 234567
