@@ -77,18 +77,20 @@ LIMIT 5;
 INSERT INTO `solicitudes` (`id`, `id_usuario`, `monto`, `fecha`, `estado`) 
 VALUES (Null, 12, 10000, '2025-11-03T10:43', 'pendiente'),
 (Null, 14, 50000, '2025-11-03T10:43', 'pendiente'),
-(Null, 10, 500000, '2025-11-03T10:43', 'pendiente');
+(Null, 10, 500000, '2025-11-03T10:43', 'pendiente'),
+(Null, 10, 1200, '2025-11-09T19:43', 'pendiente');
 
 /*CONTAR SOLICITUDES*/
-SELECT usuario.nombre_usuario AS usuario, COUNT(solicitud.id) AS cantidad de solicitudes;
-FROM usuario 
-INNER JOIN solicitud on usuario.id = solicitud.usuario_id
+SELECT usuarios.nombre_usuario AS usuario, COUNT(solicitudes.id) AS cantidad_de_solicitudes
+FROM usuarios
+INNER JOIN solicitudes ON usuarios.id = solicitudes.id_usuario
+GROUP BY usuarios.id, usuarios.nombre_usuario;
 
 /*SOLICITUDES PENDIENTES*/
-SELECT solicitud.id, usuario.nombre_usuario, solicitud.monto, solicitud.fecha, solicitud.estado
-FROM solicitud
-INNER JOIN usuario ON solicitud.id_usuario = usuario.id
-WHERE solicitud.estado = 'pendiente';
+SELECT solicitudes.id, usuarios.nombre_usuario, solicitudes.monto, solicitudes.fecha, solicitudes.estado
+FROM solicitudes
+INNER JOIN usuarios ON solicitudes.id_usuario = usuarios.id
+WHERE solicitudes.estado = 'pendiente';
 
 
 
