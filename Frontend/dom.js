@@ -90,7 +90,7 @@ function validarRegistro (event){
     }
 
     if(document.forms['registro']['select'].value == "hijo"){
-        window.location.assign('inicio.html')
+        window.location.assign('pendiente.html')
         localStorage.setItem('user', user)            
         localStorage.setItem('code', code)
         localStorage.setItem('padre', false)
@@ -106,6 +106,16 @@ function validarRegistro (event){
     }
 }
 
+function validarAdmision(admitido){
+    document.getElementById('errorAdmision').innerHTML = '';
+
+    if (admitido == 1){
+        window.location.assign('inicio.html')
+    } else {
+        document.getElementById('errorAdmision').innerHTML = 'Su usuario todavia no ha sido admitido.'
+       
+    }
+}
 
 function loguearse (event){
     if (event) event.preventDefault()
@@ -190,11 +200,11 @@ function solicitud (){
 }
 
 function validarTransferencia(event) {
+  if (event) event.preventDefault();
   let userDestino = document.forms['transferir']['usuarioDestino'].value;
   let monto = parseFloat(document.forms['transferir']['monto'].value)
   let motivo = document.forms['transferir']['motivo'].value
   document.getElementById('transferir').innerHTML = ''
-  if (event) event.preventDefault();
 
   if (userDestino.length < 1 || monto < 1 || motivo.length < 1) {
     document.getElementById('transferir').innerHTML = 'Complete los datos.'
@@ -232,13 +242,33 @@ function solicitarDinero (event){
         document.getElementById('solicitar').innerHTML = 'Complete los datos!'
     }
 }
-function aceptar (){    
-    alert()
 
+function aceptarSolicitudGrupo (){    
+    document.getElementById('solicitudGrupo').innerHTML = ''
+    document.getElementById('solicitudGrupo').innerHTML = 'Se ha aceptado la solicitud! ✅'
+    document.getElementById('botonAceptar').style.display = 'none';
+    document.getElementById('botonRechazar').style.display = 'none';
 }
-function rechazar (){    
-    document.getElementById('notificacion').innerHTML = 'Se ha rechazado a user'
 
+function rechazarSolicitudGrupo (){    
+    document.getElementById('solicitudGrupo').innerHTML = ''
+    document.getElementById('solicitudGrupo').innerHTML = 'Se ha rechazado la solicitud! ❌'
+    document.getElementById('botonAceptar').style.display = 'none';
+    document.getElementById('botonRechazar').style.display = 'none';
+}
+
+function aceptarTransferencia (){    
+    document.getElementById('solicitudTransferencia').innerHTML = ''
+    document.getElementById('solicitudTransferencia').innerHTML = 'Se ha transferido el dinero! ✅'
+    document.getElementById('aceptarTransferencia').style.display = 'none';
+    document.getElementById('rechazarTransferencia').style.display = 'none';
+}
+
+function rechazarTransferencia (){    
+    document.getElementById('solicitudTransferencia').innerHTML = ''
+    document.getElementById('solicitudTransferencia').innerHTML = 'Se ha rechazado la transferencia! ❌'
+    document.getElementById('aceptarTransferencia').style.display = 'none';
+    document.getElementById('rechazarTransferencia').style.display = 'none';
 }
 
 function quitar (){
@@ -295,7 +325,7 @@ function modificarUser (nombreNew, apNew){
 function hijo(){
     window.location.assign('padre2.html')
 }
-function aingresar(){
+function aIngresar(){
     window.location.assign("ingresar.html")
 }
 

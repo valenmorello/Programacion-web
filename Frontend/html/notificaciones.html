@@ -28,15 +28,23 @@
       <div class="tarjeta leida">
         <p><strong>Solicitud de dinero :</strong> User () ha solicitado $2000.</p>
         <span>Hace 2 horas</span>
+        <div class="solicitudgrupo"> 
+            <button id="aceptarTransferencia" type="submit" class="button" onclick= "aceptarTransferencia()"> Aceptar </button>
+            <button id="rechazarTransferencia" type="submit" class="button" onclick= "rechazarTransferencia()"> Rechazar </button>
+            
+            <span id="solicitudTransferencia"></span>
+        </div>
       </div>
 
       <div class="tarjeta">
         <p><strong>Solicitud pendiente:</strong> User () ha solicitado unirse al grupo familiar</p>
-        <div class="solicitudgrupo"> 
-            <button type="submit" class="button" onclick= "aceptar()" > aceptar </button>
-            <button type="submit" class="button" onclick="rechazar()"> no aceptar </button>
-        </div>
         <span>Hace 1 día</span>
+        <div class="solicitudgrupo"> 
+            <button id="botonAceptar" type="submit" class="button" onclick= "aceptarSolicitudGrupo()"> Aceptar </button>
+            <button id="botonRechazar" type="submit" class="button" onclick= "rechazarSolicitudGrupo()"> Rechazar </button>
+            
+            <span id="solicitudGrupo"></span>
+        </div>
       </div>
 
       <div class="tarjeta">
