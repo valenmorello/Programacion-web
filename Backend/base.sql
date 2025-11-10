@@ -1,4 +1,4 @@
--- Active: 1762726616434@@mysql-tomasmaraval.alwaysdata.net@3306@tomasmaraval_familybank
+-- Active: 1761576574446@@mysql-tomasmaraval.alwaysdata.net@3306@tomasmaraval_familybank
 SHOW DATABASES;
 use tomasmaraval_familybank;
 
@@ -133,9 +133,9 @@ insert into solicitudes (`id`, `id_usuario`, `monto`, `fecha`, `estado`)
 values (null, 11, 20, now(), 'pendiente')
 
 /*Ver solicitudes de grupo familiar*/
-select monto, estado, fecha, id_usuario.codigo_familiar as familia, id_usuario.nombres as hijo from solicitudes
-inner join usuarios as id_usuario on solicitudes.id_usuario = id_usuario.id
-where id_usuario.codigo_familiar = 123654 order by fecha asc ;
+select monto, estado, fecha, usuarios.codigo_familiar as familia, usuarios.nombres as hijo from solicitudes
+inner join usuarios on solicitudes.id_usuario = usuarios.id
+where usuarios.codigo_familiar = 123654 order by fecha asc ;
 
 
 /*Ver hijos aun por admitir (por ID)*/
@@ -146,4 +146,17 @@ WHERE padre.es_padre = 1 AND hijos.es_padre = 0 AND padre.codigo_Familiar = hijo
 
 /*Aceptar hijos*/
 UPDATE usuarios SET admitido = 1 WHERE usuarios.id = 10 AND usuarios.es_padre = 0;
+
+
+/*Monto total solicitasdo por hijo*/
+SELECT usuarios.nombres AS Nombres, SUM(solicitudes.monto) AS MontoTotal FROM usuarios
+INNER JOIN solicitudes ON solicitudes.id_usuario = usuarios.id
+GROUP BY usuarios.nombres
+HAVING usuarios.apellido=''
+
+
+
+-- Borrar NO TOCAR --
+DELETE * FROM solicitudes 
+WHERE id_usuario = 15 AND estado = 'pendiente' 
 
