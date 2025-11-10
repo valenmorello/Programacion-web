@@ -120,7 +120,18 @@ header button {
   font-weight: bold;
   color: white;
 }
+html, body {
+  height: 100%;
+}
 
+body {
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  flex: 1;
+}
 
 .acciones button {
   padding: 2% 4%;
