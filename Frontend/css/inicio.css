@@ -1,4 +1,15 @@
-/* Reset */
+html, body {
+  height: 100%;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  flex: 1; /* ocupa todo el espacio disponible entre header y footer */
+}
 * {
   margin: 0;
   padding: 0;
@@ -6,7 +17,7 @@
   font-family: "Poppins", "Segoe UI", sans-serif;
 }
 
-/* Fondo general */
+
 body {
   background: linear-gradient(135deg, #e3f0ff, #f9fbff);
   color: #1c1c1c;
@@ -15,7 +26,6 @@ body {
   flex-direction: column;
 }
 
-/* HEADER */
 header {
   display: flex;
   justify-content: space-between;
@@ -80,7 +90,7 @@ header button {
   height: 55px;
 }
 
-/* MAIN */
+
 main {
   display: flex;
   justify-content: center;
@@ -89,7 +99,6 @@ main {
   flex: 1;
 }
 
-/* Tarjeta principal */
 .section {
   background-color: #ffffff;
   border-radius: 16px;
