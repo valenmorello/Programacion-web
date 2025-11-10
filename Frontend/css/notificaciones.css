@@ -1,0 +1,177 @@
+* {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+}
+
+body {
+  background: linear-gradient(135deg, #e3f0ff, #f9fbff);
+  color: #333;
+  margin: 0;
+  min-height: 100vh;
+}
+
+main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 50px;
+}
+
+  
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background:#131b45;
+  padding: 1% 5%;
+
+}
+
+header button {
+  border: 0;
+  background:#131b45;
+}
+
+.logo img {
+  height: 100px;
+  max-height: 50%;
+  margin-left: 5%;
+}
+
+.usuario {
+  display: flex;
+  justify-content: flex-end; 
+  align-items: center;   
+  gap: 5%;               
+}
+
+.usuario button {
+  background: transparent;
+  border: none;
+  color: #ffffff;
+  font-size: 150%;         
+  font-weight: bold;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  white-space: nowrap;   
+}
+
+.usuario img {
+  width: 90px;              
+  height: auto;
+  border-radius: 50%;
+  border: 0.5% solid white;
+  object-fit: cover;
+  text-align: right;
+}
+
+.usuario button:hover {
+  opacity: 0.8;
+}
+
+.usuario button:hover {
+    opacity: 0.8;
+}
+
+main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding: 40px 0;
+}
+
+.notificaciones {
+  background: white;
+  border: 3px solid #000852;
+  border-radius: 20px;
+  width: 70%;
+  max-width: 800px;
+  padding: 30px;
+  box-shadow: 0 4px 10px rgba(0, 8, 82, 0.2);
+}
+
+.notificaciones h2 {
+  color: #000852;
+  font-size: 1.8rem;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.tarjeta {
+  background: #f0f4ff;
+  border-left: 6px solid #000852;
+  border-radius: 10px;
+  padding: 15px 20px;
+  margin: 15px 0;
+}
+
+.tarjeta:hover {
+  transform: scale(1.02);
+  background: #e5edff;
+}
+
+.tarjeta p {
+  font-size: 1rem;
+  color: #000852;
+}
+
+.tarjeta span {
+  font-size: 0.9rem;
+  color: #555;
+}
+.solicitudgrupo button{
+  background:#000852;
+  padding: 8px;
+  font-size: 100%;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: bold;
+  color: white;
+}
+
+.leida {
+  opacity: 0.7;
+}
+
+footer { 
+      margin-top: 10%;
+      left: 0;
+      width: 100%;
+      background: #131b45;
+      color: #fff;
+      text-align: center;
+      padding: 15px 10px;
+      font-size: 14px;
+      border-top: 2px solid #d6e8ff;
+    }
+/* 📱 RESPONSIVE */
+@media (max-width: 600px) {
+  header {
+    flex-direction: column;
+    text-align: center;
+    gap: 10px;
+  }
+
+  .notificaciones {
+    width: 90%;
+    padding: 20px;
+  }
+
+  .tarjeta p {
+    font-size: 0.95rem;
+  }
+
+  .usuario img {
+    width: 45px;
+    height: 45px;
+  }
+
+  footer {
+    font-size: 12px;
+  }
+}

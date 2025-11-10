@@ -168,6 +168,9 @@ function actividad (){
 function cuenta (){
     window.location.assign('cuenta.html')
 }
+function notificacion (){
+    window.location.assign('notificaciones.html')
+}
 
 function transferencia (){
     window.location.assign('transferir.html')
@@ -228,6 +231,14 @@ function solicitarDinero (event){
     }else{
         document.getElementById('solicitar').innerHTML = 'Complete los datos!'
     }
+}
+function aceptar (){    
+    alert()
+
+}
+function rechazar (){    
+    document.getElementById('notificacion').innerHTML = 'Se ha rechazado a user'
+
 }
 
 function quitar (){

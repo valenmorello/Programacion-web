@@ -34,14 +34,18 @@ header button {
   font-size: 1rem;
 }
 
-/* Logo */
+
 .logo img {
   height: 70px;
   width: auto;
 }
 
-/* Usuario */
 .usuario {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+.notificaciones {
   display: flex;
   align-items: center;
   gap: 15px;
@@ -61,7 +65,7 @@ header button {
   cursor: pointer;
   display: flex;
   align-items: center;
-  gap: 5px;
+  
 }
 
 .usuario img {
@@ -70,6 +74,10 @@ header button {
   border-radius: 50%;
   border: 2px solid #ffffff;
   object-fit: cover;
+}
+.notificaciones img {
+  width: 55px;
+  height: 55px;
 }
 
 /* MAIN */
