@@ -1,27 +1,33 @@
 from BD import *
+import random
 
-def obtener_datos(dato, tabla, columna, valor):
-    sQuery="SELECT {} FROM {} WHERE {}=%s".format(dato,tabla,columna)
-    val = (valor)
+def existe_usuario (nombre_usuario):
+    sQuery="""
+        SELECT nombre_usuario FROM usuarios WHERE nombre_usuario = %s """
+    val = (nombre_usuario)
     mydb = conectarDB(BASE)
     res = consultarDB(mydb,sQuery,val)
     cerrarDB(mydb)
     return res
 
-def registro(nombre_usuario, nombre, apellido, codfam, contrasenia):
+#Usuario nuevo
+def registro(nombre, apellido, codfam, es_padre, saldo=0, contrasenia, nombre_usuario, admitido=0, img):
+    if existe_usuario(nombre_usuario) = 
+    if es_padre == 1:
+        admitido = 1
+        codfam = random.randint(100000, 999999)
+
     sQuery="""
         INSERT INTO usuario
-        (Null, nombre_usuario, nombres, apellido, codigofamiliar, contrasenia)
+        (id, nombres, apellido, codigo_Familiar, es_padre, saldo, contrasenia, nombre_usuario, admitido, img)
         VALUES
-        (%s,%s,%s,%s,%s,)"""
-    val = (nombre_usuario, nombre, apellido, codfam, contrasenia)
+        (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,)"""
+    val = ('Null', nombre, apellido, codfam, es_padre, saldo, contrasenia, nombre_usuario, admitido, img)
     mydb = conectarDB(BASE)
     res = ejecutarDB(mydb, sQuery,val)
     cerrarDB(mydb)
     return res
 
-def usuario_existe():
-    pass #COMPLETAR
 
 def modificarnombre(nombre_usuario, nuevonombre):
     sQuery="UPDATE `usuario` SET nombres=%s WHERE nombre_usuario=%s"
