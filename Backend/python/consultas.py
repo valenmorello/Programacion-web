@@ -1,6 +1,10 @@
 from BD import *
 import random
 
+from flask import Flask
+
+# -------------------
+
 def existe_usuario (nombre_usuario):
     sQuery="""
         SELECT nombre_usuario FROM usuarios WHERE nombre_usuario = %s """
@@ -119,10 +123,15 @@ def transferencia(usuario_emisor, usuario_receptor, monto, motivo, fecha):
 
     return res
 
+
+
+
 # ---- FLASK -----
 
+def main():
+    app = Flask(__name__)
 
-
-
+    @app.route('/') #funciona como un if
     
-    
+
+    app.run('0.0.0.0', 5000, debug=True) #Inicia la app en la dirección
