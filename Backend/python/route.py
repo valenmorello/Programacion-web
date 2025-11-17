@@ -1,61 +1,75 @@
 
 from flask import render_template
+import os
+from flask import Flask, render_template, request, redirect, session, flash, url_for  
+from controller import *
+from werkzeug.utils import secure_filename
 
 # ---- FLASK -----
 
 def route (app):
 
-    @app.route('/inicio')
-    def inicio():
-        return render_template('inicio.html')
    
     @app.route('/login')
-    def login():
-        return render_template('index.html')
+    def pag_login():
+        param={}
+        param['error_login']=""
+        return login(param)
  
+    @app.route('/registro')
+    def pag_registro():
+        return registro()
+    
+    @app.route('/inicio')
+    def pag_inicio():
+        return inicio()
+    
     @app.route('/actividad')
-    def actividad():
-        return render_template('actividad.html')
+    def pag_actividad():
+        return actividad()
     
     @app.route('/cuenta')
-    def cuenta():
-        return render_template('cuenta.html')
+    def pag_cuenta():
+        return cuenta()
     
     @app.route('/ingresar')
-    def ingresar():
-        return render_template('ingresar.html')
+    def pag_ingresar():
+        return ingresar()
     
     @app.route('/iniciopadre')
-    def iniciopadre():
-        return render_template('iniciopadre.html')
+    def pag_iniciopadre():
+        return iniciopadre()
     
     @app.route('/notificaciones')
-    def notificaciones():
-        return render_template('notificaciones.html')
+    def pag_notificaciones():
+        return notificaciones()
     
     @app.route('/padre2')
-    def padre2():
-        return render_template('padre2.html')
+    def pag_padre2():
+        return padre2()
     
     @app.route('/pendiente')
-    def pendiente():
-        return render_template('pendiente.html')
+    def pag_pendiente():
+        return pendiente()
     
     @app.route('/quitar')
-    def quitar():
-        return render_template('quitar.html')
-    
-    @app.route('/registro')
-    def registro():
-        return render_template('registro.html')
+    def pag_quitar():
+        return quitar()
     
     @app.route('/solicitar')
-    def solicitar():
+    def pag_solicitar():
         return render_template('solicitar.html')
     
     @app.route('/transferir')
-    def transferir():
+    def pag_transferir():
         return render_template('transferir.html')
     
 
-    
+    #------- forms ------------------
+    #get se ve, post no. get manda menos info.
+    #archivos y contraseñas con post
+
+    @app.route('/signin', methods =["GET", "POST"])
+    def signin(): 
+        param={}
+        return validarusuario(param, request)

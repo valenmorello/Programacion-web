@@ -1,8 +1,36 @@
-from BD import *
+from mysql_db import *
 import random
 
+# ------ VALIDAR LOGIIIINNNNNN ---------------
 
-# -------------------
+def validar_login (dic, username, password):
+    res=False
+    sQuery="""
+    SELECT * 
+    FROM  usuarios WHERE  nombre_usuario=%s and constrasenia=%s;"""
+    val=(username,password)
+
+    mydb = conectarDB(BASE)
+    fila = consultarDB(mydb,sQuery,val)
+    cerrarDB(mydb)
+
+    if fila!=[]:
+        res=True
+        dic['id']=fila[0][0]
+        dic['nombre']=fila[0][1]
+        dic['apellido']=fila[0][2]
+        dic['codfam']=fila[0][3] 
+        dic['es_padre']=fila[0][4]
+        dic['saldo']= fila[0][5]
+        dic['contrasenia']=fila[0][6]
+        dic['nombre_usuario']=fila[0][7]
+        dic['admitido']=fila[0][8]
+        dic['img']=fila[0][9]
+
+    return res    
+
+
+# --------- REGISTROOOO -------------------
 
 def existe_usuario (nombre_usuario):
     sQuery="""
@@ -32,7 +60,6 @@ def existe_codfam (codfam):
         res = True
     return res
 
-# USUARIO NUEVO
 def registro(nombre, apellido, codfam, es_padre, contrasenia, nombre_usuario, img, admitido=0, saldo=0):
     if not existe_usuario(nombre_usuario):
         if es_padre == 1:
@@ -69,9 +96,6 @@ def modificarapellido(nombre_usuario, nuevoape):
     res=ejecutarDB(mydb,sQuery,val)       # update
     cerrarDB(mydb)
     return res
-
-
-
 
 
 # ---- PLATA ------

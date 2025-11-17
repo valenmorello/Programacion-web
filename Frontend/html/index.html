@@ -13,18 +13,18 @@
             </section>
             <img src="../static/Images/logo.jpg" class="imagen">
         
-            <form name="login" onsubmit="return loguearse(event)">
+            <form name="login" onsubmit="return loguearse(event)" action="/signin" method="post">
             <div class="datos">
                 <input type="text" class="input-datos" name="usuario" id="usuario" placeholder="Ingrese usuario">
-                <span id="errorUser"></span>
-                <input type="password" class="input-datos" name="contraseña" id="contraseña" placeholder="Ingrese contraseña">
-                <span id="errorPass"></span>
+                <input type="password" class="input-datos" name="contrasenia" id="contraseña" placeholder="Ingrese contraseña">
+                <span id="errorPass">{{param.get('error_login')}}</span>
             </div>
             <div class="acciones">
                 <button type="submit" class="button">Login</button>
                 <button class="button" onclick="registrarse()">Registro</button>
             </div>
             </form>
+
             <span id="login"></span>
             
         </section>
