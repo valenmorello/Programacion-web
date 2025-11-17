@@ -1,11 +1,6 @@
 from BD import *
 import random
 
-from flask import Flask
-from route import route
-from flask import render_template
-
-
 
 # -------------------
 
@@ -130,12 +125,3 @@ def transferencia(usuario_emisor, usuario_receptor, monto, motivo, fecha):
 
 
 
-# ---- FLASK -----
-
-def main():
-    app = Flask(__name__)
-
-    @app.route('/') #funciona como un if
-    
-
-    app.run('0.0.0.0', 5000, debug=True) #Inicia la app en la dirección
