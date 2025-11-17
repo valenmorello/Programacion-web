@@ -2,6 +2,10 @@ from BD import *
 import random
 
 from flask import Flask
+from route import route
+from flask import render_template
+
+
 
 # -------------------
 
