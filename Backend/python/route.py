@@ -8,11 +8,11 @@ def route (app):
     @app.route('/inicio')
     def inicio():
         return render_template('inicio.html')
-    
+   
     @app.route('/login')
     def login():
         return render_template('index.html')
-    
+ 
     @app.route('/actividad')
     def actividad():
         return render_template('actividad.html')

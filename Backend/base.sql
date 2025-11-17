@@ -1,4 +1,5 @@
--- Active: 1761570068921@@mysql-tomasmaraval.alwaysdata.net@3306@tomasmaraval_familybank
+-- Active: 1761576574446@@mysql-tomasmaraval.alwaysdata.net@3306@tomasmaraval_familybank
+
 SHOW DATABASES;
 use tomasmaraval_familybank;
 
@@ -61,7 +62,7 @@ SELECT emisor.nombre_usuario AS Emisor,  receptor.nombre_usuario AS Receptor,
 actividades.monto AS Monto, actividades.motivo as Motivo, actividades.fecha as Fecha FROM actividades
 INNER JOIN usuarios AS emisor ON actividades.emisor = emisor.id
 INNER JOIN usuarios AS receptor ON actividades.receptor = receptor.id
-WHERE emisor.id = 2
+WHERE emisor.id = 1
 
 /*ULTIMAS ACTIVIDADES REGISTRADAS*/
 SELECT emisor.nombre_usuario AS Emisor, receptor.nombre_usuario AS Receptor, actividades.motivo, actividades.monto, actividades.fecha
@@ -133,9 +134,9 @@ insert into solicitudes (`id`, `id_usuario`, `monto`, `fecha`, `estado`)
 values (null, 11, 20, now(), 'pendiente')
 
 /*Ver solicitudes de grupo familiar*/
-select monto, estado, fecha, id_usuario.codigo_familiar as familia, id_usuario.nombres as hijo from solicitudes
-inner join usuarios as id_usuario on solicitudes.id_usuario = id_usuario.id
-where id_usuario.codigo_familiar = 123654 order by fecha asc ;
+select monto, estado, fecha, usuarios.codigo_familiar as familia, usuarios.nombres as hijo from solicitudes
+inner join usuarios on solicitudes.id_usuario = usuarios.id
+where usuarios.codigo_familiar = 123654 order by fecha asc ;
 
 
 /*Ver hijos aun por admitir (por ID)*/
@@ -158,3 +159,17 @@ where usuarios.codigo_familiar = 123456
 union all 
 select nombres, admitido, 'grupoFam' as tipo_solicitud from usuarios
 where codigo_familiar = 123456
+
+/*Monto total solicitasdo por hijo*/
+SELECT usuarios.nombres AS Nombres, SUM(solicitudes.monto) AS MontoTotal, COUNT(solicitudes.monto) AS Solicitudes
+FROM usuarios
+INNER JOIN solicitudes ON solicitudes.id_usuario = usuarios.id
+GROUP BY usuarios.nombres
+HAVING usuarios.nombres ='Juana';
+
+/*Borrar NO TOCAR*/
+DELETE * FROM solicitudes 
+WHERE id_usuario = 15 AND estado = 'pendiente'
+
+/*Busco codigo familiar*/
+SELECT `codigo_Familiar` FROM usuarios WHERE `codigo_Familiar` = 234567
