@@ -40,11 +40,7 @@ def existe_usuario (nombre_usuario):
     res = consultarDB(mydb,sQuery,val)
     cerrarDB(mydb)
 
-    if res == []:
-        res = False
-    else:
-        res = True
-    return res
+    return len(res) > 0
 
 def existe_codfam (codfam):
     sQuery="""
@@ -54,14 +50,11 @@ def existe_codfam (codfam):
     res = consultarDB(mydb,sQuery,val)
     cerrarDB(mydb)
 
-    if res == []:
-        res = False
-    else:
-        res = True
-    return res
+    return len(res) > 0
 
 def registro(nombre, apellido, codfam, es_padre, contrasenia, nombre_usuario, img, admitido=0, saldo=0):
-    if not existe_usuario(nombre_usuario):
+    res = None
+    if not existe_usuario(nombre_usuario):  
         if es_padre == 1:
             admitido = 1
 
@@ -73,13 +66,14 @@ def registro(nombre, apellido, codfam, es_padre, contrasenia, nombre_usuario, im
             INSERT INTO usuarios
             (id, nombres, apellido, codigo_Familiar, es_padre, saldo, contrasenia, nombre_usuario, admitido, img)
             VALUES
-            (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,)"""
-            val = ('Null', nombre, apellido, codfam, es_padre, saldo, contrasenia, nombre_usuario, admitido, img,)
+            (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)"""
+            val = (None, nombre, apellido, codfam, es_padre, saldo, contrasenia, nombre_usuario, admitido, img,)
             mydb = conectarDB(BASE)
             res = ejecutarDB(mydb, sQuery,val)
             cerrarDB(mydb)  
     return res
 
+print(registro('marco', 'ruben', 111111, 1, 'vamosCentral95.', 'marquito95', 'front/blablabla'))
 
 def modificarnombre(nombre_usuario, nuevonombre):
     sQuery="UPDATE usuarios SET nombres=%s WHERE nombre_usuario=%s"
@@ -102,15 +96,15 @@ def modificarapellido(nombre_usuario, nuevoape):
 
 def saldoactual(nombre_usuario):
     sQuery="SELECT saldo FROM usuarios WHERE nombre_usuario=%s"
-    val = (nombre_usuario)
+    val = (nombre_usuario,)
     mydb = conectarDB(BASE)
     res = consultarDB(mydb,sQuery,val)
     cerrarDB(mydb)
     return res
 
-def find_id (nombre_usuario):
+def find_id (nombre_usuario,):
     sQuery="SELECT id FROM usuarios WHERE nombre_usuario=%s"
-    val = (nombre_usuario)
+    val = (nombre_usuario,)
     mydb = conectarDB(BASE)
     res = consultarDB(mydb,sQuery,val)
     cerrarDB(mydb)
@@ -145,7 +139,3 @@ def transferencia(usuario_emisor, usuario_receptor, monto, motivo, fecha):
         cerrarDB(mydb)
 
     return res
-
-
-
-

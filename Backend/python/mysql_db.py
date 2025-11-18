@@ -52,7 +52,8 @@ def ejecutarDB(mydb,sQuery="",val=None):
         else:
             mycursor.execute(sQuery,val)
         mydb.commit()   
-        res=mycursor.rowcount        # filas afectadas
+        ###res=mycursor.rowcount        # filas afectadas
+        res = mycursor.lastrowid  
     except mysql.connector.Error as e:
         mydb.rollback()
         print("ERROR ->",e)    
