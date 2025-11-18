@@ -1,5 +1,6 @@
  
  <!-- onclick="registrarse()" -->
+<!--  onsubmit="loguearse(event)" -->
 
 <html>
     <head>
@@ -16,7 +17,7 @@
             </section>
             <img src="../static/Images/logo.jpg" class="imagen">
         
-            <form name="login" onsubmit="loguearse(event)" action="/signin" method="POST">
+            <form name="login" action="/signin" method="POST">
             <div class="datos">
                 <input type="text" class="input-datos" name="usuario" id="usuario" placeholder="Ingrese usuario">
                 <input type="password" class="input-datos" name="contrasenia" id="contraseña" placeholder="Ingrese contraseña">
