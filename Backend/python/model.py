@@ -137,3 +137,14 @@ def transferencia(usuario_emisor, usuario_receptor, monto, motivo, fecha):
         cerrarDB(mydb)
 
     return res
+
+# ------ HIJOOOOOOSSSSSSS -----------------------------------------------------------
+
+# devuelve una lista de tuplas, cada elemento de la lista es un hijo. 
+def encontrar_hijos(codfam):
+    sQuery="SELECT * FROM usuarios WHERE codigo_Familiar=%s and es_padre = 0"
+    val = (codfam,)
+    mydb = conectarDB(BASE)
+    res = consultarDB(mydb,sQuery,val)
+    cerrarDB(mydb)
+    return res

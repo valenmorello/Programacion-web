@@ -37,7 +37,6 @@ def route (app):
     
     @app.route('/iniciopadre')
     def pag_iniciopadre():
-        
         return iniciopadre()
     
     @app.route('/notificaciones')

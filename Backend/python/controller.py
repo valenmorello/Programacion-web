@@ -32,7 +32,9 @@ def inicio(): #HIJOS
    
 
 def iniciopadre():
-    return render_template('iniciopadre.html')
+    param = diccionario_sesion()
+    param['hijos'] = encontrar_hijos() #este elemento del diccionario es una lista
+    return render_template('iniciopadre.html', param=param)
 
 def login(param):
     return render_template('index.html', param=param)
@@ -47,7 +49,7 @@ def cuenta(param):
         param = diccionario_sesion()
         res = render_template('cuenta.html', param=param)
     else:
-        res = login(param)
+        res = redirect('/')
     return res
     
 
@@ -110,7 +112,10 @@ def getRequest(diResult):
 # ----------------------------------------------------------
 def validarusuario(param, request):
     if crearSesion(request):
-        res = inicio()
+        if session['rol'] == 1:
+            res = iniciopadre()
+        elif session['rol'] == 0:
+            res = inicio()
     else:
         param['error_login']="Error: Usuario y/o password inválidos"
         res = login(param)
