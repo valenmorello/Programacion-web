@@ -286,10 +286,6 @@ function aIngresar(){
     window.location.assign("ingresar.html")
 }
 
-function cargarNombre (){
-    let nombrePag = document.getElementById('cuenta')
-    nombrePag.innerHTML = `Hola, ${localStorage.getItem('user')}!`
-}
 
 function cargarCodigo (){
     let codePag = document.getElementById('code')
