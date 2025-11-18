@@ -21,8 +21,17 @@ def actividad():
     return render_template('actividad.html')
     
 
-def cuenta():
-    return render_template('cuenta.html')
+def cuenta(param):
+    if haySesion():
+        param['usuario'] = session.get('username')
+        param['es_padre'] = session.get('rol')
+        param['codfam'] = session.get('codfam')
+        param['nombre'] = session.get('nombre')
+        param['apellido'] = session.get('apellido')
+        res = render_template('cuenta.html', param=param)
+    else:
+        res = login(param)
+    return res
     
 
 def ingresar():
@@ -95,12 +104,40 @@ def validarusuario(param, request):
 
 # -----------------------------------------------------------
 
+def cambiardatos(param, request):
+    if haySesion():
+        nombreviejo = session['nombre']  
+        apeviejo = session['apellido']
+        id = session['id_usuario']
+
+        myrequest={}
+        try:         
+            getRequest(myrequest)
+
+            if myrequest.get('nombreNuevo') != "" :
+                modificarnombre(id, myrequest.get('nombreNuevo'))
+                myrequest.get('nombreNuevo') = session['nombre']
+
+            if myrequest.get('nombreNuevo') != "" :
+                modificarapellido(id, myrequest.get('apellidoNuevo'))
+                myrequest.get('apellidoNuevo') = session['apellido']
+
+        except ValueError:                              
+            pass
+            
+    return cuenta(param)
+
+
+
+
+# -----------------------------------------------------------
+
 def cargarSesion(dicUsuario):
-    
+  
     session['id_usuario'] = dicUsuario['id']
     session['nombre']     = dicUsuario['nombre']
     session['apellido']   = dicUsuario['apellido']
-    session['cod_fam']   = dicUsuario['codfam'] 
+    session['codfam']   = dicUsuario['codfam'] 
     session['rol']        = dicUsuario['es_padre']
     session['saldo']   = dicUsuario['saldo']
     session['username']   = dicUsuario['nombre_usuario']

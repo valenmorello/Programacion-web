@@ -27,7 +27,8 @@ def route (app):
     
     @app.route('/cuenta')
     def pag_cuenta():
-        return cuenta()
+        param ={}
+        return cuenta(param)
     
     @app.route('/ingresar')
     def pag_ingresar():
@@ -62,7 +63,6 @@ def route (app):
         return render_template('transferir.html')
     
 
-    #------- forms ------------------
     #get se ve, post no. get manda menos info.
     #archivos y contraseñas con post
 
@@ -72,4 +72,15 @@ def route (app):
     def signin(): 
         param={}
         return validarusuario(param, request)
+    
+    @app.route('/modificardatos', methods =["GET", "POST"])
+    def modificar(): 
+        param={}
+        return cambiardatos(param, request)
+
+    @app.route('/logout')
+    def logout(): 
+        param={}
+        cerrarSesion()
+        return login(param)
     

@@ -73,17 +73,17 @@ def registro(nombre, apellido, codfam, es_padre, contrasenia, nombre_usuario, im
             cerrarDB(mydb)  
     return res
 
-def modificarnombre(nombre_usuario, nuevonombre):
-    sQuery="UPDATE usuarios SET nombres=%s WHERE nombre_usuario=%s"
-    val = (nuevonombre, nombre_usuario)
+def modificarnombre(id, nuevonombre):
+    sQuery="UPDATE usuarios SET nombres=%s WHERE id=%s"
+    val = (nuevonombre, id)
     mydb=conectarDB(BASE)
     res = ejecutarDB(mydb,sQuery,val)       # update
     cerrarDB(mydb)
     return res
 
-def modificarapellido(nombre_usuario, nuevoape):
-    sQuery="UPDATE usuarios SET apellido=%s WHERE nombre_usuario=%s"
-    val = (nuevoape, nombre_usuario)
+def modificarapellido(id, nuevoape):
+    sQuery="UPDATE usuarios SET apellido=%s WHERE id=%s"
+    val = (nuevoape, id)
     mydb=conectarDB(BASE)
     res=ejecutarDB(mydb,sQuery,val)       # update
     cerrarDB(mydb)

@@ -1,3 +1,6 @@
+<!--onsubmit="return validarModificaciones(event)"-->
+<!-- onclick="cerrarSesion()" -->
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -27,22 +30,27 @@
     <section class="section">
       <div class="datos">
         <h2>Tus Datos</h2>
-        <p id="datosUser">Usuario: feliorlando</p>
-        <p id="datosCode">Código familiar: #123456</p>
+        <p id="datosUser">Usuario: {{param.get(usuario)}}</p>
+        {% if param['es_padre']==1 %} 
+        <p id="datosCode">{{param.get('codfam')}}</p>
+        {% endif %}
       </div>
-      <form class="formulario" name="datos" onsubmit="return validarModificaciones(event)">
+      <form class="formulario" name="datos" action='/modificardatos' method="post">
         <label>Nombre:</label>
-        <input name="nombreNuevo" type="text" class="datos_input" id="nombreNuevo" placeholder="">
+        <input name="nombreNuevo" type="text" class="datos_input" id="nombreNuevo" placeholder="{{param.get('nombre')}}">
         <label>Apellido:</label>
-        <input name="apellidoNuevo" type="text" class="datos_input" id="apellidoNuevo" placeholder="">
+        <input name="apellidoNuevo" type="text" class="datos_input" id="apellidoNuevo" placeholder="{{param.get('apellido')}}">
       
       
       <div class="acciones">
         <button type="submit" class="button">Guardar Cambios</button>
-        <button class="button" onclick="cerrarSesion()">Cerrar sesión</button>
+        <button class="button" onclick="location.href='/logout'">Cerrar sesión</button>
       </div>
+
       <span id="cambioDatos"></span>
+
       </form>
+
     </section>
 
   </main>

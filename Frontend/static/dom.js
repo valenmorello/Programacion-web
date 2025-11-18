@@ -251,6 +251,7 @@ function cerrarSesion (){
     localStorage.removeItem('code')
 }
 
+/*
 function validarModificaciones (event){
     if (event) event.preventDefault();
     let nombreNew = document.forms['datos']['nombreNuevo'].value;
@@ -277,7 +278,7 @@ function modificarUser (nombreNew, apNew){
         return false
     }
 }
-
+*/
 
 function hijo(){
     window.location.assign('padre2.html')
