@@ -7,7 +7,7 @@ def validar_login (dic, username, password):
     res=False
     sQuery="""
     SELECT * 
-    FROM  usuarios WHERE  nombre_usuario=%s and constrasenia=%s;"""
+    FROM  usuarios WHERE  nombre_usuario=%s and contrasenia=%s;"""
     val=(username,password)
 
     mydb = conectarDB(BASE)
