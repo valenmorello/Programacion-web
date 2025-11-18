@@ -116,11 +116,11 @@ def cambiardatos(param, request):
 
             if myrequest.get('nombreNuevo') != "" :
                 modificarnombre(id, myrequest.get('nombreNuevo'))
-                myrequest.get('nombreNuevo') = session['nombre']
+                myrequest['nombreNuevo'] = session['nombre']
 
             if myrequest.get('nombreNuevo') != "" :
                 modificarapellido(id, myrequest.get('apellidoNuevo'))
-                myrequest.get('apellidoNuevo') = session['apellido']
+                myrequest['apellidoNuevo'] = session['apellido']
 
         except ValueError:                              
             pass
