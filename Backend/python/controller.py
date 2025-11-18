@@ -32,9 +32,13 @@ def inicio(): #HIJOS
    
 
 def iniciopadre():
-    param = diccionario_sesion()
-    param['hijos'] = encontrar_hijos() #este elemento del diccionario es una lista
-    return render_template('iniciopadre.html', param=param)
+    if haySesion():
+        param = diccionario_sesion()
+        param['hijos'] = encontrar_hijos() #[hijos] es un elemento de un diccionario que tiene una lista de diccionarios
+        res = render_template('iniciopadre.html', param=param)
+    else:
+        res = redirect('/')
+    return res
 
 def login(param):
     return render_template('index.html', param=param)
