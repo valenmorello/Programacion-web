@@ -8,6 +8,7 @@ from werkzeug.utils import secure_filename
 
 def route (app):
 
+    @app.route('/')
     @app.route('/login')
     def pag_login():
         param={}
@@ -34,8 +35,9 @@ def route (app):
     def pag_ingresar():
         return ingresar()
     
-    @app.route('/inicioPadre')
+    @app.route('/iniciopadre')
     def pag_iniciopadre():
+        
         return iniciopadre()
     
     @app.route('/notificaciones')
@@ -80,7 +82,6 @@ def route (app):
 
     @app.route('/logout')
     def logout(): 
-        param={}
         cerrarSesion()
-        return login(param)
+        return redirect('/')
     

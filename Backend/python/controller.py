@@ -8,14 +8,35 @@ from appConfig import config
 
 
 #--------------------------------------------------------------------------------------------
+# diccionario_sesion carga la sesion en un diccionario python y lo retorna
 
-def inicio():
-    return render_template('inicio.html')
+def diccionario_sesion():
+    param = {}
+    param['usuario'] = session.get('username')
+    param['rol'] = session.get('rol')
+    param['codfam'] = session.get('codfam')
+    param['nombre'] = session.get('nombre')
+    param['apellido'] = session.get('apellido')
+
+    return param
+
+#--------------------------------------------------------------------------------------------
+
+def inicio(): #HIJOS
+    if haySesion():
+        param = diccionario_sesion()
+        res = render_template('inicio.html', param=param)
+    else:
+        res = redirect('/')
+    return res
    
+
+def iniciopadre():
+    return render_template('iniciopadre.html')
 
 def login(param):
     return render_template('index.html', param=param)
- 
+
 
 def actividad():
     return render_template('actividad.html')
@@ -23,11 +44,7 @@ def actividad():
 
 def cuenta(param):
     if haySesion():
-        param['usuario'] = session.get('username')
-        param['es_padre'] = session.get('rol')
-        param['codfam'] = session.get('codfam')
-        param['nombre'] = session.get('nombre')
-        param['apellido'] = session.get('apellido')
+        param = diccionario_sesion()
         res = render_template('cuenta.html', param=param)
     else:
         res = login(param)
@@ -37,9 +54,6 @@ def cuenta(param):
 def ingresar():
     return render_template('ingresar.html')
     
-
-def iniciopadre():
-    return render_template('iniciopadre.html')
     
 
 def notificaciones():

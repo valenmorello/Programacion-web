@@ -23,7 +23,7 @@
                 <input type="password" class="input-datos" name="contrasenia" id="contraseña" placeholder="Ingrese contraseña">
                 {% if param and param.get('error_login')!=None %}
                 <span>{{param.get('error_login')}}</span>
-                {%endif%}
+                {% endif %}
             </div>
             <div class="acciones">
                 <button type="submit" class="button">Login</button>
