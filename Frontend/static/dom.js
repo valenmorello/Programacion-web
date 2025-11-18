@@ -1,7 +1,4 @@
 let saldoActual = 0;
-function registrarse (){
-    window.location.assign('registro.html')
-}
 
 let contraseña = document.forms['registro']['contraseña']
 let confirmar = document.forms['registro']['confirmar'];
@@ -91,14 +88,14 @@ function validarRegistro (event){
     }
 
     if(document.forms['registro']['select'].value == "hijo"){
-        window.location.assign('pendiente.html')
+        window.location.replace('/pendiente')
         localStorage.setItem('user', user)            
         localStorage.setItem('code', code)
         localStorage.setItem('padre', false)
         return true
     }
     else if (document.forms['registro']['select'].value == "padre"){        
-        window.location.assign('iniciopadre.html')
+        window.location.replace('/inicioPadre')
         localStorage.setItem('user', user)
         localStorage.setItem('code', code)            
         localStorage.setItem('padre', true)
@@ -111,7 +108,7 @@ function validarAdmision(admitido){
     document.getElementById('errorAdmision').innerHTML = '';
 
     if (admitido == 1){
-        window.location.assign('inicio.html')
+        window.location.replace('/inicio')
     } else {
         document.getElementById('errorAdmision').innerHTML = 'Su usuario todavia no ha sido admitido.'
        
@@ -144,22 +141,6 @@ function loguearse (event){
         }
     }
 
-}
-
-
-function actividad (){
-    window.location.assign('actividad.html')
-}
-
-function cuenta (){
-    window.location.assign('cuenta.html')
-}
-function notificacion (){
-    window.location.assign('notificaciones.html')
-}
-
-function transferencia (){
-    window.location.assign('transferir.html')
 }
 
 function inicio (){

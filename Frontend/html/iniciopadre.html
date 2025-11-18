@@ -10,18 +10,18 @@
 <body onload="cargarNombre(), cargarCodigo()">
   <header>
     <div class="logo">
-      <button onclick="inicio()">
+        <button onclick="location.href='/inicioPadre'">
             <img src="../static/Images/logoinicio.jpg" class="imagen" alt="Logo">   
-      </button>   
+        </button>
+
     </div>
     <div class="usuario">
-      
-        <p id="code">#000000</p>
-        <button onclick="cuenta()">
+        <button onclick="location.href='/cuenta'">
             <img src="../static/Images/user.png" alt="Usuario">
         </button>
-        <button id="cuenta" onclick="cuenta()"></button>
+        <button id="cuenta" onclick="location.href='/cuenta'"></button>
     </div>
+    
   </header>
 
   <main>
@@ -33,24 +33,24 @@
       </div>
 
       <div class="acciones">
-        <button class="button" onclick="transferencia()">Transferir</button>
-        <button class="button" onclick="actividad()">Ver actividad</button>
-        <button class="button" onclick="aIngresar()">Ingresar dinero</button>
-        <button class="button" onclick="notificacion()">Notificaciones</button>
+        <button class="button" onclick="location.href='/transferir'">Transferir</button>
+        <button class="button" onclick="location.href='/actividad'">Ver actividad</button>
+        <button class="button" onclick="location.href='/ingresar'">Ingresar dinero</button>
+        <button class="button" onclick="location.href='/notificaciones'">Notificaciones</button>
       </div>
     </section>
     
     <section class="section2">
         <button onclick="hijo()">
-          <img class="img_hijo" src="../Images/user.png" alt="Usuario">
+          <img class="img_hijo" src="../static/Images/user.png" alt="Usuario">
           <h2>Juan</h2>
         </button>
         <button onclick="hijo()">
-          <img class="img_hijo" src="../Images/user.png" alt="Usuario">
+          <img class="img_hijo" src="../static/Images/user.png" alt="Usuario">
           <h2>Maria</h2>
         </button>
         <button onclick="hijo()">
-          <img class="img_hijo" src="../Images/user.png" alt="Usuario">
+          <img class="img_hijo" src="../static/Images/user.png" alt="Usuario">
           <h2>Agustin</h2>
         </button>
     </section>

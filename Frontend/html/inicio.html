@@ -10,16 +10,16 @@
 <body onload="cargarNombre()">
   <header>
     <div class="logo">
-        <button onclick="inicio()">
+        <button onclick="location.href='/inicio'">
             <img src="../static/Images/logoinicio.jpg" class="imagen" alt="Logo">   
         </button>
 
     </div>
     <div class="usuario">
-        <button onclick="cuenta()">
+        <button onclick="location.href='/cuenta'">
             <img src="../static/Images/user.png" alt="Usuario">
         </button>
-        <button id="cuenta" onclick="cuenta()"></button>
+        <button id="cuenta" onclick="location.href='/cuenta'"></button>
     </div>
     
   </header>
@@ -34,9 +34,9 @@
       </div>
 
       <div class="acciones">
-        <button class="button" onclick="transferencia()">Transferir</button>
-        <button class="button" onclick="actividad()">Ver actividad</button>
-        <button class="button" onclick="solicitud()">Solicitar</button>
+        <button class="button" onclick="location.href='/transferir'">Transferir</button>
+        <button class="button" onclick="location.href='/actividad'">Ver actividad</button>
+        <button class="button" onclick="location.href='/solicitar'">Solicitar</button>
         
       </div>
     </section>

@@ -73,8 +73,6 @@ def registro(nombre, apellido, codfam, es_padre, contrasenia, nombre_usuario, im
             cerrarDB(mydb)  
     return res
 
-print(registro('marco', 'ruben', 111111, 1, 'vamosCentral95.', 'marquito95', 'front/blablabla'))
-
 def modificarnombre(nombre_usuario, nuevonombre):
     sQuery="UPDATE usuarios SET nombres=%s WHERE nombre_usuario=%s"
     val = (nuevonombre, nombre_usuario)

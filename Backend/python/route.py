@@ -33,7 +33,7 @@ def route (app):
     def pag_ingresar():
         return ingresar()
     
-    @app.route('/iniciopadre')
+    @app.route('/inicioPadre')
     def pag_iniciopadre():
         return iniciopadre()
     
