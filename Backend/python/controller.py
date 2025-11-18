@@ -110,11 +110,11 @@ def cargarSesion(dicUsuario):
 
 def crearSesion(request):
     sesionValida=False
-    dic_request={}
+    myrequest={}
     try:         
-        getRequest(dic_request)
+        getRequest(myrequest)
         dicUsuario={}
-        if validar_login(dicUsuario,dic_request.get("usuario"),dic_request.get("contrasenia")):
+        if validar_login(dicUsuario,myrequest.get("usuario"),myrequest.get("contrasenia")):
             cargarSesion(dicUsuario)
             sesionValida = True
     except ValueError:                              

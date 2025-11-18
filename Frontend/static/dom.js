@@ -118,17 +118,15 @@ function validarAdmision(admitido){
     }
 }
 
-/* 
+ 
 function loguearse (event){
     if (event) event.preventDefault()
-    let u = "minombre"
-    let p = "contraseña123"
 
     let user = document.forms['login']['usuario']
     let password = document.forms['login']['contraseña']
-    document.getElementById('errorUser').innerHTML = '';
+    /*document.getElementById('errorUser').innerHTML = '';
     document.getElementById('errorPass').innerHTML = '';
-    document.getElementById('login').innerHTML = ''
+    document.getElementById('login').innerHTML = ''*/
     user.style.border =  "2px solid #000852"
     password.style.border =  "2px solid #000852"
 
@@ -146,32 +144,8 @@ function loguearse (event){
         }
     }
 
-    if (user.value != u){
-        document.getElementById('errorUser').innerHTML = 'Usuario no existente'
-        valido = false
-        user.value = ""
-        password.value = ""
-        user.style.border =  "2px solid #ff0000ff";
-        password.style.border =  "2px solid #000852";
-    } 
-    else if (user.value == u && password.value != p){
-        document.getElementById('errorPass').innerHTML = 'Contraseña incorrecta.'
-        valido = false
-        password.value = ""
-        user.style.border =  "2px solid #000852";
-        password.style.border =  "2px solid #ff0000ff";     
-    }
-
-    if (valido != true){
-    }
-
-    if (user.value == u && password.value == p){
-        window.location.assign('inicio.html')
-        localStorage.setItem('user', user.value)
-    }
-
 }
-*/
+
 
 function actividad (){
     window.location.assign('actividad.html')
