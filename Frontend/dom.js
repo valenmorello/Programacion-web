@@ -40,6 +40,7 @@ eyeBtn.addEventListener("click", () => {
   }
 });
 
+
 function validarRegistro (event){
     if (event) event.preventDefault();
     document.getElementById('errorUser').innerHTML = '';
@@ -117,6 +118,7 @@ function validarAdmision(admitido){
     }
 }
 
+/* 
 function loguearse (event){
     if (event) event.preventDefault()
     let u = "minombre"
@@ -169,7 +171,7 @@ function loguearse (event){
     }
 
 }
-
+*/
 
 function actividad (){
     window.location.assign('actividad.html')

@@ -1,3 +1,6 @@
+<!-- onsubmit="return loguearse(event)"-->
+<!-- onclick="registrarse()" -->
+
 <html>
     <head>
         <meta charset="UTF-8">
@@ -13,15 +16,17 @@
             </section>
             <img src="../static/Images/logo.jpg" class="imagen">
         
-            <form name="login" onsubmit="return loguearse(event)" action="/signin" method="post">
+            <form name="login" action="/signin" method="POST">
             <div class="datos">
                 <input type="text" class="input-datos" name="usuario" id="usuario" placeholder="Ingrese usuario">
                 <input type="password" class="input-datos" name="contrasenia" id="contraseña" placeholder="Ingrese contraseña">
+                {% if param and param.get('error_login')!=None %}
                 <span id="errorPass">{{param.get('error_login')}}</span>
+                {%endif%}
             </div>
             <div class="acciones">
                 <button type="submit" class="button">Login</button>
-                <button class="button" onclick="registrarse()">Registro</button>
+                <button class="button" >Registro</button>
             </div>
             </form>
 
@@ -29,7 +34,7 @@
             
         </section>
         
-        <script src="../dom.js"></script>
+        <!--<script src="../dom.js"></script> -->
     </body>
     <footer>
         <p>© 2025 FamilyBank | Desarrollado por Tomás Maraval, Valentina Morello y Felicitas Orlando.</p>

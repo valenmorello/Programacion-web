@@ -1,5 +1,4 @@
 
-from flask import render_template
 import os
 from flask import Flask, render_template, request, redirect, session, flash, url_for  
 from controller import *
@@ -9,11 +8,9 @@ from werkzeug.utils import secure_filename
 
 def route (app):
 
-   
     @app.route('/login')
     def pag_login():
         param={}
-        param['error_login']=""
         return login(param)
  
     @app.route('/registro')
@@ -73,3 +70,4 @@ def route (app):
     def signin(): 
         param={}
         return validarusuario(param, request)
+    
