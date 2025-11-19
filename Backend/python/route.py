@@ -43,7 +43,7 @@ def route (app):
     def pag_notificaciones():
         return notificaciones()
     
-    @app.route('/padre2')
+    @app.route('/hijo')
     def pag_padre2():
         return padre2()
     
@@ -57,11 +57,11 @@ def route (app):
     
     @app.route('/solicitar')
     def pag_solicitar():
-        return render_template('solicitar.html')
+        return solicitar()
     
     @app.route('/transferir')
     def pag_transferir():
-        return render_template('transferir.html')
+        return transferir()
     
 
     #get se ve, post no. get manda menos info.

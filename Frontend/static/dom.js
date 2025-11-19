@@ -152,9 +152,6 @@ function inicio (){
     
 }
 
-function solicitud (){
-    window.location.assign('solicitar.html')
-}
 
 function validarTransferencia(event) {
   if (event) event.preventDefault();
@@ -246,7 +243,7 @@ function quitarDinero (event){
 }
 
 function cerrarSesion (){
-    window.location.assign('index.html')
+    window.location.replace('index.html')
     localStorage.removeItem('user')
     localStorage.removeItem('code')
 }
