@@ -137,7 +137,7 @@ def cambiardatos(param, request):
                 modificarnombre(id, myrequest.get('nombreNuevo'))
                 myrequest['nombreNuevo'] = session['nombre']
 
-            if myrequest.get('nombreNuevo') != "" :
+            if myrequest.get('apellidoNuevo') != "" :
                 modificarapellido(id, myrequest.get('apellidoNuevo'))
                 myrequest['apellidoNuevo'] = session['apellido']
 
