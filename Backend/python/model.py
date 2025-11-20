@@ -141,10 +141,27 @@ def transferencia(usuario_emisor, usuario_receptor, monto, motivo, fecha):
 # ------ HIJOOOOOOSSSSSSS -----------------------------------------------------------
 
 # devuelve una lista de tuplas, cada elemento de la lista es un hijo. 
+
 def encontrar_hijos(codfam):
-    sQuery="SELECT * FROM usuarios WHERE codigo_Familiar=%s and es_padre = 0"
+    sQuery="SELECT * FROM usuarios WHERE codigo_Familiar=%s and es_padre=0 and admitido=1"
     val = (codfam,)
     mydb = conectarDB(BASE)
-    res = consultarDB(mydb,sQuery,val)
+    lista = consultarDB(mydb,sQuery,val) #lista de tuplas
     cerrarDB(mydb)
-    return res
+
+    #transformarlo en un diccionario para que sea mas facil
+    # evito algunos datos porque no me sirven
+
+    diccionario_hijos= {}
+    for hijo in lista: #creo un diccionario donde el id de cada hijo es la key
+        diccionario_hijos[hijo[0]] = {
+            'nombre':hijo[1],
+            'apellido':hijo[2],
+            'saldo':hijo[5],
+            'usuario':hijo[7],
+            'img':hijo[9],
+        } 
+
+        # me termina quedando un diccionario de diccionarios
+
+    return diccionario_hijos
