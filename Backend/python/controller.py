@@ -17,6 +17,7 @@ def diccionario_sesion():
     param['codfam'] = session.get('codfam')
     param['nombre'] = session.get('nombre')
     param['apellido'] = session.get('apellido')
+    param['saldo'] = session.get('saldo')
 
     return param
 
