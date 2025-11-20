@@ -183,11 +183,6 @@ def crearSesion(request):
     return sesionValida
 
 def haySesion():  
-    '''info:
-        Determina si hay una sesion activa observando si en el dict
-        session se encuentra la clave 'username'
-        retorna True si hay sesión y False si no la hay.
-    '''
     return session.get("username")!=None
 
 def cerrarSesion():

@@ -41,18 +41,12 @@
     </section>
     
     <section class="section2">
+      {% for hijo in param['hijos'].keys() %} 
         <button onclick="location.href='/hijo'">
           <img class="img_hijo" src="../static/Images/user.png" alt="Usuario">
-          <h2>Juan</h2>
+          <h2>{{hijo['nombre']}}</h2>
         </button>
-        <button onclick="location.href='/hijo'">
-          <img class="img_hijo" src="../static/Images/user.png" alt="Usuario">
-          <h2>Maria</h2>
-        </button>
-        <button onclick="location.href='/hijo'">
-          <img class="img_hijo" src="../static/Images/user.png" alt="Usuario">
-          <h2>Agustin</h2>
-        </button>
+      {% endfor %}
     </section>
 
   </main>
