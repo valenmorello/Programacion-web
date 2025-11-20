@@ -27,7 +27,7 @@ main {
   flex-direction: column; 
   justify-content: center;
   align-items: center;
-  padding-top: 70px;
+  padding-top: 40px;
 }
 
 header {
@@ -139,37 +139,73 @@ header button {
 }
 
 
+/* CONTENEDOR GENERAL */
 .section2 {
-  padding: 10px;
-  display: flex;
-  justify-content: center; 
-  align-items: center;
-  background-color:#131b45; 
-  border-radius: 20px; 
-  width: 80%;
-  height: 200px;
-  border: 3px solid #ffffff; 
-  margin: 25px;
+    background-color: #131b45;     /* tu color */
+    width: 80%;             /* 80% de la pantalla SIEMPRE */
+    padding: 25px;
+    border-radius: 12px;
+    margin: 2%;
+    display: flex;
+    flex-wrap: wrap;               /* evita que se encimen */
+    justify-content: center;       /* centra horizontal */
+    align-items: flex-start;       /* alinea arriba */
+    gap: 25px;                     /* separación entre hijos */
+    box-sizing: border-box;        /* evita problemas de tamaños */
 }
+
+
+.section2 > div {
+    width: 300px;
+    height: 150px;                  
+    display: flex;
+    justify-content: center;
+    box-sizing: border-box;
+}
+
 
 .section2 button {
-  width:max-content;
-  padding: 20px;
-  margin: 10px;
-  font-size: 15px;
-  cursor: pointer;
-  font-weight: bold;
-  color: #000852;
-  background-color:inear-gradient(135deg, #e3f0ff, #f9fbff);
-  border-radius: 10px;
+    width: 100%;
+    background-color: white;
+    border: none;
+    border-radius: 12px;
+    padding: 15px 10px;
+    cursor: pointer;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+    transition: 0.2s ease-in-out;
 }
 
-.img_hijo{
-  width: 50%;              
-  height: auto;
+
+.section2 button:hover {
+    transform: scale(1.06);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.5);
 }
+
+
+.img_hijo {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 10px;
+}
+
+.section2 h2 {
+    font-size: 1.2rem;
+    color: #131b45;
+    text-align: center;
+    margin: 0;
+}
+
+
 footer { 
-      margin-top: 10%;
+      margin-top: 5%;
       left: 0;
       width: 100%;
        background: #131b45;
@@ -207,17 +243,31 @@ footer {
     width: 280px; 
     height: 260px; 
   }
-  .section2{
-    width:80%;
-    height:120px
+  
+  .section2 {
+        flex-direction: column;    /* fuerza vertical */
+        align-items: center;       /* centrados */
+    }
+
+  .section2 > div {
+      width: 80%;                /* ancho grande en mobile */
+      max-width: 350px;
+      height: 160px;
   }
-  .section2 button{
-    width:90%;
-    padding: 0px;
-    margin: 0px;
-    font-size: 15px;
-   
-}
+
+  .section2 button {
+      padding: 10px;
+  }
+
+  .img_hijo {
+      width: 60px;
+      height: 60px;
+  }
+
+  .section2 h2 {
+      font-size: 1rem;
+  }
+
   footer {
     font-size: 12px;
     padding: 10px;

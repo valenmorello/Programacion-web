@@ -161,5 +161,7 @@ def encontrar_hijos(codfam):
             'usuario':hijo[7],
             'img':hijo[9],
         } 
+
+        print (diccionario_hijos)
         # me termina quedando un diccionario de diccionarios
     return diccionario_hijos
