@@ -38,12 +38,14 @@ header button {
 }
 
 .usuario button {
-  background: none;
+  background: transparent;
   border: none;
   color: #ffffff;
-  font-size: 16px;
-  font-weight: 500;
+  font-size: 150%;         
+  font-weight: bold;
   cursor: pointer;
+  display: flex;
+  align-items: center;
 }
 
 .usuario img {

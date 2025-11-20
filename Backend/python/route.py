@@ -11,11 +11,14 @@ def route (app):
     @app.route('/')
     @app.route('/login')
     def pag_login():
+
+        cerrarSesion()
         param={}
         return login(param)
  
     @app.route('/registro')
     def pag_registro():
+        cerrarSesion()
         return registro()
     
     @app.route('/inicio')

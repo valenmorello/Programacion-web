@@ -61,8 +61,7 @@ def cuenta(param):
 
 def ingresar():
     return render_template('ingresar.html')
-    
-    
+     
 
 def notificaciones():
     return render_template('notificaciones.html')
@@ -192,9 +191,6 @@ def haySesion():
     return session.get("username")!=None
 
 def cerrarSesion():
-    '''info:
-        Borra el contenido del dict 'session'
-    '''
     try:    
         session.clear()
     except:
