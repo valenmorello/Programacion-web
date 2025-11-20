@@ -35,7 +35,7 @@ def inicio(): #HIJOS
 def iniciopadre():
     param = diccionario_sesion()
     cf=param['codfam']
-    param['hijos'] = encontrar_hijos(cf) #este elemento del diccionario es una lista
+    param['hijos'] = encontrar_hijos(cf) #este elemento del diccionario es un diccionario
     return render_template('iniciopadre.html', param=param)
 
 def login(param):

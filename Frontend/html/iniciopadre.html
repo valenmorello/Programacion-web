@@ -40,14 +40,14 @@
       </div>
     </section>
     
+    {% for hijo in param['hijos'].keys() %} 
     <section class="section2">
-      {% for hijo in param['hijos'].keys() %} 
         <button onclick="location.href='/hijo'">
           <img class="img_hijo" src="../static/Images/user.png" alt="Usuario">
           <h2>{{hijo['nombre']}}</h2>
         </button>
-      {% endfor %}
     </section>
+    {% endfor %}
 
   </main>
   <script src="../static/dom.js"></script>
