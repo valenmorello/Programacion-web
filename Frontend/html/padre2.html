@@ -7,10 +7,10 @@
   
   <link rel="stylesheet" href="../static/css/inicio.css">
 </head>
-<body onload="cargarNombre(), cargarCodigo()" >
+<body >
   <header>
     <div class="logo">
-        <button onclick="location.href='/inicioPadre'">
+        <button onclick="location.href='/inicioadre'">
             <img src="../static/Images/logoinicio.jpg" class="imagen" alt="Logo">   
         </button>
 
@@ -19,7 +19,7 @@
         <button onclick="location.href='/cuenta'">
             <img src="../static/Images/user.png" alt="Usuario">
         </button>
-        <button id="cuenta" onclick="location.href='/cuenta'"></button>
+        <button id="cuenta" onclick="location.href='/cuenta'">{{param.get('usuario')}}</button>
     </div>
     
   </header>
@@ -27,8 +27,8 @@
   <main>
     <section class="section">
       <div class="saldo">
-        <h2>Saldo disponible: de .....</h2>
-        <p>$ 12,350.75</p>
+        <h2>Saldo disponible: de {{hijo_dic.get('nombre')}}</h2>
+        <p>$ {{hijo_dic.get('saldo')}}</p>
       </div>
 
       <div class="acciones">

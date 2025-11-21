@@ -41,9 +41,9 @@
     </section>
     
     <section class="section2">
-        {% for hijo in param['hijos'].values() %}
+        {% for id_hijo, hijo in param['hijos'].items() %}
         <div>
-          <button onclick="location.href='/hijo'">
+          <button onclick="location.href='/hijo/{{ id_hijo }}'">
             <img class="img_hijo" src="../static/Images/user.png" alt="Usuario">
             <h2>{{hijo['nombre']}}</h2>
           </button>

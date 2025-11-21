@@ -46,9 +46,9 @@ def route (app):
     def pag_notificaciones():
         return notificaciones()
     
-    @app.route('/hijo')
-    def pag_padre2():
-        return padre2()
+    @app.route('/hijo/<int:id_hijo>')
+    def pag_padre2(id_hijo):
+        return padre2(id_hijo)
     
     @app.route('/pendiente')
     def pag_pendiente():

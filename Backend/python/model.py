@@ -6,8 +6,7 @@ import random
 def validar_login (dic, username, password):
     res=False
     sQuery="""
-    SELECT * 
-    FROM  usuarios WHERE  nombre_usuario=%s and contrasenia=%s;"""
+    SELECT * FROM  usuarios WHERE  nombre_usuario=%s and contrasenia=%s;"""
     val=(username,password)
 
     mydb = conectarDB(BASE)
@@ -165,3 +164,22 @@ def encontrar_hijos(codfam):
         print (diccionario_hijos)
         # me termina quedando un diccionario de diccionarios
     return diccionario_hijos
+
+def buscar_hijo_en_bd(id_hijo, cf):
+    sQuery="SELECT * FROM usuarios WHERE id=%s and codigo_Familiar=%s and admitido=1"
+    val = (id_hijo, cf,)
+    mydb = conectarDB(BASE)
+    fila = consultarDB(mydb,sQuery,val) #lista de tuplas
+    cerrarDB(mydb)
+
+    dic = {}
+    if fila!=[]:
+        res=True
+        dic['id']=fila[0][0]
+        dic['nombre']=fila[0][1]
+        dic['apellido']=fila[0][2]
+        dic['saldo']= fila[0][5]
+        dic['nombre_usuario']=fila[0][7]
+        dic['img']=fila[0][9]
+
+    return dic

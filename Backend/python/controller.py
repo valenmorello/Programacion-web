@@ -66,9 +66,14 @@ def ingresar():
 def notificaciones():
     return render_template('notificaciones.html')
 
-def padre2():
-    return render_template('padre2.html')
-    
+def padre2(id_hijo):
+    if haySesion():
+        param = diccionario_sesion()
+        hijo_dic = buscar_hijo_en_bd(id_hijo, session['codfam'])
+        res = render_template('padre2.html', param=param, hijo_dic=hijo_dic) 
+    else:
+        res = redirect('/')
+    return res
 
 def pendiente():
     return render_template('pendiente.html')
