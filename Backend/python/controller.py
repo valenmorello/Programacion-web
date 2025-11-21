@@ -95,7 +95,12 @@ def solicitar():
     
 
 def transferir(us):
-    return render_template('transferir.html', us=us)
+    if haySesion():
+        param = diccionario_sesion()
+        res = render_template('transferir.html', param=param, us=us)
+    else:
+        res = redirect('/')
+    return res
 
 
 # ----------------------------------------------------------
