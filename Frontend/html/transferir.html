@@ -6,7 +6,7 @@
   <title>Transferir - FamilyBank</title>
   <link rel="stylesheet" href="../static/css/transferir.css">
 </head>
-<body onload="cargarNombre()">
+<body>
   <header>
     <div class="logo">
         <button onclick="location.href='/inicio'">
@@ -32,7 +32,9 @@
       </div>
       <form name="transferir" onsubmit="return validarTransferencia(event)">
         <div class="datos">
-          <input class="input" name='usuarioDestino' id="usuarioDestino" placeholder="Ingrese usuario">
+          {% if us!=None %}
+          <input class="input" {{value = 'us'}} name='usuarioDestino' id="usuarioDestino" placeholder="Ingrese usuario">
+          {% iendif %}
           <input type="number" name="monto" placeholder="Ingrese Monto $ 0.00" class="input" id="monto">
           <input class="input" name="motivo" id="motivo" placeholder="Ingrese motivo">
         </div> 

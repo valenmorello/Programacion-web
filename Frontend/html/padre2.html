@@ -27,14 +27,14 @@
   <main>
     <section class="section">
       <div class="saldo">
-        <h2>Saldo disponible de {{hijo_dic.get('nombre')}}</h2>
-        <p>$ {{hijo_dic.get('saldo')}}</p>
+        <h2>Saldo disponible de {{param['hijo_dic']['nombre']}}</h2>
+        <p>$ {{param['hijo_dic']['saldo']}}</p>
       </div>
 
       <div class="acciones">
-        <button class="button" onclick="transferencia()">Transferir</button>
-        <button class="button" onclick="actividad()">Ver actividad</button>
-        <button class="button" onclick="quitar()">Quitar</button>
+        <button class="button" onclick="location.href='/transferir/{{us}}'">Transferir</button>
+        <button class="button" onclick="location.href='/actividad'">Ver actividad</button>
+        <button class="button" onclick="location.href='/quitar'">Quitar</button>
       </div>
     </section>
 

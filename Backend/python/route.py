@@ -63,8 +63,9 @@ def route (app):
         return solicitar()
     
     @app.route('/transferir')
-    def pag_transferir():
-        return transferir()
+    @app.route('/transferir/<string:us>')
+    def pag_transferir(us=None):
+        return transferir(us)
     
 
     #get se ve, post no. get manda menos info.

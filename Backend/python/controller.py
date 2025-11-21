@@ -38,6 +38,8 @@ def iniciopadre():
     param['hijos'] = encontrar_hijos(cf) #este elemento del diccionario es un diccionario
     return render_template('iniciopadre.html', param=param)
 
+
+
 def login(param):
     return render_template('index.html', param=param)
 
@@ -69,8 +71,9 @@ def notificaciones():
 def padre2(id_hijo):
     if haySesion():
         param = diccionario_sesion()
-        hijo_dic = buscar_hijo_en_bd(id_hijo, session['codfam'])
-        res = render_template('padre2.html', param=param, hijo_dic=hijo_dic) 
+        param['hijo_dic'] = buscar_hijo_en_bd(id_hijo, session['codfam'])
+        us = param['hijo_dic']['nombre_usuario']
+        res = render_template('padre2.html', param=param, us=us) 
     else:
         res = redirect('/')
     return res
@@ -91,33 +94,9 @@ def solicitar():
     return render_template('solicitar.html')
     
 
-def transferir():
-    return render_template('transferir.html')
+def transferir(us):
+    return render_template('transferir.html', us=us)
 
-# -------------------------------------------------------------------------------------------
-
-#Esta funcion carga el request hecho en el navegador 
-# y lo convierte en un diccionario 
-
-def getRequest(diResult):
-    if request.method=='POST':
-        for name in request.form.to_dict().keys():
-            li=request.form.getlist(name)
-            if len(li)>1:
-                diResult[name]=request.form.getlist(name)
-            elif len(li)==1:
-                diResult[name]=li[0]
-            else:
-                diResult[name]=""
-    elif request.method=='GET':  
-        for name in request.args.to_dict().keys():
-            li=request.args.getlist(name)
-            if len(li)>1:
-                diResult[name]=request.args.getlist(name)
-            elif len(li)==1:
-                diResult[name]=li[0]
-            else:
-                diResult[name]=""
 
 # ----------------------------------------------------------
 def validarusuario(param, request):
@@ -169,7 +148,7 @@ def cargarSesion(dicUsuario):
     session['codfam']   = dicUsuario['codfam'] 
     session['rol']        = dicUsuario['es_padre']
     session['saldo']   = dicUsuario['saldo']
-    session['username']   = dicUsuario['nombre_usuario']
+    session['nombre_usuario']   = dicUsuario['nombre_usuario']
     session['imagen']     = dicUsuario['img']
     session["time"]       = datetime.now()   
 
@@ -195,3 +174,28 @@ def cerrarSesion():
         session.clear()
     except:
         pass
+
+# -------------------------------------------------------------------------------------------
+
+#Esta funcion carga el request hecho en el navegador 
+# y lo convierte en un diccionario 
+
+def getRequest(diResult):
+    if request.method=='POST':
+        for name in request.form.to_dict().keys():
+            li=request.form.getlist(name)
+            if len(li)>1:
+                diResult[name]=request.form.getlist(name)
+            elif len(li)==1:
+                diResult[name]=li[0]
+            else:
+                diResult[name]=""
+    elif request.method=='GET':  
+        for name in request.args.to_dict().keys():
+            li=request.args.getlist(name)
+            if len(li)>1:
+                diResult[name]=request.args.getlist(name)
+            elif len(li)==1:
+                diResult[name]=li[0]
+            else:
+                diResult[name]=""
