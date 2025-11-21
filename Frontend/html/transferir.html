@@ -32,9 +32,7 @@
       </div>
       <form name="transferir" onsubmit="return validarTransferencia(event)">
         <div class="datos">
-          {% if us!=None %}
-          <input class="input" {{value = 'us'}} name='usuarioDestino' id="usuarioDestino" placeholder="Ingrese usuario">
-          {% iendif %}
+          <input class="input" value = "{{us or ''}}" name='usuarioDestino' id="usuarioDestino" placeholder="Ingrese usuario">
           <input type="number" name="monto" placeholder="Ingrese Monto $ 0.00" class="input" id="monto">
           <input class="input" name="motivo" id="motivo" placeholder="Ingrese motivo">
         </div> 
