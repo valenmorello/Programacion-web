@@ -12,7 +12,8 @@
 <body>
   <header>
     <div class="logo">
-        <button onclick="location.href='{{rol}}'">
+        {% set destino = '/iniciopadre' if param['rol'] == 1 else '/inicio' %}
+        <button onclick="location.href='{{destino}}'"></button>
             <img src="../static/Images/logoinicio.jpg" class="imagen" alt="Logo">   
         </button>
 

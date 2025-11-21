@@ -51,11 +51,7 @@ def actividad():
 def cuenta(param):
     if haySesion():
         param = diccionario_sesion()
-        if param['rol']==1:
-            rol = '/iniciopadre'
-        elif param['rol']==0:
-            rol = '/inicio'
-        res = render_template('cuenta.html', param=param,rol=rol)
+        res = render_template('cuenta.html', param=param)
     else:
         res = redirect('/')
     return res
