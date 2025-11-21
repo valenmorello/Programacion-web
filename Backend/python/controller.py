@@ -12,7 +12,7 @@ from appConfig import config
 
 def diccionario_sesion():
     param = {}
-    param['usuario'] = session.get('username')
+    param['usuario'] = session.get('nombre_usuario')
     param['rol'] = session.get('rol')
     param['codfam'] = session.get('codfam')
     param['nombre'] = session.get('nombre')
@@ -167,7 +167,7 @@ def crearSesion(request):
     return sesionValida
 
 def haySesion():  
-    return session.get("username")!=None
+    return session.get("nombre_usuario")!=None
 
 def cerrarSesion():
     try:    
