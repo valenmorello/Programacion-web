@@ -6,10 +6,15 @@
   <title>Solicitar Dinero - FamilyBank</title>
   <link rel="stylesheet" href="../static/css/solicitar.css">
 </head>
-<body onload="cargarNombre()">
+<body>
   <header>
     <div class="logo">
-        <button onclick="location.href='/inicioPadre'">
+        {% if param['rol'] == 1 %}
+          {% set destino = '/iniciopadre' %}
+        {% else %}
+          {% set destino = '/inicio' %}
+        {% endif %}
+        <button onclick="location.href='{{destino}}'">
             <img src="../static/Images/logoinicio.jpg" class="imagen" alt="Logo">   
         </button>
 

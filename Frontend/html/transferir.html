@@ -9,7 +9,12 @@
 <body>
   <header>
     <div class="logo">
-        <button onclick="location.href='/inicio'">
+        {% if param['rol'] == 1 %}
+          {% set destino = '/iniciopadre' %}
+        {% else %}
+          {% set destino = '/inicio' %}
+        {% endif %}
+        <button onclick="location.href='{{destino}}'">
             <img src="../static/Images/logoinicio.jpg" class="imagen" alt="Logo">   
         </button>
 
@@ -32,7 +37,7 @@
       </div>
       <form name="transferir" onsubmit="return validarTransferencia(event)">
         <div class="datos">
-          <input class="input" value = "{{us or ''}}" name='usuarioDestino' id="usuarioDestino" placeholder="Ingrese usuario">
+          <input class="input" value = "{{param['hijo_dic']['nombre_usuario'] or ''}}" name='usuarioDestino' id="usuarioDestino" placeholder="Ingrese usuario">
           <input type="number" name="monto" placeholder="Ingrese Monto $ 0.00" class="input" id="monto">
           <input class="input" name="motivo" id="motivo" placeholder="Ingrese motivo">
         </div> 

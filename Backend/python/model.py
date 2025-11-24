@@ -1,6 +1,26 @@
 from mysql_db import *
 import random
 
+def buscar_por_id(id_hijo):
+    sQuery="SELECT * FROM usuarios WHERE id=%s"
+    val = (id_hijo,)
+    mydb = conectarDB(BASE)
+    fila = consultarDB(mydb,sQuery,val) #lista de tuplas
+    cerrarDB(mydb)
+
+    dic = {}
+    if fila!=[]:
+        dic['id']=fila[0][0]
+        dic['nombre']=fila[0][1]
+        dic['apellido']=fila[0][2]
+        dic['saldo']= fila[0][5]
+        dic['nombre_usuario']=fila[0][7]
+        dic['img']=fila[0][9]
+
+    return dic
+
+
+
 # ------ VALIDAR LOGIIIINNNNNN ---------------
 
 def validar_login (dic, username, password):
@@ -12,7 +32,7 @@ def validar_login (dic, username, password):
     mydb = conectarDB(BASE)
     fila = consultarDB(mydb,sQuery,val)
     cerrarDB(mydb)
-
+    
     if fila!=[]:
         res=True
         dic['id']=fila[0][0]
@@ -76,7 +96,7 @@ def modificarnombre(id, nuevonombre):
     sQuery="UPDATE usuarios SET nombres=%s WHERE id=%s"
     val = (nuevonombre, id)
     mydb=conectarDB(BASE)
-    res = ejecutarDB(mydb,sQuery,val)       # update
+    res = ejecutarDB(mydb,sQuery,val)      
     cerrarDB(mydb)
     return res
 
@@ -84,12 +104,12 @@ def modificarapellido(id, nuevoape):
     sQuery="UPDATE usuarios SET apellido=%s WHERE id=%s"
     val = (nuevoape, id)
     mydb=conectarDB(BASE)
-    res=ejecutarDB(mydb,sQuery,val)       # update
+    res=ejecutarDB(mydb,sQuery,val)   
     cerrarDB(mydb)
     return res
 
 
-# ---- PLATA ------
+# ---- PLATA ---------------------------------------
 
 def saldoactual(nombre_usuario):
     sQuery="SELECT saldo FROM usuarios WHERE nombre_usuario=%s"
@@ -137,6 +157,44 @@ def transferencia(usuario_emisor, usuario_receptor, monto, motivo, fecha):
 
     return res
 
+#--------------- ACTIVIDAAAAAADDDDD-----------------------------
+
+def tabla_actividad(id):
+    sQuery="SELECT * FROM actividades WHERE emisor=%s or receptor=%s ORDER BY fecha DESC"
+    val = (id,id)
+    mydb = conectarDB(BASE)
+    lista = consultarDB(mydb,sQuery,val) #lista de tuplas
+    cerrarDB(mydb)
+
+    #armado de tabla 
+    # lista = (id, emisor, receptor, motivo, fecha, monto)
+
+    transacciones = []
+    for act in lista:
+        dic = {}
+        if lista[1] == id: #si el usuario es emisor
+            usu_dic = buscar_por_id(lista[2])   # porque en la base de datos esta por id
+            dic['usuario'] = usu_dic['nombre_usuario']
+            dic['nombre'] = usu_dic['nombre']
+            dic['monto'] = lista[5] * -1 
+
+
+        elif lista[2] == id:       # si el usuario recibe
+            usu_dic = buscar_por_id(lista[1])   # porque en la base de datos esta por id
+            dic['usuario'] = usu_dic['nombre_usuario']
+            dic['nombre'] = usu_dic['nombre']
+            dic['monto'] = lista[5]
+
+        dic['motivo'] = lista[3]
+        dic['fecha'] = lista[4]
+
+        transacciones.append(dic)
+
+    return transacciones 
+
+
+
+
 # ------ HIJOOOOOOSSSSSSS -----------------------------------------------------------
 
 # devuelve una lista de tuplas, cada elemento de la lista es un hijo. 
@@ -165,21 +223,3 @@ def encontrar_hijos(codfam):
         # me termina quedando un diccionario de diccionarios
     return diccionario_hijos
 
-def buscar_hijo_en_bd(id_hijo, cf):
-    sQuery="SELECT * FROM usuarios WHERE id=%s and codigo_Familiar=%s and admitido=1"
-    val = (id_hijo, cf,)
-    mydb = conectarDB(BASE)
-    fila = consultarDB(mydb,sQuery,val) #lista de tuplas
-    cerrarDB(mydb)
-
-    dic = {}
-    if fila!=[]:
-        res=True
-        dic['id']=fila[0][0]
-        dic['nombre']=fila[0][1]
-        dic['apellido']=fila[0][2]
-        dic['saldo']= fila[0][5]
-        dic['nombre_usuario']=fila[0][7]
-        dic['img']=fila[0][9]
-
-    return dic

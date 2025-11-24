@@ -25,10 +25,13 @@ def route (app):
     def pag_inicio():
         return inicio()
     
-    @app.route('/actividad')
-    def pag_actividad():
-        return actividad()
     
+    @app.route('/actividad')
+    @app.route('/actividad/<int:id_hijo>')
+    def pag_actividad(id_hijo=None):
+        return actividad(id_hijo)
+    
+
     @app.route('/cuenta')
     def pag_cuenta():
         param ={}
@@ -63,9 +66,9 @@ def route (app):
         return solicitar()
     
     @app.route('/transferir')
-    @app.route('/transferir/<string:us>')
-    def pag_transferir(us=None):
-        return transferir(us)
+    @app.route('/transferir/<int:id_hijo>')
+    def pag_transferir(id_hijo=None):
+        return transferir(id_hijo)
     
 
     #get se ve, post no. get manda menos info.

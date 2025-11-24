@@ -10,8 +10,10 @@ from appConfig import config
 #--------------------------------------------------------------------------------------------
 # diccionario_sesion carga la sesion en un diccionario python y lo retorna
 
+
 def diccionario_sesion():
     param = {}
+    param['id'] = session.get('id')
     param['usuario'] = session.get('nombre_usuario')
     param['rol'] = session.get('rol')
     param['codfam'] = session.get('codfam')
@@ -38,15 +40,45 @@ def iniciopadre():
     param['hijos'] = encontrar_hijos(cf) #este elemento del diccionario es un diccionario
     return render_template('iniciopadre.html', param=param)
 
-
+def padre2(id_hijo):
+    if haySesion():
+        param = diccionario_sesion()
+        param['hijo_dic'] = buscar_por_id(id_hijo)
+        res = render_template('padre2.html', param=param, id_hijo=id_hijo) 
+    else:
+        res = redirect('/')
+    return res
 
 def login(param):
     return render_template('index.html', param=param)
 
 
-def actividad():
-    return render_template('actividad.html')
-    
+def actividad(id_hijo):
+    if haySesion():
+        param = diccionario_sesion()
+
+        if id_hijo != None:
+            param['actividad'] = tabla_actividad(id_hijo)
+        else:
+            param['actividad'] = tabla_actividad(param['id'])
+            
+        res = render_template('actividad.html',param=param)
+
+    else:
+        res = redirect('/')
+    return res
+
+  
+def transferir(id_hijo):
+    if haySesion():
+        param = diccionario_sesion()
+        if id_hijo != None:
+            param['hijo_dic'] = buscar_por_id(id_hijo)
+        res = render_template('transferir.html', param=param) 
+    else:
+        res = redirect('/')
+    return res
+
 
 def cuenta(param):
     if haySesion():
@@ -64,15 +96,7 @@ def ingresar():
 def notificaciones():
     return render_template('notificaciones.html')
 
-def padre2(id_hijo):
-    if haySesion():
-        param = diccionario_sesion()
-        param['hijo_dic'] = buscar_hijo_en_bd(id_hijo, session['codfam'])
-        us = param['hijo_dic']['nombre_usuario']
-        res = render_template('padre2.html', param=param, us=us) 
-    else:
-        res = redirect('/')
-    return res
+
 
 def pendiente():
     return render_template('pendiente.html')
@@ -89,14 +113,6 @@ def registro():
 def solicitar():
     return render_template('solicitar.html')
     
-
-def transferir(us):
-    if haySesion():
-        param = diccionario_sesion()
-        res = render_template('transferir.html', param=param, us=us)
-    else:
-        res = redirect('/')
-    return res
 
 
 # ----------------------------------------------------------
@@ -137,9 +153,8 @@ def cambiardatos(param, request):
     return cuenta(param)
 
 
+# ---------------------------------------------------------------
 
-
-# -----------------------------------------------------------
 
 def cargarSesion(dicUsuario):
   

@@ -9,7 +9,12 @@
 <body onload="cargarNombre()">
   <header>
     <div class="logo">
-        <button onclick="location.href='/inicio'">
+        {% if param['rol'] == 1 %}
+          {% set destino = '/iniciopadre' %}
+        {% else %}
+          {% set destino = '/inicio' %}
+        {% endif %}
+        <button onclick="location.href='{{destino}}'">
             <img src="../static/Images/logoinicio.jpg" class="imagen" alt="Logo">   
         </button>
 
@@ -40,27 +45,16 @@
                     </tr>
                 </thead>
                 <tbody>
+                    {% for act in param['actividad'].values() %}
                     <tr>
-                        <td>superchinoRivadavia</td>
-                        <td>Supermercado Rivadavia</td>
-                        <td>Alimentos</td>
-                        <td>- $4.500</td>
-                        <td>01/09/2025</td>
-                        </tr>
-                    <tr>
-                        <td>google</td>
-                        <td>Google Inc.</td>
-                        <td>Sueldo</td>
-                        <td>+$250.000</td>
-                        <td>30/08/2025</td>
+                        <td>{{act['usuario']}}</td>
+                        <td>{{act['nombre']}}</td>
+                        <td>{{act['motivo']}}</td>
+                        <td>$ {{act['monto']}}</td>
+                        <td>{{act['fecha']}}</td>
                     </tr>
-                    <tr>
-                        <td>valenLakd</td>
-                        <td>Valentina Morello</td>
-                        <td>Varios</td>
-                        <td>- $2.999</td>
-                        <td>29/08/2025</td>
-                    </tr>
+                    {% endfor %}
+                    
                 </tbody>
             </table>
         </div>

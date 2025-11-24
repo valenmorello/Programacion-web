@@ -12,8 +12,12 @@
 <body>
   <header>
     <div class="logo">
-        {% set destino = url_for(pag_iniciopadre) if param['rol'] == 1 else url_for(pag_inicio) %}
-        <button onclick="location.href='{{destino}}'"></button>
+        {% if param['rol'] == 1 %}
+          {% set destino = '/iniciopadre' %}
+        {% else %}
+          {% set destino = '/inicio' %}
+        {% endif %}
+        <button onclick="location.href='{{destino}}'">
             <img src="../static/Images/logoinicio.jpg" class="imagen" alt="Logo">   
         </button>
 
