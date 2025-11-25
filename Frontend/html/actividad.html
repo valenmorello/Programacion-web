@@ -9,7 +9,7 @@
 <body onload="cargarNombre()">
   <header>
     <div class="logo">
-        {% if param['rol'] == 1 %}
+        {% if param['datos_usuario']['rol'] == 1 %}
           {% set destino = '/iniciopadre' %}
         {% else %}
           {% set destino = '/inicio' %}
@@ -31,7 +31,11 @@
   <main>
     <section class="movimientos">
         <div class="titulo">
-            <h2>Actividad de ...</h2>
+            {% if param['hijo'] %}
+            <h2>Actividad {{param['hijo']['nombre']}}</h2>
+            {% else %}
+            <h2>Tu Actividad</h2>
+            {% endif %}
         </div>
         <div class="div_tabla">
             <table>
@@ -45,13 +49,13 @@
                     </tr>
                 </thead>
                 <tbody>
-                    {% for act in param['actividad'] %}
+                    {% for list_element in param['actividad'] %}
                     <tr>
-                        <td>{{param['actividad'][act]['usuario']}}</td>
-                        <td>{{act['nombre']}}</td>
-                        <td>{{act['motivo']}}</td>
-                        <td>$ {{act['monto']}}</td>
-                        <td>{{act['fecha']}}</td>
+                        <td>{{list_element['usuario']}}</td>
+                        <td>{{list_element['nombre']}}</td>
+                        <td>{{list_element['motivo']}}</td>
+                        <td>$ {{list_element['monto']}}</td>
+                        <td>{{list_element['fecha']}}</td>
                     </tr>
                     {% endfor %}
                     

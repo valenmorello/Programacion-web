@@ -1,9 +1,9 @@
 from mysql_db import *
 import random
 
-def buscar_por_id(id_hijo):
+def buscar_por_id(id):
     sQuery="SELECT * FROM usuarios WHERE id=%s"
-    val = (id_hijo,)
+    val = (id,)
     mydb = conectarDB(BASE)
     fila = consultarDB(mydb,sQuery,val) #lista de tuplas
     cerrarDB(mydb)
@@ -160,7 +160,7 @@ def transferencia(usuario_emisor, usuario_receptor, monto, motivo, fecha):
 #--------------- ACTIVIDAAAAAADDDDD-----------------------------
 
 def tabla_actividad(id):
-    sQuery="SELECT * FROM actividades WHERE emisor=%s ORDER BY fecha DESC"
+    sQuery="SELECT * FROM actividades WHERE emisor=%s OR receptor=%s ORDER BY fecha DESC"
     val = (id,id)
     mydb = conectarDB(BASE)
     lista = consultarDB(mydb,sQuery,val) #lista de tuplas
@@ -173,27 +173,25 @@ def tabla_actividad(id):
     if lista != []:
         for act in lista:
             dic = {}
-            if lista[1] == id: #si el usuario es emisor
-                usu_dic = buscar_por_id(lista[2])   # porque en la base de datos esta por id
+            if act[1] == id: #si el usuario es emisor
+                usu_dic = buscar_por_id(act[2])   # porque en la base de datos esta por id
                 dic['usuario'] = usu_dic['nombre_usuario']
                 dic['nombre'] = usu_dic['nombre']
-                dic['monto'] = lista[5] * -1 
+                dic['monto'] = act[5] * -1 
 
 
-            elif lista[2] == id:       # si el usuario recibe
-                usu_dic = buscar_por_id(lista[1])   # porque en la base de datos esta por id
+            elif act[2] == id:       # si el usuario recibe
+                usu_dic = buscar_por_id(act[1])   # porque en la base de datos esta por id
                 dic['usuario'] = usu_dic['nombre_usuario']
                 dic['nombre'] = usu_dic['nombre']
-                dic['monto'] = lista[5]
+                dic['monto'] = act[5]
 
-        dic['motivo'] = lista[3]
-        dic['fecha'] = lista[4]
+            dic['motivo'] = act[3]
+            dic['fecha'] = act[4]
 
-        transacciones.append(dic)
+            transacciones.append(dic)
 
     return transacciones 
-
-
 
 
 # ------ HIJOOOOOOSSSSSSS -----------------------------------------------------------

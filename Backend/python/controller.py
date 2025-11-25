@@ -13,7 +13,7 @@ from appConfig import config
 
 def diccionario_sesion():
     param = {}
-    param['id'] = session.get('id')
+    param['id'] = session.get('id_usuario')
     param['usuario'] = session.get('nombre_usuario')
     param['rol'] = session.get('rol')
     param['codfam'] = session.get('codfam')
@@ -37,8 +37,9 @@ def inicio(): #HIJOS
 def iniciopadre():
     cf = session['codfam']
     param = diccionario_sesion()
-    param['hijos'] = encontrar_hijos(cf) #este elemento del diccionario es un diccionario
+    param['hijos'] = encontrar_hijos(param['codfam']) #este elemento del diccionario es un diccionario
     return render_template('iniciopadre.html', param=param)
+
 
 def padre2(id_hijo):
     if haySesion():
@@ -49,20 +50,26 @@ def padre2(id_hijo):
         res = redirect('/')
     return res
 
+
 def login(param):
     return render_template('index.html', param=param)
 
 
 def actividad(id_hijo):
     if haySesion():
-        param = diccionario_sesion()
+        param = {}
+        param['datos_usuario'] = diccionario_sesion()
+        
+        if id_hijo == None:
+            param['actividad'] = tabla_actividad(param['administrador']['id'])
 
-        if id_hijo != None:
-            param['actividad'] = tabla_actividad(id_hijo)
         else:
-            param['actividad'] = tabla_actividad(param['id'])
-            
-        res = render_template('actividad.html',param=param)
+            param['hijo'] = buscar_por_id(id_hijo)
+            param['actividad'] = tabla_actividad(id_hijo)
+
+        print (param)
+
+        res = render_template('actividad.html', param=param)
 
     else:
         res = redirect('/')
