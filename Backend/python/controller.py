@@ -57,16 +57,14 @@ def login(param):
 def actividad(id_hijo):
     if haySesion():
         param = {}
-        param['datos_usuario'] = diccionario_sesion()
+        param = diccionario_sesion()
         
-        if id_hijo == None:
-            param['actividad'] = tabla_actividad(param['administrador']['id'])
+        if id_hijo == None:  # cargamos los datos propios del usuario
+            param['actividad'] = tabla_actividad(param['id']) #pasa su propio id
 
         else:
-            param['hijo'] = buscar_por_id(id_hijo)
+            param['hijo_dic'] = buscar_por_id(id_hijo)
             param['actividad'] = tabla_actividad(id_hijo)
-
-        print (param)
 
         res = render_template('actividad.html', param=param)
 

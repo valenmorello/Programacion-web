@@ -9,7 +9,7 @@
 <body onload="cargarNombre()">
   <header>
     <div class="logo">
-        {% if param['datos_usuario']['rol'] == 1 %}
+        {% if param['rol'] == 1 %}
           {% set destino = '/iniciopadre' %}
         {% else %}
           {% set destino = '/inicio' %}
@@ -32,7 +32,7 @@
     <section class="movimientos">
         <div class="titulo">
             {% if param['hijo'] %}
-            <h2>Actividad {{param['hijo']['nombre']}}</h2>
+            <h2>Actividad de {{param['hijo_dic']['nombre']}}</h2>
             {% else %}
             <h2>Tu Actividad</h2>
             {% endif %}

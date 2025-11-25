@@ -37,7 +37,12 @@
       </div>
       <form name="transferir" onsubmit="return validarTransferencia(event)">
         <div class="datos">
-          <input class="input" value = "{{param['hijo_dic']['nombre_usuario'] or ''}}" name='usuarioDestino' id="usuarioDestino" placeholder="Ingrese usuario">
+          {% if param['hijo_dic'] %}
+          {% set us = param['hijo_dic']['nombre_usuario'] %}
+          {% else %}
+          {% set us = '' %}
+          {% endif %}
+          <input class="input" value = "{{us}}" name='usuarioDestino' id="usuarioDestino" placeholder="Ingrese usuario">
           <input type="number" name="monto" placeholder="Ingrese Monto $ 0.00" class="input" id="monto">
           <input class="input" name="motivo" id="motivo" placeholder="Ingrese motivo">
         </div> 
