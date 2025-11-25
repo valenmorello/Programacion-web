@@ -29,13 +29,18 @@
   </header>
 
   <main>
+
+    {% if param['error'] != None %}
+      <p>{{param['error']}}</p>
+    {% endif %}
+
     <section class="section">
      <div class="saldo">
         <p>Saldo disponible:</p>
         <p id="saldoActual">$ {{param.get('saldo')}}</p>
 
       </div>
-      <form name="transferir" onsubmit="return validarTransferencia(event)">
+      <form name="transferir"  action="/ejecutartransferncia" onsubmit="return validarTransferencia(event)">
         <div class="datos">
           {% if param['hijo_dic'] %}
           {% set us = param['hijo_dic']['nombre_usuario'] %}

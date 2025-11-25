@@ -8,10 +8,9 @@ from appConfig import config
 
 
 #--------------------------------------------------------------------------------------------
-# diccionario_sesion carga la sesion en un diccionario python y lo retorna
+# Carga los datos dela sesion en un diccionario
 
-
-def diccionario_sesion():
+def diccionario_sesion(): 
     param = {}
     param['id'] = session.get('id_usuario')
     param['usuario'] = session.get('nombre_usuario')
@@ -23,9 +22,18 @@ def diccionario_sesion():
 
     return param
 
-#--------------------------------------------------------------------------------------------
+#-------------- Localizacion de paginas y carga de parametros -----------------------------------------
 
-def inicio(): #HIJOS
+def login():
+    param={}
+    return render_template('index.html', param=param)
+
+
+def registro():
+    return render_template('registro.html')
+
+
+def inicio(): #hijos
     if haySesion():
         param = diccionario_sesion()
         res = render_template('inicio.html', param=param)
@@ -34,7 +42,7 @@ def inicio(): #HIJOS
     return res
    
 
-def iniciopadre():
+def iniciopadre(): #padres
     param = diccionario_sesion()
     param['hijos'] = encontrar_hijos(param['codfam']) #este elemento del diccionario es un diccionario
     return render_template('iniciopadre.html', param=param)
@@ -48,10 +56,6 @@ def padre2(id_hijo):
     else:
         res = redirect('/')
     return res
-
-
-def login(param):
-    return render_template('index.html', param=param)
 
 
 def actividad(id_hijo):
@@ -73,9 +77,10 @@ def actividad(id_hijo):
     return res
 
   
-def transferir(id_hijo):
+def transferir(id_hijo=None, error=None):
     if haySesion():
         param = diccionario_sesion()
+        param['error'] = error
         if id_hijo != None:
             param['hijo_dic'] = buscar_por_id(id_hijo)
         res = render_template('transferir.html', param=param) 
@@ -84,7 +89,7 @@ def transferir(id_hijo):
     return res
 
 
-def cuenta(param):
+def cuenta():
     if haySesion():
         param = diccionario_sesion()
         res = render_template('cuenta.html', param=param)
@@ -101,7 +106,6 @@ def notificaciones():
     return render_template('notificaciones.html')
 
 
-
 def pendiente():
     return render_template('pendiente.html')
     
@@ -110,23 +114,36 @@ def quitar():
     return render_template('quitar.html')
     
 
-def registro():
-    return render_template('registro.html')
-    
-
 def solicitar():
     return render_template('solicitar.html')
+    
+# ----------------------Transferencias------------------------------------
+
+def ejecutar_transferencia(request):
+    try:
+        id = session['id_usuario']
+        myrequest={}
+        getRequest(myrequest)
+        if carga_transferencia(myrequest, id):
+            res = pass
+        else:
+            res = transferir("Saldo Insuficiente")
+    except:
+        res = transferir("Hubo un error en la transferencia")
     
 
 
 # ----------------------------------------------------------
-def validarusuario(param, request):
+
+
+def validarusuario(request):
     if crearSesion(request):
         if session['rol'] == 1:
             res = iniciopadre()
         elif session['rol'] == 0:
             res = inicio()
     else:
+        param={}
         param['error_login']="Error: Usuario y/o password inválidos"
         res = login(param)
     return res         
@@ -156,9 +173,8 @@ def cambiardatos(param, request):
             
     return cuenta(param)
 
-
 # ---------------------------------------------------------------
-
+# Funciones de sesion
 
 def cargarSesion(dicUsuario):
   
@@ -171,7 +187,6 @@ def cargarSesion(dicUsuario):
     session['nombre_usuario']   = dicUsuario['nombre_usuario']
     session['imagen']     = dicUsuario['img']
     session["time"]       = datetime.now()   
-
 
 def crearSesion(request):
     sesionValida=False

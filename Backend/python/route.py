@@ -11,10 +11,8 @@ def route (app):
     @app.route('/')
     @app.route('/login')
     def pag_login():
-
         cerrarSesion()
-        param={}
-        return login(param)
+        return login()
  
     @app.route('/registro')
     def pag_registro():
@@ -34,8 +32,7 @@ def route (app):
 
     @app.route('/cuenta')
     def pag_cuenta():
-        param ={}
-        return cuenta(param)
+        return cuenta()
     
     @app.route('/ingresar')
     def pag_ingresar():
@@ -78,6 +75,10 @@ def route (app):
 
     @app.route('/signin', methods =["GET", "POST"])
     def signin(): 
+        return validarusuario(request)
+    
+    @app.route('/signup', methods =["GET", "POST"])
+    def signup(): 
         param={}
         return validarusuario(param, request)
     
@@ -90,4 +91,10 @@ def route (app):
     def logout(): 
         cerrarSesion()
         return redirect('/')
+    
+    @app.route('/ejecutartransferencia', methods=["GET","POST"])
+    def ejecutar_tr(): 
+        return ejecutar_transferencia(request)
+    
+
     

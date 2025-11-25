@@ -92,6 +92,9 @@ def registro(nombre, apellido, codfam, es_padre, contrasenia, nombre_usuario, im
             cerrarDB(mydb)  
     return res
 
+
+#--------  MODIFICAR DATOS ----------------------------
+
 def modificarnombre(id, nuevonombre):
     sQuery="UPDATE usuarios SET nombres=%s WHERE id=%s"
     val = (nuevonombre, id)
@@ -111,9 +114,44 @@ def modificarapellido(id, nuevoape):
 
 # ---- PLATA ---------------------------------------
 
-def saldoactual(nombre_usuario):
-    sQuery="SELECT saldo FROM usuarios WHERE nombre_usuario=%s"
-    val = (nombre_usuario,)
+def carga_transferencia(myrequest, id):
+    saldo = saldoactual(id)
+    id_receptor = find_id(myrequest['usuarioDestino'])
+    monto = myrequest['monto']
+
+    if saldo > myrequest['monto']:
+        sQuery ="""
+        UPDATE usuario SET saldo = saldo-%s WHERE id=%s
+        UPDATE usuario SET saldo = saldo+%s WHERE id=%s
+        """
+        val = (monto, id, monto, id_receptor)
+        
+        mydb=conectarDB(BASE)
+        res=ejecutarDB(mydb,sQuery,val)      
+        cerrarDB(mydb)
+        exito = True
+    else:
+        exito = False
+    return exito
+
+
+####TERMINAAAARRRRR 
+def registrar_transferecia():
+    sQuery ="""
+        INSERT INTO actividades
+        (id, emisor, receptor,)
+        """
+        val = (monto, id, monto, id_receptor)
+        mydb=conectarDB(BASE)
+        res=ejecutarDB(mydb,sQuery,val)      
+        cerrarDB(mydb)
+        exito = True
+    else:
+        exito = False
+
+def saldoactual(id):
+    sQuery="SELECT saldo FROM usuarios WHERE id=%s"
+    val = (id,)
     mydb = conectarDB(BASE)
     res = consultarDB(mydb,sQuery,val)
     cerrarDB(mydb)
@@ -127,35 +165,6 @@ def find_id (nombre_usuario,):
     cerrarDB(mydb)
     return res
 
-def transferencia(usuario_emisor, usuario_receptor, monto, motivo, fecha):
-    res = None
-    id_emisor = find_id(usuario_emisor)
-    id_receptor = find_id(usuario_receptor)
-
-    saldoemisor = saldoactual(usuario_emisor)
-    saldoreceptor = saldoactual(usuario_receptor)
-    
-    if saldoemisor >= monto:
-        saldoemisor = saldoemisor - monto
-        saldoreceptor = saldoreceptor + monto
-
-        sQuery ="""
-        UPDATE usuario SET 'saldo'=%s WHERE nombre_usuario=%s
-        UPDATE usuario SET 'saldo'=%s WHERE nombre_usuario=%s
-
-        INSERT INTO actividad
-        (id, emisor, receptor, motivo, fecha, monto)
-        VALUES
-        (Null,%s,%s,%s,%s,%s)
-        """
-        val = (saldoemisor, usuario_emisor, saldoreceptor, usuario_receptor,
-                id_emisor, id_receptor,motivo,fecha,monto)
-        
-        mydb=conectarDB(BASE)
-        res=ejecutarDB(mydb,sQuery,val)      
-        cerrarDB(mydb)
-
-    return res
 
 #--------------- ACTIVIDAAAAAADDDDD-----------------------------
 
