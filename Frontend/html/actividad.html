@@ -23,7 +23,7 @@
         <button onclick="location.href='/cuenta'">
             <img src="../static/Images/user.png" alt="Usuario">
         </button>
-        <button id="cuenta" onclick="location.href='/cuenta'"></button>
+        <button id="cuenta" onclick="location.href='/cuenta'">{{param['usuario']}}</button>
     </div>
     
   </header>
@@ -45,9 +45,9 @@
                     </tr>
                 </thead>
                 <tbody>
-                    {% for act in param['actividad'].values() %}
+                    {% for act in param['actividad'] %}
                     <tr>
-                        <td>{{act['usuario']}}</td>
+                        <td>{{param['actividad'][act]['usuario']}}</td>
                         <td>{{act['nombre']}}</td>
                         <td>{{act['motivo']}}</td>
                         <td>$ {{act['monto']}}</td>
