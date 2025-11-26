@@ -120,17 +120,28 @@ def solicitar():
 # ----------------------Transferencias------------------------------------
 
 def ejecutar_transferencia(request):
-    try:
-        id = session['id_usuario']
+        
         myrequest={}
         getRequest(myrequest)
-        if carga_transferencia(myrequest, id):
-            res = pass
+        if existe_usuario(myrequest['usuarioDestino']):
+            id = session['id_usuario']
+            id_receptor = find_id(myrequest['usuarioDestino'])
+            fecha = session['time']
+            saldo = saldoactual(id)
+            monto = myrequest['monto']
+            motivo = myrequest['motivo']
+
+            if saldo > monto:
+                if carga_transferencia(id, id_receptor, monto, motivo, fecha) != None: #habrria que agregar aca para que actualice la sesion una funcion nueva
+                    res = transferir(None, "¡Transferencia Exitosa!")
+                else: 
+                    res = transferir(None, "Hubo un error cn la transferencia") #hizo rollback
+            else:
+                res = transferir(None, "SALDO INSUFICIENTE")
         else:
-            res = transferir("Saldo Insuficiente")
-    except:
-        res = transferir("Hubo un error en la transferencia")
-    
+            res = transferir(None, "USUARIO INVALIDO")
+
+        return res
 
 
 # ----------------------------------------------------------

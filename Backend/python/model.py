@@ -19,7 +19,15 @@ def buscar_por_id(id):
 
     return dic
 
+def existe_usuario (nombre_usuario):
+    sQuery="""
+        SELECT nombre_usuario FROM usuarios WHERE nombre_usuario = %s """
+    val = (nombre_usuario,)
+    mydb = conectarDB(BASE)
+    res = consultarDB(mydb,sQuery,val)
+    cerrarDB(mydb)
 
+    return len(res) > 0
 
 # ------ VALIDAR LOGIIIINNNNNN ---------------
 
@@ -50,16 +58,6 @@ def validar_login (dic, username, password):
 
 
 # --------- REGISTROOOO -------------------
-
-def existe_usuario (nombre_usuario):
-    sQuery="""
-        SELECT nombre_usuario FROM usuarios WHERE nombre_usuario = %s """
-    val = (nombre_usuario,)
-    mydb = conectarDB(BASE)
-    res = consultarDB(mydb,sQuery,val)
-    cerrarDB(mydb)
-
-    return len(res) > 0
 
 def existe_codfam (codfam):
     sQuery="""
@@ -114,40 +112,28 @@ def modificarapellido(id, nuevoape):
 
 # ---- PLATA ---------------------------------------
 
-def carga_transferencia(myrequest, id):
-    saldo = saldoactual(id)
-    id_receptor = find_id(myrequest['usuarioDestino'])
-    monto = myrequest['monto']
-
-    if saldo > myrequest['monto']:
-        sQuery ="""
-        UPDATE usuario SET saldo = saldo-%s WHERE id=%s
-        UPDATE usuario SET saldo = saldo+%s WHERE id=%s
-        """
-        val = (monto, id, monto, id_receptor)
-        
-        mydb=conectarDB(BASE)
-        res=ejecutarDB(mydb,sQuery,val)      
-        cerrarDB(mydb)
-        exito = True
-    else:
-        exito = False
-    return exito
-
-
-####TERMINAAAARRRRR 
-def registrar_transferecia():
+def carga_transferencia(id, id_receptor, monto, motivo, fecha):
     sQuery ="""
+        UPDATE usuario SET saldo = saldo - %s WHERE id=%s
+        UPDATE usuario SET saldo = saldo + %s WHERE id=%s
+
         INSERT INTO actividades
-        (id, emisor, receptor,)
-        """
-        val = (monto, id, monto, id_receptor)
-        mydb=conectarDB(BASE)
-        res=ejecutarDB(mydb,sQuery,val)      
-        cerrarDB(mydb)
-        exito = True
-    else:
-        exito = False
+        (id, emisor, receptor, motivo, fecha, monto)
+        VALUES
+        (%s,%s,%s,%s,%s,%s,) """
+
+    val = (monto, id, monto, id_receptor, 'Null', id, id_receptor, motivo, fecha, monto)
+        
+    mydb=conectarDB(BASE)
+    res=ejecutarDB(mydb,sQuery,val)      
+    cerrarDB(mydb)
+
+    return res
+            
+        
+        
+
+    
 
 def saldoactual(id):
     sQuery="SELECT saldo FROM usuarios WHERE id=%s"
