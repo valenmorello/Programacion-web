@@ -21,13 +21,18 @@ def buscar_por_id(id):
 
 def existe_usuario (nombre_usuario):
     sQuery="""
-        SELECT nombre_usuario FROM usuarios WHERE nombre_usuario = %s """
-    val = (nombre_usuario,)
+        SELECT * FROM usuarios WHERE nombre_usuario = %s """
+    val = (nombre_usuario)
     mydb = conectarDB(BASE)
     res = consultarDB(mydb,sQuery,val)
     cerrarDB(mydb)
 
-    return len(res) > 0
+    if res!= None:
+        res = True
+    else:
+        res = False
+
+    return res
 
 def actualizar_sesion(dic, id):
     res=False
@@ -152,9 +157,7 @@ def carga_transferencia(id, id_receptor, monto, motivo, fecha):
     cerrarDB(mydb)
 
     return res
-            
-        
-        
+             
 
     
 

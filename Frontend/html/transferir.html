@@ -1,3 +1,6 @@
+<!-- onsubmit="return validarTransferencia(event)"  -->
+
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -40,7 +43,7 @@
         <p id="saldoActual">$ {{param.get('saldo')}}</p>
 
       </div>
-      <form name="transferir"  action="/ejecutartransferncia" onsubmit="return validarTransferencia(event)">
+      <form name="transferir"  action="/ejecutartransferncia" method="POST" >
         <div class="datos">
           {% if param['hijo_dic'] %}
           {% set us = param['hijo_dic']['nombre_usuario'] %}

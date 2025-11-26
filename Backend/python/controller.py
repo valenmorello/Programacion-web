@@ -123,27 +123,32 @@ def ejecutar_transferencia(request):
         
         myrequest={}
         getRequest(myrequest)
+        print("hola")
+
         if existe_usuario(myrequest['usuarioDestino']):
-            id = session['id_usuario']
+
+            print (myrequest['usuarioDestino'])
+
+            id = session['id_usuario'] 
             id_receptor = find_id(myrequest['usuarioDestino'])
-            fecha = session['time']
             saldo = saldoactual(id)
             monto = myrequest['monto']
             motivo = myrequest['motivo']
+            fecha = datetime.now()
 
-            if saldo > monto:
+            if saldo >= monto:
                 if carga_transferencia(id, id_receptor, monto, motivo, fecha) != None: 
                     dicUsuario = {}
                     actualizar_sesion(dicUsuario, id)
                     cargarSesion(dicUsuario)
 
-                    res = transferir(None, "¡Transferencia Exitosa!")
+                    res = transferir(error="¡Transferencia Exitosa!")
                 else: 
-                    res = transferir(None, "Hubo un error cn la transferencia") #hizo rollback
+                    res = transferir(error="Hubo un error cn la transferencia") #hizo rollback
             else:
-                res = transferir(None, "SALDO INSUFICIENTE")
+                res = transferir(error="SALDO INSUFICIENTE")
         else:
-            res = transferir(None, "USUARIO INVALIDO")
+            res = transferir(error="USUARIO INVALIDO")
 
         return res
 
