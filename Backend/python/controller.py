@@ -127,8 +127,8 @@ def ejecutar_transferencia(request):
         if existe_usuario(myrequest['usuarioDestino']):
 
             id = session['id_usuario'] 
-            id_receptor = find_id(myrequest['usuarioDestino'])[0][0]  #preguntar a los chicos
-            saldo = saldoactual(id)[0][0]
+            id_receptor = find_id(myrequest['usuarioDestino'])  #preguntar a los chicos
+            saldo = saldoactual(id)
             monto = int(myrequest['monto'])
             motivo = myrequest['motivo']
             fecha = datetime.now()
@@ -137,11 +137,10 @@ def ejecutar_transferencia(request):
 
             if saldo >= monto:
                 if carga_transferencia(id, id_receptor, monto, motivo, fecha) != None: 
-                    dicUsuario = {}
-                    actualizar_sesion(dicUsuario, id)
-                    cargarSesion(dicUsuario)
-
+                    
+                    session['saldo'] = saldoactual(id)
                     res = transferir(error="¡Transferencia Exitosa!")
+
                 else: 
                     res = transferir(error="Hubo un error con la transferencia") #hizo rollback
             else:
@@ -169,25 +168,19 @@ def validarusuario(request):
 
 def cambiardatos(param, request):
     if haySesion():
-        nombreviejo = session['nombre']  
-        apeviejo = session['apellido']
+
         id = session['id_usuario']
-
         myrequest={}
-        try:         
-            getRequest(myrequest)
+        getRequest(myrequest)
 
-            if myrequest.get('nombreNuevo') != "" :
-                modificarnombre(id, myrequest.get('nombreNuevo'))
-                myrequest['nombreNuevo'] = session['nombre']
+        if myrequest.get('nombreNuevo') != "" :
+            modificarnombre(id, myrequest.get('nombreNuevo'))
+            myrequest['nombreNuevo'] = session['nombre']
 
-            if myrequest.get('apellidoNuevo') != "" :
-                modificarapellido(id, myrequest.get('apellidoNuevo'))
-                myrequest['apellidoNuevo'] = session['apellido']
+        if myrequest.get('apellidoNuevo') != "" :
+            modificarapellido(id, myrequest.get('apellidoNuevo'))
+            myrequest['apellidoNuevo'] = session['apellido']
 
-        except ValueError:                              
-            pass
-            
     return cuenta()
 
 # ---------------------------------------------------------------

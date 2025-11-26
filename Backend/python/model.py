@@ -32,31 +32,7 @@ def existe_usuario (nombre_usuario):
     else:
         res = False
 
-    return res
-
-def actualizar_sesion(dic, id):
-    res=False
-    sQuery="""
-    SELECT * FROM  usuarios WHERE  id=%s"""
-    val=(id,)
-
-    mydb = conectarDB(BASE)
-    fila = consultarDB(mydb,sQuery,val)
-    cerrarDB(mydb)
-
-    if fila!=[]:
-        res=True
-        dic['id']=fila[0][0]
-        dic['nombre']=fila[0][1]
-        dic['apellido']=fila[0][2]
-        dic['codfam']=fila[0][3] 
-        dic['es_padre']=fila[0][4]
-        dic['saldo']= fila[0][5]
-        dic['contrasenia']=fila[0][6]
-        dic['nombre_usuario']=fila[0][7]
-        dic['admitido']=fila[0][8]
-        dic['img']=fila[0][9]
-    return res   
+    return res  
  
 # ------ VALIDAR LOGIIIINNNNNN ---------------
 
@@ -84,7 +60,6 @@ def validar_login (dic, username, password):
         dic['img']=fila[0][9]
 
     return res    
-
 
 # --------- REGISTROOOO -------------------
 
@@ -184,13 +159,16 @@ def carga_transferencia(id, id_receptor, monto, motivo, fecha):
 
     return res #retorna las filas afectadas
 
-
 def saldoactual(id):
     sQuery="SELECT saldo FROM usuarios WHERE id=%s"
     val = (id,)
     mydb = conectarDB(BASE)
     res = consultarDB(mydb,sQuery,val)
     cerrarDB(mydb)
+
+    if res != None:
+        res = res[0][0] #para saarlo de la lsta de tuplas
+
     return res
 
 def find_id (nombre_usuario,):
@@ -199,6 +177,10 @@ def find_id (nombre_usuario,):
     mydb = conectarDB(BASE)
     res = consultarDB(mydb,sQuery,val)
     cerrarDB(mydb)
+
+    if res != None:
+        res = res[0][0] #para saarlo de la lsta de tuplas
+        
     return res
 
 
