@@ -132,7 +132,11 @@ def ejecutar_transferencia(request):
             motivo = myrequest['motivo']
 
             if saldo > monto:
-                if carga_transferencia(id, id_receptor, monto, motivo, fecha) != None: #habrria que agregar aca para que actualice la sesion una funcion nueva
+                if carga_transferencia(id, id_receptor, monto, motivo, fecha) != None: 
+                    dicUsuario = {}
+                    actualizar_sesion(dicUsuario, id)
+                    cargarSesion(dicUsuario)
+
                     res = transferir(None, "¡Transferencia Exitosa!")
                 else: 
                     res = transferir(None, "Hubo un error cn la transferencia") #hizo rollback

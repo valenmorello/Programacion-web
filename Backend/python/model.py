@@ -29,6 +29,30 @@ def existe_usuario (nombre_usuario):
 
     return len(res) > 0
 
+def actualizar_sesion(dic, id):
+    res=False
+    sQuery="""
+    SELECT * FROM  usuarios WHERE  id=%s"""
+    val=(id)
+
+    mydb = conectarDB(BASE)
+    fila = consultarDB(mydb,sQuery,val)
+    cerrarDB(mydb)
+
+    if fila!=[]:
+        res=True
+        dic['id']=fila[0][0]
+        dic['nombre']=fila[0][1]
+        dic['apellido']=fila[0][2]
+        dic['codfam']=fila[0][3] 
+        dic['es_padre']=fila[0][4]
+        dic['saldo']= fila[0][5]
+        dic['contrasenia']=fila[0][6]
+        dic['nombre_usuario']=fila[0][7]
+        dic['admitido']=fila[0][8]
+        dic['img']=fila[0][9]
+    return res   
+ 
 # ------ VALIDAR LOGIIIINNNNNN ---------------
 
 def validar_login (dic, username, password):
@@ -89,7 +113,6 @@ def registro(nombre, apellido, codfam, es_padre, contrasenia, nombre_usuario, im
             res = ejecutarDB(mydb, sQuery,val)
             cerrarDB(mydb)  
     return res
-
 
 #--------  MODIFICAR DATOS ----------------------------
 
