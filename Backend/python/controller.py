@@ -123,18 +123,17 @@ def ejecutar_transferencia(request):
         
         myrequest={}
         getRequest(myrequest)
-        print("hola")
 
         if existe_usuario(myrequest['usuarioDestino']):
 
-            print (myrequest['usuarioDestino'])
-
             id = session['id_usuario'] 
             id_receptor = find_id(myrequest['usuarioDestino'])
-            saldo = saldoactual(id)
-            monto = myrequest['monto']
+            saldo = saldoactual(id)[0][0]
+            monto = int(myrequest['monto'])
             motivo = myrequest['motivo']
             fecha = datetime.now()
+
+            print(id, id_receptor, saldo, monto, motivo, fecha)
 
             if saldo >= monto:
                 if carga_transferencia(id, id_receptor, monto, motivo, fecha) != None: 
