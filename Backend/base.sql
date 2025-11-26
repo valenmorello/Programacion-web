@@ -12,6 +12,9 @@ SELECT * FROM actividades
 SELECT * FROM solicitudes
 
 
+SHOW TABLE STATUS WHERE Name = 'usuario';
+
+
 INSERT INTO `usuarios` (`id`, `nombres`, `apellido`, `codigo_Familiar`, `es_padre`, `saldo`,  `contrasenia`, `nombre_usuario`, `admitido`, `img`) 
 VALUES (Null, 'Tomas', 'Maraval', 123456, True, 100000, 'AguanteCentral1!', 'tomimaraval', True, 'foto.jpg');
 

@@ -127,7 +127,7 @@ def ejecutar_transferencia(request):
         if existe_usuario(myrequest['usuarioDestino']):
 
             id = session['id_usuario'] 
-            id_receptor = find_id(myrequest['usuarioDestino'])
+            id_receptor = find_id(myrequest['usuarioDestino'])[0][0]  #preguntar a los chicos
             saldo = saldoactual(id)[0][0]
             monto = int(myrequest['monto'])
             motivo = myrequest['motivo']
@@ -143,7 +143,7 @@ def ejecutar_transferencia(request):
 
                     res = transferir(error="¡Transferencia Exitosa!")
                 else: 
-                    res = transferir(error="Hubo un error cn la transferencia") #hizo rollback
+                    res = transferir(error="Hubo un error con la transferencia") #hizo rollback
             else:
                 res = transferir(error="SALDO INSUFICIENTE")
         else:
@@ -151,9 +151,7 @@ def ejecutar_transferencia(request):
 
         return res
 
-
 # ----------------------------------------------------------
-
 
 def validarusuario(request):
     if crearSesion(request):
@@ -190,7 +188,7 @@ def cambiardatos(param, request):
         except ValueError:                              
             pass
             
-    return cuenta(param)
+    return cuenta()
 
 # ---------------------------------------------------------------
 # Funciones de sesion

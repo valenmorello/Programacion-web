@@ -25,7 +25,7 @@ def route (app):
     
     
     @app.route('/actividad')
-    @app.route('/actividad/<int:id_hijo>')
+    @app.route('/actividad/<id_hijo>')
     def pag_actividad(id_hijo=None):
         return actividad(id_hijo)
     
@@ -46,7 +46,7 @@ def route (app):
     def pag_notificaciones():
         return notificaciones()
     
-    @app.route('/hijo/<int:id_hijo>')
+    @app.route('/hijo/<id_hijo>')
     def pag_padre2(id_hijo):
         return padre2(id_hijo)
     
@@ -63,7 +63,7 @@ def route (app):
         return solicitar()
     
     @app.route('/transferir')
-    @app.route('/transferir/<int:id_hijo>')
+    @app.route('/transferir/<id_hijo>')
     def pag_transferir(id_hijo=None):
         return transferir(id_hijo)
     

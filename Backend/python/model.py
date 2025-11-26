@@ -38,7 +38,7 @@ def actualizar_sesion(dic, id):
     res=False
     sQuery="""
     SELECT * FROM  usuarios WHERE  id=%s"""
-    val=(id)
+    val=(id,)
 
     mydb = conectarDB(BASE)
     fila = consultarDB(mydb,sQuery,val)
@@ -139,25 +139,51 @@ def modificarapellido(id, nuevoape):
 
 
 # ---- PLATA ---------------------------------------
+''' (aclaracion de feli) Esta funcion esta hecha diferente a las otras.  
+    Como estamos haciendo una transaccion, si hay un error en algun momento con la base de datos
+    necesito que haga rollback de los 3 comandos (update, update e insert), porque no puede sumarse
+    la plata a uno y que no se le reste al otro. Para eso necesito varios execute con
+    un solo commit. Por eso no me sirve usar ejecutarBD()
+    
+    mydb.start_transaction() --> “A partir de este momento, todas las consultas que hagas
+    van a estar agrupadas en una sola operación atómica, hasta que hagas un commit() o un rollback().”
+    '''
 
 def carga_transferencia(id, id_receptor, monto, motivo, fecha):
-    sQuery ="""
-        UPDATE usuario SET saldo = saldo - %s WHERE id=%s
-        UPDATE usuario SET saldo = saldo + %s WHERE id=%s
-
-        INSERT INTO actividades
-        (id, emisor, receptor, motivo, fecha, monto)
-        VALUES
-        (%s,%s,%s,%s,%s,%s,) """
-
-    val = (monto, id, monto, id_receptor, 'Null', id, id_receptor, motivo, fecha, monto)
-        
+    
     mydb=conectarDB(BASE)
-    res=ejecutarDB(mydb,sQuery,val)      
-    cerrarDB(mydb)
 
-    return res
-             
+    res = None
+    try:
+        mycursor = mydb.cursor()
+        mydb.start_transaction()
+
+        mycursor.execute(
+            "UPDATE usuarios SET saldo = saldo - %s WHERE id=%s",
+            (monto, id)
+        )
+        mycursor.execute(
+            "UPDATE usuarios SET saldo = saldo + %s WHERE id=%s",
+            (monto, id_receptor)
+        )
+        mycursor.execute("""
+            INSERT INTO actividades
+            (id, emisor, receptor, motivo, fecha, monto)
+            VALUES (%s,%s,%s,%s,%s,%s)""",
+            ('Null', id, id_receptor, motivo, fecha, monto))
+
+        mydb.commit()
+        res = mycursor.lastrowid
+
+    except mysql.connector.Error as e:
+        mydb.rollback()
+        print("ERROR ->",e) 
+
+    finally:   
+        cerrarDB(mydb)
+
+    return res #retorna las filas afectadas
+
 
 def saldoactual(id):
     sQuery="SELECT saldo FROM usuarios WHERE id=%s"

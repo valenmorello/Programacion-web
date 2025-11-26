@@ -62,3 +62,5 @@ def ejecutarDB(mydb,sQuery="",val=None):
 
 
 #FLASK, Direcciones locales
+
+
