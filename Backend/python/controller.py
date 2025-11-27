@@ -28,8 +28,8 @@ def login(param):
     return render_template('index.html', param=param)
 
 
-def registro():
-    return render_template('registro.html')
+def registro(param):
+    return render_template('registro.html', param=param)
 
 
 def inicio(): #hijos
@@ -164,7 +164,7 @@ def validar_login(request):
 
 # ---------------- REGISTRO ------------------------------------------
 
-def registrarse(request):
+def registrarse(request):   # ESTO HABRIA QUE CAMBIARLOCON AYJAX
     myrequest={}
     getRequest(myrequest)    
 
@@ -190,18 +190,28 @@ def registrarse(request):
 
         diResult = {}
         upload_file(diResult)
+        print(diResult)
+        print(diResult)
+        print(diResult)
+        print(diResult)
         if diResult['imagen']['file_error']==False:
             img = diResult['imagen']['file_name_new']
         else:
             img = ''
 
         if registrar_usuario_nuevo(nombre, apellido, codfam, es_padre, contrasenia, nombre_usuario, admitido, img) != None:
-            validar_registro (nombre_usuario, contrasenia)
+            res = validar_registro (nombre_usuario, contrasenia)
 
         else:
+            param = {}
+            param['error']="ERROR. intentelo nuevamente" # ESTO HABRIA QUE CAMBIARLOCON AYJAX
+            res = registro(param)
 
     else:
-        pass #ya existe ese nombre no sirve
+        param = {}
+        param['error']="Usuario existente" # ESTO HABRIA QUE CAMBIARLOCON AYJAX
+        res = registro(param)
+    return res
 
 def validar_registro(nombre_usuario, contrasenia):
     dicUsuario = {}
@@ -212,6 +222,7 @@ def validar_registro(nombre_usuario, contrasenia):
         res = iniciopadre()
     elif session['rol'] == 0:
         res = pendiente()
+    return res
 
 # ----------------- Cambiar datos------------------------------------------
 
@@ -278,7 +289,7 @@ def upload_file (diResult) :
         for key in request.files.keys():  
             diResult[key]={} 
             diResult[key]['file_error']=False            
-            
+
             f = request.files[key] 
             if f.filename!="":     
                 #filename_secure = secure_filename(f.filename)

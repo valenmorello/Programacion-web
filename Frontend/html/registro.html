@@ -1,3 +1,4 @@
+<!--onclick="validarRegistro(event)"-->
 <html>
     <head>
         <meta charset="UTF-8">
@@ -13,13 +14,16 @@
                 <h1>BIENVENIDO</h1>
                 <h1>REGISTRO</h1>
             </section>
-            <form name="registro" onsubmit="return validarRegistro(event)" action="/signup" method="post">
+            <form name="registro" action="/signup" method="POST" enctype="multipart/form-data">
                 <select class="select" name="select" id="select">
                         <option value="padre"> <p>PADRE</p></option>
                         <option value="hijo"> <P>HIJO</P></option>
                 </select><br>
                 <div class="datos">
                     <input type="text" class="input-datos" name="usuario" id="usuario" placeholder="Ingrese usuario">
+                    {% if param['error'] %}
+                    <span>{{param['error']}}</span>
+                    {% endif %}
                     <span id="errorUser"></span>
                     <input type="text" class="input-datos" name="nombre" id="nombre" placeholder="Ingrese su nombre">
                     <span id="errorNom"></span>
@@ -40,9 +44,16 @@
                 </div>
                 
                 <div class="acciones">
-                    <button type="submit" class="button">Crear usuario</button>
+                    <button type="submit" class="button" >Crear usuario</button>
                 </div>
             </form>
+        </section>
+        
+        <section class="log">
+            <div class="acciones">
+                <p>¿Ya tenes una cuenta?</p>
+                <button class="button" onclick="location.href='/login'">Log in</button>
+            </div>
         </section>
         
         <script src="../static/dom.js"></script>

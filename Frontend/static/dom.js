@@ -88,14 +88,12 @@ function validarRegistro (event){
     }
 
     if(document.forms['registro']['select'].value == "hijo"){
-        window.location.replace('/pendiente')
         localStorage.setItem('user', user)            
         localStorage.setItem('code', code)
         localStorage.setItem('padre', false)
         return true
     }
     else if (document.forms['registro']['select'].value == "padre"){        
-        window.location.replace('/inicioPadre')
         localStorage.setItem('user', user)
         localStorage.setItem('code', code)            
         localStorage.setItem('padre', true)

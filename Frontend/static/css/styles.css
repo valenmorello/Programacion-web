@@ -15,9 +15,6 @@ body {
   flex-direction: column;
   color: #1a237e;
 }
-html, body {
-  height: 100%;
-}
 
 body {
   display: flex;
@@ -42,7 +39,7 @@ h1 {
   width: 90%;
   max-width: 400px;
   text-align: center;
-  margin-top: 5%;
+  margin-top: 3%;
 }
 
 .log:hover {
@@ -53,7 +50,6 @@ h1 {
 .titulo {
   font-family: "Poppins", sans-serif;
   color: #000852;
-  font-size: 1.8rem;
   margin-bottom: 20px;
   font-weight: 600;
 }
@@ -107,16 +103,21 @@ h1 {
 }
 
 
-
 .acciones button:hover {
   box-shadow: 0 8px 15px rgba(0, 8, 82, 0.3);
   opacity: 0.95;
 }
 
-
+.acciones p{
+  font-family: "Poppins", sans-serif;
+  color: #000852;
+  font-size: 1.3rem;
+  margin: 15px;
+}
 
 .select {
   padding: 10px;
+  margin: 10px;
   background-color: #000852;
   border-radius: 10px;
   font-size: 1rem;
