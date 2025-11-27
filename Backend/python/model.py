@@ -27,11 +27,6 @@ def existe_usuario (nombre_usuario):
     res = consultarDB(mydb,sQuery,val)
     cerrarDB(mydb)
 
-    if res!= None:
-        res = True
-    else:
-        res = False
-
     return res  
  
 # ------ VALIDAR LOGIIIINNNNNN ---------------
@@ -178,8 +173,7 @@ def find_id (nombre_usuario,):
     res = consultarDB(mydb,sQuery,val)
     cerrarDB(mydb)
 
-    if res != None:
-        res = res[0][0] #para saarlo de la lsta de tuplas
+     #para saarlo de la lsta de tuplas
         
     return res
 
@@ -247,4 +241,6 @@ def encontrar_hijos(codfam):
 
         # me termina quedando un diccionario de diccionarios
     return diccionario_hijos
+
+# ------- pruebas -----
 

@@ -123,17 +123,20 @@ def ejecutar_transferencia(request):
         
         myrequest={}
         getRequest(myrequest)
+        
+        id_receptor = find_id(myrequest['usuarioDestino'])
 
-        if existe_usuario(myrequest['usuarioDestino']):
+        if id_receptor != [] and id_receptor != None: # [] es que no existe y none si hubo un error con conectDB()
+            
+            id_receptor = id_receptor[0][0]
 
             id = session['id_usuario'] 
-            id_receptor = find_id(myrequest['usuarioDestino'])  #preguntar a los chicos
             saldo = saldoactual(id)
+
             monto = int(myrequest['monto'])
             motivo = myrequest['motivo']
             fecha = datetime.now()
 
-            print(id, id_receptor, saldo, monto, motivo, fecha)
 
             if saldo >= monto:
                 if carga_transferencia(id, id_receptor, monto, motivo, fecha) != None: 
