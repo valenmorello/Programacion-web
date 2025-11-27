@@ -71,7 +71,6 @@ def route (app):
     #get se ve, post no. get manda menos info.
     #archivos y contraseñas con post
 
-    # ESTO NO ANDA Y NO SE PORQUE
 
     @app.route('/signin', methods =["GET", "POST"])
     def signin(): 

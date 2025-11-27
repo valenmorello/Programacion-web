@@ -126,17 +126,13 @@ def ejecutar_transferencia(request):
         
         id_receptor = find_id(myrequest['usuarioDestino'])
 
-        if id_receptor != [] and id_receptor != None: # [] es que no existe y none si hubo un error con conectDB()
-            
-            id_receptor = id_receptor[0][0]
+        if id_receptor != []: # [] es que no existe y none si hubo un error con conectDB()
 
             id = session['id_usuario'] 
             saldo = saldoactual(id)
-
             monto = int(myrequest['monto'])
             motivo = myrequest['motivo']
             fecha = datetime.now()
-
 
             if saldo >= monto:
                 if carga_transferencia(id, id_receptor, monto, motivo, fecha) != None: 
@@ -224,6 +220,53 @@ def cerrarSesion():
         pass
 
 # -------------------------------------------------------------------------------------------
+# ---------------------- Manejo de subida de datos ---------------------------
+
+def upload_file (diResult) :
+    UPLOAD_EXTENSIONS = ['.jpg', '.png', '.gif']
+    MAX_CONTENT_LENGTH = 1024 * 1024     
+    if request.method == 'POST' :         
+        for key in request.files.keys():  
+            diResult[key]={} 
+            diResult[key]['file_error']=False            
+            
+            f = request.files[key] 
+            if f.filename!="":     
+                #filename_secure = secure_filename(f.filename)
+                file_extension=str(os.path.splitext(f.filename)[1])
+                filename_unique = uuid4().__str__() + file_extension
+                path_filename=os.path.join( config['upload_folder'] , filename_unique)
+                # Validaciones
+                if file_extension not in UPLOAD_EXTENSIONS:
+                    diResult[key]['file_error']=True
+                    diResult[key]['file_msg']='Error: No se admite subir archivos con extension '+file_extension
+                if os.path.exists(path_filename):
+                    diResult[key]['file_error']=True
+                    diResult[key]['file_msg']='Error: el archivo ya existe.'
+                    diResult[key]['file_name']=f.filename
+                try:
+                    if not diResult[key]['file_error']:
+                        diResult[key]['file_error']=True
+                        diResult[key]['file_msg']='Se ha producido un error.'
+
+                        f.save(path_filename)   
+                        diResult[key]['file_error']=False
+                        diResult[key]['file_name_new']=filename_unique
+                        diResult[key]['file_name']=f.filename
+                        diResult[key]['file_msg']='OK. Archivo cargado exitosamente'
+ 
+                except:
+                        pass
+            else:
+                diResult[key]={} # viene vacio el input del file upload
+
+    # si existe el archivo devuelve True
+    # os.path.exists(os.path.join('G:\\directorio\\....\\uploads',"agua.png"))
+
+    # borrar un archivo
+    # os.remove(os.path.join('G:\\directorio\\.....\\uploads',"agua.png"))
+
+# ---------------------------------------------------------------
 
 #Esta funcion carga el request hecho en el navegador 
 # y lo convierte en un diccionario 

@@ -18,16 +18,6 @@ def buscar_por_id(id):
         dic['img']=fila[0][9]
 
     return dic
-
-def existe_usuario (nombre_usuario):
-    sQuery="""
-        SELECT * FROM usuarios WHERE nombre_usuario = %s"""
-    val = (nombre_usuario,)
-    mydb = conectarDB(BASE)
-    res = consultarDB(mydb,sQuery,val)
-    cerrarDB(mydb)
-
-    return res  
  
 # ------ VALIDAR LOGIIIINNNNNN ---------------
 
@@ -107,7 +97,6 @@ def modificarapellido(id, nuevoape):
     cerrarDB(mydb)
     return res
 
-
 # ---- PLATA ---------------------------------------
 ''' (aclaracion de feli) Esta funcion esta hecha diferente a las otras.  
     Como estamos haciendo una transaccion, si hay un error en algun momento con la base de datos
@@ -167,13 +156,14 @@ def saldoactual(id):
     return res
 
 def find_id (nombre_usuario,):
-    sQuery="SELECT id FROM usuarios WHERE nombre_usuario=%s"
+    sQuery="SELECT id FROM usuarios WHERE nombre_usuario=%s AND admitido=1"
     val = (nombre_usuario,)
     mydb = conectarDB(BASE)
     res = consultarDB(mydb,sQuery,val)
     cerrarDB(mydb)
 
-     #para saarlo de la lsta de tuplas
+    if res != [] and res != None:
+        res = res[0][0]   #para saarlo de la lsta de tuplas
         
     return res
 
@@ -220,7 +210,7 @@ def tabla_actividad(id):
 # devuelve una lista de tuplas, cada elemento de la lista es un hijo. 
 
 def encontrar_hijos(codfam):
-    sQuery="SELECT * FROM usuarios WHERE codigo_Familiar=%s and es_padre=0 and admitido=1"
+    sQuery="SELECT id, nombres, img FROM usuarios WHERE codigo_Familiar=%s and es_padre=0 and admitido=1"
     val = (codfam,)
     mydb = conectarDB(BASE)
     lista = consultarDB(mydb,sQuery,val) #lista de tuplas
@@ -228,15 +218,11 @@ def encontrar_hijos(codfam):
 
     #transformarlo en un diccionario para que sea mas facil
     # evito algunos datos porque no me sirven
-
     diccionario_hijos= {}
     for hijo in lista: #creo un diccionario donde el id de cada hijo es la key
         diccionario_hijos[hijo[0]] = {
             'nombre':hijo[1],
-            'apellido':hijo[2],
-            'saldo':hijo[5],
-            'usuario':hijo[7],
-            'img':hijo[9],
+            'img':hijo[2],
         } 
 
         # me termina quedando un diccionario de diccionarios
