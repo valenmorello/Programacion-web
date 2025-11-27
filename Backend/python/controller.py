@@ -149,9 +149,9 @@ def ejecutar_transferencia(request):
 
         return res
 
-# ----------------------------------------------------------
+# ---------------- Log in ------------------------------------------
 
-def validarusuario(request):
+def validar_login(request):
     if crearSesion(request):
         if session['rol'] == 1:
             res = iniciopadre()
@@ -160,10 +160,52 @@ def validarusuario(request):
     else:
         param={}
         param['error_login']="Error: Usuario y/o password inválidos"
-        res = login(param)
-    return res         
+        res = login()
+    return res  
 
-# -----------------------------------------------------------
+# ---------------- Sign in ------------------------------------------
+
+def registrarse(request):
+    myrequest={}
+    getRequest(myrequest)    
+
+    res = None
+    if not (existe_nombre_usuario(myrequest['usuario'])):  # no se pueden usuaros repe
+
+        if myrequest['select'] == 'padre':
+            es_padre = 1
+            admitido = 1
+            codfam = random.randint(100000, 999999)
+            while existe_codfam(codfam):
+                codfam = random.randint(100000, 999999)
+
+        elif myrequest['select'] == 'hijo':
+            es_padre = 0
+            admitido = 0
+            codfam = myrequest['codigoFamiliar']
+
+        nombre = myrequest['nombre']
+        apellido = myrequest['apellido']
+        nombre_usuario = myrequest['usuario']
+        contrasenia = myrequest['contrasenia']
+
+        diResult = {}
+        upload_file(diResult)
+        if diResult['imagen']['file_error']==False:
+            img = diResult['imagen']['file_name_new']
+        else:
+            img = ''
+
+        if registrar_usuario_nuevo(nombre, apellido, codfam, es_padre, contrasenia, nombre_usuario, admitido, img) != None:
+            cargarSesion
+
+
+
+    else:
+        pass #ya existe ese nombre no sirve
+
+
+# ----------------- Cambiar datos------------------------------------------
 
 def cambiardatos(param, request):
     if haySesion():
@@ -203,7 +245,7 @@ def crearSesion(request):
     try:         
         getRequest(myrequest)
         dicUsuario={}
-        if validar_login(dicUsuario,myrequest.get("usuario"),myrequest.get("contrasenia")):
+        if validar_usuario(dicUsuario,myrequest.get("usuario"),myrequest.get("contrasenia")):
             cargarSesion(dicUsuario)
             sesionValida = True
     except ValueError:                              
@@ -219,7 +261,6 @@ def cerrarSesion():
     except:
         pass
 
-# -------------------------------------------------------------------------------------------
 # ---------------------- Manejo de subida de datos ---------------------------
 
 def upload_file (diResult) :

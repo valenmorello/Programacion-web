@@ -21,7 +21,7 @@ def buscar_por_id(id):
  
 # ------ VALIDAR LOGIIIINNNNNN ---------------
 
-def validar_login (dic, username, password):
+def validar_usuario (dic, username, password):
     res=False
     sQuery="""
     SELECT * FROM  usuarios WHERE  nombre_usuario=%s and contrasenia=%s;"""
@@ -55,28 +55,40 @@ def existe_codfam (codfam):
     mydb = conectarDB(BASE)
     res = consultarDB(mydb,sQuery,val)
     cerrarDB(mydb)
+    
+    if res == [] or res == None:
+        res = False
+    else:
+        res = True
 
-    return len(res) > 0
+    return res
 
-def registro(nombre, apellido, codfam, es_padre, contrasenia, nombre_usuario, img, admitido=0, saldo=0):
-    res = None
-    if not existe_usuario(nombre_usuario):  
-        if es_padre == 1:
-            admitido = 1
+def existe_nombre_usuario (codfam):
+    sQuery="""
+        SELECT nombre_usuario FROM usuarios WHERE nombre_usuario = %s """
+    val = (codfam,)
+    mydb = conectarDB(BASE)
+    res = consultarDB(mydb,sQuery,val)
+    cerrarDB(mydb)
 
-            codfam = random.randint(100000, 999999)
-            while existe_codfam(codfam):
-                codfam = random.randint(100000, 999999)
+    if res == [] or res == None:
+        res = False
+    else:
+        res = True
+    return res
 
-            sQuery="""
-            INSERT INTO usuarios
-            (id, nombres, apellido, codigo_Familiar, es_padre, saldo, contrasenia, nombre_usuario, admitido, img)
-            VALUES
-            (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)"""
-            val = (None, nombre, apellido, codfam, es_padre, saldo, contrasenia, nombre_usuario, admitido, img,)
-            mydb = conectarDB(BASE)
-            res = ejecutarDB(mydb, sQuery,val)
-            cerrarDB(mydb)  
+def registrar_usuario_nuevo(nombre, apellido, codfam, es_padre, contrasenia, nombre_usuario, admitido, img):
+
+    sQuery="""
+        INSERT INTO usuarios
+        (id, nombres, apellido, codigo_Familiar, es_padre, saldo, contrasenia, nombre_usuario, admitido, img)
+        VALUES
+        (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)"""
+    val = ('Null', nombre, apellido, codfam, es_padre, 0, contrasenia, nombre_usuario, admitido, img,)
+    mydb = conectarDB(BASE)
+    res = ejecutarDB(mydb, sQuery,val)
+    cerrarDB(mydb)  
+
     return res
 
 #--------  MODIFICAR DATOS ----------------------------
@@ -98,6 +110,7 @@ def modificarapellido(id, nuevoape):
     return res
 
 # ---- PLATA ---------------------------------------
+
 ''' (aclaracion de feli) Esta funcion esta hecha diferente a las otras.  
     Como estamos haciendo una transaccion, si hay un error en algun momento con la base de datos
     necesito que haga rollback de los 3 comandos (update, update e insert), porque no puede sumarse
@@ -203,7 +216,6 @@ def tabla_actividad(id):
             transacciones.append(dic)
 
     return transacciones 
-
 
 # ------ HIJOOOOOOSSSSSSS -----------------------------------------------------------
 

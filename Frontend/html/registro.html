@@ -13,7 +13,7 @@
                 <h1>BIENVENIDO</h1>
                 <h1>REGISTRO</h1>
             </section>
-            <form name="registro" onsubmit="return validarRegistro(event)" action="">
+            <form name="registro" onsubmit="return validarRegistro(event)" action="/signup" method="post">
                 <select class="select" name="select" id="select">
                         <option value="padre"> <p>PADRE</p></option>
                         <option value="hijo"> <P>HIJO</P></option>
@@ -27,7 +27,7 @@
                     <span id="errorApe"></span>
                     <input type="number" class="input-datos" name="codigoFamiliar" id="codigoFamiliar" placeholder="Ingrese codigo familiar" style="display: none;">
                     <span id="errorCode"></span>
-                    <input type="password" class="input-datos" name="contraseña" id="contraseña" placeholder="Ingrese contraseña">
+                    <input type="password" class="input-datos" name="contrasenia" id="contraseña" placeholder="Ingrese contraseña">
                     <span id="errorPass"></span>
                     <div class="datos" id="confirm-container" style="display: none;">
                         <input type="password" class="input-datos" name="confirmar" id="confirmar" placeholder="Confirmar contraseña">

@@ -74,12 +74,11 @@ def route (app):
 
     @app.route('/signin', methods =["GET", "POST"])
     def signin(): 
-        return validarusuario(request)
+        return validar_login(request)
     
     @app.route('/signup', methods =["GET", "POST"])
     def signup(): 
-        param={}
-        return validarusuario(param, request)
+        return registrarse(request)
     
     @app.route('/modificardatos', methods =["GET", "POST"])
     def modificar(): 
