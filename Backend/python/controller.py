@@ -24,8 +24,7 @@ def diccionario_sesion():
 
 #-------------- Localizacion de paginas y carga de parametros -----------------------------------------
 
-def login():
-    param={}
+def login(param):
     return render_template('index.html', param=param)
 
 
@@ -149,7 +148,7 @@ def ejecutar_transferencia(request):
 
         return res
 
-# ---------------- Log in ------------------------------------------
+# ---------------- LOG IN ------------------------------------------
 
 def validar_login(request):
     if crearSesion(request):
@@ -160,10 +159,10 @@ def validar_login(request):
     else:
         param={}
         param['error_login']="Error: Usuario y/o password inválidos"
-        res = login()
+        res = login(param)
     return res  
 
-# ---------------- Sign in ------------------------------------------
+# ---------------- REGISTRO ------------------------------------------
 
 def registrarse(request):
     myrequest={}
@@ -197,13 +196,22 @@ def registrarse(request):
             img = ''
 
         if registrar_usuario_nuevo(nombre, apellido, codfam, es_padre, contrasenia, nombre_usuario, admitido, img) != None:
-            cargarSesion
+            validar_registro (nombre_usuario, contrasenia)
 
-
+        else:
 
     else:
         pass #ya existe ese nombre no sirve
 
+def validar_registro(nombre_usuario, contrasenia):
+    dicUsuario = {}
+    validar_usuario(dicUsuario, nombre_usuario, contrasenia)
+    cargarSesion(dicUsuario)
+
+    if session['rol'] == 1:
+        res = iniciopadre()
+    elif session['rol'] == 0:
+        res = pendiente()
 
 # ----------------- Cambiar datos------------------------------------------
 

@@ -11,8 +11,9 @@ def route (app):
     @app.route('/')
     @app.route('/login')
     def pag_login():
+        param ={}
         cerrarSesion()
-        return login()
+        return login(param)
  
     @app.route('/registro')
     def pag_registro():
