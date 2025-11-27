@@ -20,10 +20,10 @@
                         <option value="hijo"> <P>HIJO</P></option>
                 </select><br>
                 <div class="datos">
-                    <input type="text" class="input-datos" name="usuario" id="usuario" placeholder="Ingrese usuario">
-                    {% if param['error'] %}
+                    {% if param['error'] != None %}
                     <span>{{param['error']}}</span>
                     {% endif %}
+                    <input type="text" class="input-datos" name="usuario" id="usuario" placeholder="Ingrese usuario">
                     <span id="errorUser"></span>
                     <input type="text" class="input-datos" name="nombre" id="nombre" placeholder="Ingrese su nombre">
                     <span id="errorNom"></span>

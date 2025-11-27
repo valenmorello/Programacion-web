@@ -211,6 +211,7 @@ def registrarse(request):   # ESTO HABRIA QUE CAMBIARLOCON AYJAX
         param = {}
         param['error']="Usuario existente" # ESTO HABRIA QUE CAMBIARLOCON AYJAX
         res = registro(param)
+        
     return res
 
 def validar_registro(nombre_usuario, contrasenia):
