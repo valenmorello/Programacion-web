@@ -19,6 +19,7 @@ def diccionario_sesion():
     param['nombre'] = session.get('nombre')
     param['apellido'] = session.get('apellido')
     param['saldo'] = session.get('saldo')
+    param['img'] = session.get('imagen')
 
     return param
 
@@ -211,7 +212,7 @@ def registrarse(request):   # ESTO HABRIA QUE CAMBIARLOCON AYJAX
         param = {}
         param['error']="Usuario existente" # ESTO HABRIA QUE CAMBIARLOCON AYJAX
         res = registro(param)
-        
+
     return res
 
 def validar_registro(nombre_usuario, contrasenia):
