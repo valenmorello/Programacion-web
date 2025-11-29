@@ -63,10 +63,10 @@ def existe_codfam (codfam):
 
     return res
 
-def existe_nombre_usuario (codfam):
+def existe_nombre_usuario (nombre_usuario):
     sQuery="""
         SELECT nombre_usuario FROM usuarios WHERE nombre_usuario = %s """
-    val = (codfam,)
+    val = (nombre_usuario,)
     mydb = conectarDB(BASE)
     res = consultarDB(mydb,sQuery,val)
     cerrarDB(mydb)

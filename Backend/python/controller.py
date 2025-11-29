@@ -192,9 +192,6 @@ def registrarse(request):   # ESTO HABRIA QUE CAMBIARLOCON AYJAX
         diResult = {}
         upload_file(diResult)
         print(diResult)
-        print(diResult)
-        print(diResult)
-        print(diResult)
         if diResult['imagen']['file_error']==False:
             img = diResult['imagen']['file_name_new']
         else:
@@ -285,7 +282,7 @@ def cerrarSesion():
 # ---------------------- Manejo de subida de datos ---------------------------
 
 def upload_file (diResult) :
-    UPLOAD_EXTENSIONS = ['.jpg', '.png', '.gif']
+    UPLOAD_EXTENSIONS = ['.jpg', '.png', '.gif', '.jpeg']
     MAX_CONTENT_LENGTH = 1024 * 1024     
     if request.method == 'POST' :         
         for key in request.files.keys():  

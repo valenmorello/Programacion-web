@@ -57,10 +57,6 @@ function validarRegistro (event){
 
     let valido = true
 
-    if (user == 'existe'){
-        document.getElementById('errorUser').innerHTML = 'Usuario existente'
-        valido = false
-    }
     if (/[\d!@#$%^&*()_+\-=\[\]{};:"'\\|,.<>\/?~`]/.test(nombre)){
         document.getElementById('errorNom').innerHTML = 'Ingrese solo letras'
         valido = false

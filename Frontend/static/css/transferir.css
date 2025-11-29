@@ -60,13 +60,18 @@ header button {
   cursor: pointer;
 }
 
+#cuenta {
+  margin-right: 5%;
+}
+
 .usuario img {
-  width: 70px;
-  height: 70px;
+  width: 90px;              
+  height: auto;
   border-radius: 50%;
-  border: 2px solid #fff;
+  border: 0.5% solid white;
   object-fit: cover;
 }
+
 main {
   display: flex;
   justify-content: center;

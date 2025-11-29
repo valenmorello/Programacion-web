@@ -73,6 +73,9 @@ header button {
   align-items: center;
 }
 
+#cuenta {
+  margin-right: 5%;
+}
 
 .usuario img {
   width: 90px;              
@@ -80,7 +83,6 @@ header button {
   border-radius: 50%;
   border: 0.5% solid white;
   object-fit: cover;
-  text-align: right;
 }
 
 .section1 {
