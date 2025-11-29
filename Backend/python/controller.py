@@ -43,9 +43,13 @@ def inicio(): #hijos
    
 
 def iniciopadre(): #padres
-    param = diccionario_sesion()
-    param['hijos'] = encontrar_hijos(param['codfam']) #este elemento del diccionario es un diccionario
-    return render_template('iniciopadre.html', param=param)
+    if haySesion():
+        param = diccionario_sesion()
+        param['hijos'] = encontrar_hijos(param['codfam']) #este elemento del diccionario es un diccionario
+        res = render_template('iniciopadre.html', param=param)
+    else:
+        res = redirect('/')
+    return res
 
 
 def padre2(id_hijo):
@@ -99,11 +103,22 @@ def cuenta():
     
 
 def ingresar():
-    return render_template('ingresar.html')
+    if haySesion():
+        param = diccionario_sesion()
+        res = render_template('ingresar.html', param=param)
+    else:
+        res = redirect('/')
+    return res
+    
      
 
 def notificaciones():
-    return render_template('notificaciones.html')
+    if haySesion():
+        param = diccionario_sesion()
+        res = render_template('notificaciones.html', param=param)
+    else:
+        res = redirect('/')
+    return res
 
 
 def pendiente():
@@ -111,11 +126,21 @@ def pendiente():
     
 
 def quitar():
-    return render_template('quitar.html')
+    if haySesion():
+        param = diccionario_sesion()
+        res = render_template('quitar.html', param=param)
+    else:
+        res = redirect('/')
+    return res
     
 
 def solicitar():
-    return render_template('solicitar.html')
+    if haySesion():
+        param = diccionario_sesion()
+        res = render_template('solicitar.html', param=param)
+    else:
+        res = redirect('/')
+    return res
     
 # ----------------------Transferencias------------------------------------
 
