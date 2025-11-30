@@ -242,13 +242,15 @@ def encontrar_hijos(codfam):
     return diccionario_hijos
 
 
-def encontrar_codigo(id):
-    sQuery="SELECT codigo_familiar FROM usuarios WHERE id=%s"
-    val=(id,)
-    mydb=conectarDB(BASE)
-    codigo= consultarDB(mydb,sQuery,val)
-    codigo_familiar=codigo[0][0]
-    return codigo_familiar
+def encontrar_codigo(id_padre):
+    mydb = conectarDB(BASE)
+    sQuery = "SELECT codigo_familiar FROM usuarios WHERE id=%s"
+    val = (id_padre,)
+    codigo = consultarDB(mydb, sQuery,val)
+    cerrarDB(mydb)
+   
+
+    return codigo[0][0]
     
 def agregar_solicitud(id_hijo, monto, fecha, estado):
     
@@ -287,6 +289,10 @@ def consultar_solicitudes(id_padre):
     lista = consultarDB(mydb, sQuery, (codfam,))
     cerrarDB(mydb)
 
+    # Protección para evitar el TypeError
+    if not lista:
+        return []
+
     solicitudes = []
     for sol in lista:
         solicitudes.append({
@@ -298,21 +304,53 @@ def consultar_solicitudes(id_padre):
         })
 
     return solicitudes
+
+
 def obtener_solicitud(id_solicitud):
     mydb = conectarDB(BASE)
-    q = """
-        SELECT id_usuario, monto, estado
-        FROM solicitudes
-        WHERE id = %s
-    """
-    res = consultarDB(mydb, q, (id_solicitud,))
+    sQuery = "SELECT id_usuario, monto, estado FROM solicitudes WHERE id = %s "
+    res = consultarDB(mydb, sQuery, (id_solicitud,))
     cerrarDB(mydb)
     return res[0] if res else None
 
 def actualizar_estado_solicitud(id_solicitud, estado):
     mydb = conectarDB(BASE)
-    q = "UPDATE solicitudes SET estado = %s WHERE id = %s"
-    ejecutarDB(mydb, q, (estado, id_solicitud))
+    sQuery= "UPDATE solicitudes SET estado = %s WHERE id = %s"
+    ejecutarDB(mydb,  sQuery, (estado, id_solicitud))
+    cerrarDB(mydb)
+
+def hijos_pendientes(id_padre):
+    codfam = encontrar_codigo(id_padre)
+    if codfam is None:
+        return []
+    sQuery="SELECT id, nombre_usuario, nombres, apellido FROM usuarios WHERE codigo_Familiar = %s AND es_padre = 0 AND admitido = 0"
+    mydb = conectarDB(BASE)
+    res = consultarDB(mydb, sQuery, (codfam,))
+    cerrarDB(mydb)
+    if not res:
+        return []
+    hijos = []
+    for x in res:
+        hijos.append({
+            'id': x[0],
+            'username': x[1],
+            'nombre': x[2],
+            'apellido': x[3],
+        })
+    return hijos
+
+
+def aceptar_hijo(id_hijo):
+    query = "UPDATE usuarios SET admitido = 1 WHERE id = %s"
+    mydb = conectarDB(BASE)
+    ejecutarDB(mydb, query, (id_hijo,))
+    cerrarDB(mydb)
+
+
+def rechazar_hijo(id_hijo):
+    query = "DELETE FROM usuarios WHERE id = %s"
+    mydb = conectarDB(BASE)
+    ejecutarDB(mydb, query, (id_hijo,))
     cerrarDB(mydb)
 # ------- pruebas -----
 

@@ -121,15 +121,27 @@ def ingresar(error = None):
     
      
 
-def notificaciones(solicitudes=None, error=None):
+def notificaciones(solicitudes=None, hijos=None, error=None):
     if haySesion():
         param = diccionario_sesion()
         param['error'] = error
-        param['solicitudes'] = solicitudes or []   # ← SI ES NONE, PASA LISTA VACÍA
+        param['solicitudes'] = solicitudes or []
+        param['hijos'] = hijos or []     
+
         return render_template('notificaciones.html', param=param)
     else:
         return redirect('/')
 
+def cargar_notificaciones():
+    if not haySesion():
+        return redirect('/')
+
+    id_padre = session['id_usuario']
+
+    solicitudes = consultar_solicitudes(id_padre)
+    hijos = hijos_pendientes(id_padre)
+
+    return notificaciones(solicitudes=solicitudes, hijos=hijos)
 def pendiente():
     return render_template('pendiente.html')
     
@@ -220,13 +232,12 @@ def ejecutarsolicitud(request):
     getRequest(myrequest)
     id_hijo = session['id_usuario']
     monto = int(myrequest.get('montoSolicitar', 0))
-    fecha = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    fecha = datetime.now()
     estado = "pendiente"
     if agregar_solicitud(id_hijo, monto, fecha, estado):
         return solicitar(error="Solicitud exitosa")
     else:
         return solicitar(error="Hubo un error en la solicitud")
-
 
 def mostrar_solicitudes():
     if not haySesion():
@@ -265,6 +276,10 @@ def aprobar(id_solicitud):
     actualizar_estado_solicitud(id_solicitud, 'aprobada')
     session['saldo'] = saldoactual(id_padre)
     return mostrar_solicitudes()
+
+
+
+
 # ---------------- LOG IN ------------------------------------------
 
 def validar_login(request):
