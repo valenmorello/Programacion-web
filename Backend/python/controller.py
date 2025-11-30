@@ -109,9 +109,10 @@ def cuenta():
     return res
     
 
-def ingresar():
+def ingresar(error = None):
     if haySesion():
         param = diccionario_sesion()
+        param['error'] = error
         res = render_template('ingresar.html', param=param)
     else:
         res = redirect('/')
@@ -140,8 +141,24 @@ def quitar():
         res = redirect('/')
     return res
     
+#--------Ingresar Dinero ------------------
 
+def ejecutar_ingreso(request):
+    myrequest={}
+    getRequest(myrequest)
 
+    id = session['id_usuario']
+    monto = int(myrequest['montoIngresar'])
+    if monto > 0:
+        if ingreso_dinero(id, monto) != None: 
+                    session['saldo'] = saldoactual(id)
+                    res = ingresar(error="Ingreso Exitoso! ✅")
+
+        else: 
+            res = ingresar(error="Hubo un error con el ingreso") #hizo rollback
+    else:
+        res = ingresar(error="Ingrese un monto")
+    return res
     
 # ----------------------Transferencias------------------------------------
 
@@ -164,12 +181,12 @@ def ejecutar_transferencia(request):
                 if carga_transferencia(id, id_receptor, monto, motivo, fecha) != None: 
                     
                     session['saldo'] = saldoactual(id)
-                    res = transferir(error="¡Transferencia Exitosa!")
+                    res = transferir(error="¡Transferencia Exitosa! ✅")
 
                 else: 
                     res = transferir(error="Hubo un error con la transferencia") #hizo rollback
             else:
-                res = transferir(error="SALDO INSUFICIENTE")
+                res = transferir(error="SALDO INSUFICIENTE ❌")
         else:
             res = transferir(error="USUARIO INVALIDO")
 
@@ -205,6 +222,7 @@ def rechazar(id_solicitud):
 
     actualizar_estado_solicitud(id_solicitud, 'rechazada')
     return mostrar_solicitudes()
+
 def aprobar(id_solicitud):
     solicitud = obtener_solicitud(id_solicitud)
     if not solicitud:

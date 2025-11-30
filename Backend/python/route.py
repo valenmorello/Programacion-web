@@ -109,4 +109,8 @@ def route (app):
         return ejecutar_transferencia(request)
     
 
+    @app.route('/ingreso', methods=["GET","POST"])
+    def ejecutar_ing(): 
+        return ejecutar_ingreso(request)
+    
     

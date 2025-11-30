@@ -9,12 +9,7 @@
 <body>
   <header>
     <div class="logo">
-        {% if param['rol'] == 1 %}
-          {% set destino = '/iniciopadre' %}
-        {% else %}
-          {% set destino = '/inicio' %}
-        {% endif %}
-        <button onclick="location.href='{{destino}}'">
+        <button onclick="location.href='/iniciopadre'">
             <img src="../static/Images/logoinicio.jpg" class="imagen" alt="Logo">   
         </button>
 
@@ -34,14 +29,17 @@
         <h2>Ingresar dinero:</h2>
           <div class="saldo">
             <p>Saldo disponible:</p>
-            <p name="saldoActual" id="saldoActual">$ 0</p>
+            <p name="saldoActual" id="saldoActual">$ {{param.get('saldo')}}</p>
           </div>
-        <form name="ingreso" onsubmit="return ingresar(event)">
+        <form name="ingreso" action="/ingreso" method="POST">
           <p>Ingrese la cantidad que desea ingresar:</p>
           <input name="montoIngresar" type="number" placeholder="$ 0.00" class="input-solicitar" id="montoIngresar">
           <button type="submit" class="button">Ingresar</button>
         </form>
-        <span id="ingresar"></span>
+        {% if param['error'] != None %}
+        <br>
+        <span id="ingresar">{{param['error']}}</span>
+        {% endif %}
       </div>
     </section>
   </main>

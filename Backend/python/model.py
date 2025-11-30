@@ -315,3 +315,10 @@ def actualizar_estado_solicitud(id_solicitud, estado):
     cerrarDB(mydb)
 # ------- pruebas -----
 
+def ingreso_dinero(id, monto):
+    sQuery = "UPDATE usuarios set saldo = saldo + %s where id = %s"
+    val = (monto, id)
+    mydb=conectarDB(BASE)
+    res = ejecutarDB(mydb,sQuery,val)      
+    cerrarDB(mydb)
+    return res
