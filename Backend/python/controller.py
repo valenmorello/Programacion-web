@@ -46,6 +46,7 @@ def iniciopadre(): #padres
     if haySesion():
         param = diccionario_sesion()
         param['hijos'] = encontrar_hijos(param['codfam']) #este elemento del diccionario es un diccionario
+        print(param['hijos'])
         res = render_template('iniciopadre.html', param=param)
     else:
         res = redirect('/')
@@ -133,9 +134,11 @@ def pendiente():
     return render_template('pendiente.html')
     
 
-def quitar():
+def quitar(id_hijo, error = None):
     if haySesion():
         param = diccionario_sesion()
+        param['id_hijo'] = id_hijo
+        param['error'] = error
         res = render_template('quitar.html', param=param)
     else:
         res = redirect('/')
@@ -159,7 +162,27 @@ def ejecutar_ingreso(request):
     else:
         res = ingresar(error="Ingrese un monto")
     return res
-    
+
+#-----Quitar dinero-----------------
+
+def ejecutar_quitado(request, id_hijo):
+    myrequest={}
+    getRequest(myrequest)
+
+    monto = int(myrequest['montoQuitar'])
+    if monto > 0 and monto <= session['saldo']: #saldo del hijo
+        if quitado_dinero(id_hijo, monto) != None and ingreso_dinero(session['id_usuario'], monto): 
+                    session['saldo'] = saldoactual(id)
+                    res = quitar(id_hijo, error="Quitado Exitoso! ✅")
+
+        else: 
+            res = quitar(id_hijo, error="Hubo un error con el ingreso") #hizo rollback
+    elif monto > 0 and monto > session['saldo']:
+        res = quitar(id_hijo, error="El monto es mayor al saldo") 
+    else:
+        res = quitar(id_hijo, error="Ingrese un monto")
+    return res
+
 # ----------------------Transferencias------------------------------------
 
 def ejecutar_transferencia(request):
@@ -285,8 +308,10 @@ def registrarse(request):   # ESTO HABRIA QUE CAMBIARLOCON AYJAX
         diResult = {}
         upload_file(diResult)
         print(diResult)
-        if diResult['imagen']['file_error']==False:
-            img = diResult['imagen']['file_name_new']
+        imagen_info = diResult.get('imagen', {})
+        
+        if imagen_info.get('file_error') is False:
+            img = imagen_info.get('file_name_new', '')
         else:
             img = ''
 

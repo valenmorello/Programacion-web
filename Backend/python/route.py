@@ -62,9 +62,10 @@ def route (app):
     def pag_pendiente():
         return pendiente()
     
-    @app.route('/quitar')
-    def pag_quitar():
-        return quitar()
+    @app.route('/quitar/<id_hijo>')
+    def pag_quitar(id_hijo):
+        return quitar(id_hijo)
+    
     
     @app.route("/solicitar", methods=["GET", "POST"])
     def pag_solicitar():
@@ -113,4 +114,6 @@ def route (app):
     def ejecutar_ing(): 
         return ejecutar_ingreso(request)
     
-    
+    @app.route('/quitado/<id_hijo>', methods=["GET","POST"])
+    def ejecutar_quit(id_hijo):
+        return ejecutar_quitado(request, id_hijo)

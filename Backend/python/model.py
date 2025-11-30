@@ -238,6 +238,7 @@ def encontrar_hijos(codfam):
         } 
 
         # me termina quedando un diccionario de diccionarios
+    
     return diccionario_hijos
 
 
@@ -317,6 +318,14 @@ def actualizar_estado_solicitud(id_solicitud, estado):
 
 def ingreso_dinero(id, monto):
     sQuery = "UPDATE usuarios set saldo = saldo + %s where id = %s"
+    val = (monto, id)
+    mydb=conectarDB(BASE)
+    res = ejecutarDB(mydb,sQuery,val)      
+    cerrarDB(mydb)
+    return res
+
+def quitado_dinero(id, monto):
+    sQuery = "UPDATE usuarios set saldo = saldo - %s where id = %s"
     val = (monto, id)
     mydb=conectarDB(BASE)
     res = ejecutarDB(mydb,sQuery,val)      
