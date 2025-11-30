@@ -49,7 +49,7 @@ SELECT * FROM usuarios WHERE `codigo_Familiar`= 123654
 /*MOSTRAR USUARIOS ADMINISTRADORES*/
 SELECT * FROM usuarios where es_padre= TRUE;
 
-
+SELECT * FROM usuarios where es_padre= False;
 /* actividades */
 
 INSERT into `actividades` (`id`, `emisor`, `receptor`, `motivo`, `fecha`, `monto`) VALUES (Null, 2, 6, 'Pago uber', '2025-11-03T10:43', 25000), 
@@ -57,6 +57,7 @@ INSERT into `actividades` (`id`, `emisor`, `receptor`, `motivo`, `fecha`, `monto
 (Null, 3, 10, 'Entradas', '2025-11-03T10:43', 10000), 
 (Null, 2, 11, 'Vario', '2025-11-03T10:43', 5000)
 
+select * from solicitudes
 
 /* actividades por emisor*/
 SELECT emisor.nombre_usuario AS Emisor,  receptor.nombre_usuario AS Receptor,

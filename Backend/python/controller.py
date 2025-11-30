@@ -91,7 +91,14 @@ def transferir(id_hijo=None, error=None):
     else:
         res = redirect('/')
     return res
-
+def solicitar(error=None):
+    if haySesion():
+        param=diccionario_sesion()
+        param['error'] = error
+        res = render_template('solicitar.html', param=param)
+    else:
+        res = redirect('/')
+    return res
 
 def cuenta():
     if haySesion():
@@ -112,14 +119,14 @@ def ingresar():
     
      
 
-def notificaciones():
+def notificaciones(solicitudes=None, error=None):
     if haySesion():
         param = diccionario_sesion()
-        res = render_template('notificaciones.html', param=param)
+        param['error'] = error
+        param['solicitudes'] = solicitudes or []   # ← SI ES NONE, PASA LISTA VACÍA
+        return render_template('notificaciones.html', param=param)
     else:
-        res = redirect('/')
-    return res
-
+        return redirect('/')
 
 def pendiente():
     return render_template('pendiente.html')
@@ -134,13 +141,7 @@ def quitar():
     return res
     
 
-def solicitar():
-    if haySesion():
-        param = diccionario_sesion()
-        res = render_template('solicitar.html', param=param)
-    else:
-        res = redirect('/')
-    return res
+
     
 # ----------------------Transferencias------------------------------------
 
@@ -173,7 +174,56 @@ def ejecutar_transferencia(request):
             res = transferir(error="USUARIO INVALIDO")
 
         return res
+#-----------------SOLICITAR-------------
+def ejecutarsolicitud(request):
+    myrequest = {}
+    getRequest(myrequest)
+    id_hijo = session['id_usuario']
+    monto = int(myrequest.get('montoSolicitar', 0))
+    fecha = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    estado = "pendiente"
+    if agregar_solicitud(id_hijo, monto, fecha, estado):
+        return solicitar(error="Solicitud exitosa")
+    else:
+        return solicitar(error="Hubo un error en la solicitud")
 
+
+def mostrar_solicitudes():
+    if not haySesion():
+        return redirect('/')
+
+    id_padre = session['id_usuario']
+    lista_solicitudes = consultar_solicitudes(id_padre)
+
+    return notificaciones(solicitudes=lista_solicitudes)
+#---- MANEJO DE SOLICITUD POR PARTE DEL PADRE
+def rechazar(id_solicitud):
+    solicitud = obtener_solicitud(id_solicitud)
+
+    if not solicitud:
+        return mostrar_solicitudes(error="La solicitud no existe.")
+
+    actualizar_estado_solicitud(id_solicitud, 'rechazada')
+    return mostrar_solicitudes()
+def aprobar(id_solicitud):
+    solicitud = obtener_solicitud(id_solicitud)
+    if not solicitud:
+        return mostrar_solicitudes(error="La solicitud no existe.")
+
+    id_hijo, monto, estado = solicitud
+    if estado != 'pendiente':
+        return mostrar_solicitudes(error="La solicitud ya fue procesada.")
+    id_padre = session['id_usuario']
+    saldo_padre = saldoactual(id_padre)
+    if saldo_padre < monto:
+        return mostrar_solicitudes(error="Saldo insuficiente para aprobar.")
+    
+    fecha = datetime.now()
+    motivo = "Aprobación de solicitud"
+    carga_transferencia(id_padre, id_hijo, monto, motivo, fecha)
+    actualizar_estado_solicitud(id_solicitud, 'aprobada')
+    session['saldo'] = saldoactual(id_padre)
+    return mostrar_solicitudes()
 # ---------------- LOG IN ------------------------------------------
 
 def validar_login(request):
