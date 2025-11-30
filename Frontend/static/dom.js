@@ -183,7 +183,7 @@ function ingresar(event) {
 }
 
 
-
+/*
 function solicitarDinero (event){
     document.getElementById('solicitar').innerHTML = ''
     if (event) event.preventDefault();
@@ -194,7 +194,7 @@ function solicitarDinero (event){
         document.getElementById('solicitar').innerHTML = 'Complete los datos!'
     }
 }
-
+*/
 function aceptarSolicitudGrupo (){    
     document.getElementById('solicitudGrupo').innerHTML = ''
     document.getElementById('solicitudGrupo').innerHTML = 'Se ha aceptado la solicitud! ✅'

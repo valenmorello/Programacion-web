@@ -1,51 +1,75 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Actividad - FamilyBank</title>
-        <link rel="stylesheet" href="../static/css/notificaciones.css">
-    </head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Actividad - FamilyBank</title>
+    <link rel="stylesheet" href="../static/css/notificaciones.css">
+</head>
 <body onload="cargarNombre()">
   <header>
     <div class="logo">
         <button onclick="location.href='/inicioPadre'">
-            <img src="../static/Images/logoinicio.jpg" class="imagen" alt="Logo">   
+            <img src="../static/Images/logoinicio.jpg" class="imagen" alt="Logo">   
         </button>
-
     </div>
     <div class="usuario">
         <button onclick="location.href='/cuenta'">
-            <img src="../static/Images/user.png" alt="Usuario">
+          <img src="../static/Images/user.png" alt="Usuario">
         </button>
-        <button id="cuenta" onclick="location.href='/cuenta'"></button>
+        <button id="cuenta" onclick="location.href='/cuenta'">
+            {{ param.nombres }} 
+        </button>
     </div>
-    
   </header>
 
   <main>
     <section class="notificaciones">
       <h2>Tus notificaciones</h2>
-
-      <div class="tarjeta leida">
-        <p><strong>Solicitud de dinero :</strong> User () ha solicitado $2000.</p>
-        <span>Hace 2 horas</span>
-        <div class="solicitudgrupo"> 
-            <button id="aceptarTransferencia" type="submit" class="button" onclick= "aceptarTransferencia()"> Aceptar </button>
-            <button id="rechazarTransferencia" type="submit" class="button" onclick= "rechazarTransferencia()"> Rechazar </button>
-            
-            <span id="solicitudTransferencia"></span>
+      
+      {% if param.error %}
+        <div class="mensaje-alerta">
+            <p>{{ param.error }}</p>
         </div>
-      </div>
+      {% endif %}
+
+     
+      {% if param.solicitudes|length == 0 %}
+          <div class="tarjeta">
+              <p>¡No tienes solicitudes de dinero pendientes! Todo en orden.</p>
+          </div>
+      {% else %}
+         
+          {% for solicitud in param.solicitudes %}
+              <div class="tarjeta solicitud-dinero">
+                  <p>
+                      <strong>Solicitud de dinero:</strong> 
+                      {{ solicitud.nombre_hijo }} ha solicitado 
+                      <strong>${{ solicitud.monto | int }}</strong>.
+                  </p>
+                  <p class="motivo-solicitud">Motivo: {{ solicitud.motivo }}</p>
+                  <span class="fecha-solicitud">Fecha: {{ solicitud.fecha }}</span>
+                  
+                  <div class="solicitudgrupo"> 
+                     
+                      <a href="/aprobar/{{ solicitud.id }}" class="button aceptar">Aceptar</a>
+                      <a href="/rechazar/{{ solicitud.id }}" class="button rechazar">Rechazar</a>
+                      <span id="solicitudTransferencia"></span>
+                  </div>
+              </div>
+          {% endfor %}
+      {% endif %}
+
+
+
 
       <div class="tarjeta">
         <p><strong>Solicitud pendiente:</strong> User () ha solicitado unirse al grupo familiar</p>
         <span>Hace 1 día</span>
         <div class="solicitudgrupo"> 
-            <button id="botonAceptar" type="submit" class="button" onclick= "aceptarSolicitudGrupo()"> Aceptar </button>
-            <button id="botonRechazar" type="submit" class="button" onclick= "rechazarSolicitudGrupo()"> Rechazar </button>
-            
-            <span id="solicitudGrupo"></span>
+        <button id="botonAceptar" type="submit" class="button" onclick= "aceptarSolicitudGrupo()"> Aceptar </button>
+        <button id="botonRechazar" type="submit" class="button" onclick= "rechazarSolicitudGrupo()"> Rechazar </button>
+          <span id="solicitudGrupo"></span>
         </div>
       </div>
 

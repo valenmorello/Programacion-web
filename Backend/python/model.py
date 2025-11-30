@@ -240,5 +240,78 @@ def encontrar_hijos(codfam):
         # me termina quedando un diccionario de diccionarios
     return diccionario_hijos
 
+
+def encontrar_codigo(id):
+    sQuery="SELECT codigo_familiar FROM usuarios WHERE id=%s"
+    val=(id,)
+    mydb=conectarDB(BASE)
+    codigo= consultarDB(mydb,sQuery,val)
+    codigo_familiar=codigo[0][0]
+    return codigo_familiar
+    
+def agregar_solicitud(id_hijo, monto, fecha, estado):
+    
+    sQuery = """
+        INSERT INTO solicitudes(id_usuario, monto, fecha, estado)
+        VALUES (%s, %s, %s, %s)
+    """
+
+    val = (id_hijo, monto, fecha, estado)
+    mydb = conectarDB(BASE)
+
+    try:
+        ejecutarDB(mydb, sQuery, val)   # ← IMPORTANTE: ejecutarDB, no consultarDB
+        return True
+    except Exception as e:
+        print(f"Error en agregar_solicitud: {e}")
+        return False
+    finally:
+        cerrarDB(mydb)
+
+def consultar_solicitudes(id_padre):
+    codfam = encontrar_codigo(id_padre)
+
+    if codfam is None:
+        return []
+
+    sQuery = """
+        SELECT s.id, s.id_usuario, s.monto, s.fecha, u.nombre_usuario
+        FROM solicitudes s
+        INNER JOIN usuarios u ON u.id = s.id_usuario
+        WHERE s.estado = 'pendiente' AND u.codigo_familiar = %s
+        ORDER BY s.fecha DESC
+    """
+
+    mydb = conectarDB(BASE)
+    lista = consultarDB(mydb, sQuery, (codfam,))
+    cerrarDB(mydb)
+
+    solicitudes = []
+    for sol in lista:
+        solicitudes.append({
+            'id': sol[0],
+            'id_hijo': sol[1],
+            'monto': sol[2],
+            'fecha': sol[3],
+            'nombre_hijo': sol[4]
+        })
+
+    return solicitudes
+def obtener_solicitud(id_solicitud):
+    mydb = conectarDB(BASE)
+    q = """
+        SELECT id_usuario, monto, estado
+        FROM solicitudes
+        WHERE id = %s
+    """
+    res = consultarDB(mydb, q, (id_solicitud,))
+    cerrarDB(mydb)
+    return res[0] if res else None
+
+def actualizar_estado_solicitud(id_solicitud, estado):
+    mydb = conectarDB(BASE)
+    q = "UPDATE solicitudes SET estado = %s WHERE id = %s"
+    ejecutarDB(mydb, q, (estado, id_solicitud))
+    cerrarDB(mydb)
 # ------- pruebas -----
 

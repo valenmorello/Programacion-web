@@ -46,8 +46,14 @@ def route (app):
     
     @app.route('/notificaciones')
     def pag_notificaciones():
-        return notificaciones()
-    
+        return mostrar_solicitudes()
+    @app.route('/aprobar/<id_solicitud>')
+    def aprobar_solicitud(id_solicitud):
+        return aprobar(id_solicitud)
+
+    @app.route('/rechazar/<id_solicitud>')
+    def rechazar_solicitud(id_solicitud):
+         return rechazar(id_solicitud)
     @app.route('/hijo/<id_hijo>')
     def pag_padre2(id_hijo):
         return padre2(id_hijo)
@@ -60,9 +66,15 @@ def route (app):
     def pag_quitar():
         return quitar()
     
-    @app.route('/solicitar')
+    @app.route("/solicitar", methods=["GET", "POST"])
     def pag_solicitar():
-        return solicitar()
+        myrequest = {}
+        getRequest(myrequest)
+        print("DEBUG ruta /solicitar myrequest:", myrequest)
+        if "montoSolicitar" in myrequest:
+            return ejecutarsolicitud(request)
+        else:
+            return solicitar() 
     
     @app.route('/transferir')
     @app.route('/transferir/<id_hijo>')
