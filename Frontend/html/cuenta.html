@@ -23,10 +23,14 @@
 
     </div>
     <div class="usuario">
+        {% if param['rol'] == 1 %}
+            <button id="cuenta" onclick="location.href='/cuenta'">Hola, {{param.get('usuario')}}! #{{param.get('codfam')}}</button>
+        {% else %}  
+            <button id="cuenta" onclick="location.href='/cuenta'">Hola, {{param.get('usuario')}}!</button>
+        {% endif %}
         <button onclick="location.href='/cuenta'">
-            <img src="../static/Images/user.png" alt="Usuario">
+            <img src="../static/Images/{{param.get('img')}}" alt="Usuario">
         </button>
-        <button id="cuenta" onclick="location.href='/cuenta'">{{param.get('usuario')}}</button>
     </div>
     
   </header>
@@ -49,13 +53,17 @@
       
       <div class="acciones">
         <button type="submit" class="button">Guardar Cambios</button>
-        <button class="button" onclick="location.href='/login'">Cerrar sesión</button>
+        
       </div>
 
       <span id="cambioDatos"></span>
 
       </form>
-
+      <div class="acciones">
+      <button class="button" onclick="location.href='/login'">Cerrar sesión</button>
+        
+      </div>
+      
     </section>
 
   </main>

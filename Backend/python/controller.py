@@ -43,9 +43,13 @@ def inicio(): #hijos
    
 
 def iniciopadre(): #padres
-    param = diccionario_sesion()
-    param['hijos'] = encontrar_hijos(param['codfam']) #este elemento del diccionario es un diccionario
-    return render_template('iniciopadre.html', param=param)
+    if haySesion():
+        param = diccionario_sesion()
+        param['hijos'] = encontrar_hijos(param['codfam']) #este elemento del diccionario es un diccionario
+        res = render_template('iniciopadre.html', param=param)
+    else:
+        res = redirect('/')
+    return res
 
 
 def padre2(id_hijo):
@@ -106,7 +110,13 @@ def cuenta():
     
 
 def ingresar():
-    return render_template('ingresar.html')
+    if haySesion():
+        param = diccionario_sesion()
+        res = render_template('ingresar.html', param=param)
+    else:
+        res = redirect('/')
+    return res
+    
      
 
 def notificaciones(solicitudes=None, error=None):
@@ -123,7 +133,12 @@ def pendiente():
     
 
 def quitar():
-    return render_template('quitar.html')
+    if haySesion():
+        param = diccionario_sesion()
+        res = render_template('quitar.html', param=param)
+    else:
+        res = redirect('/')
+    return res
     
 
 
@@ -252,9 +267,6 @@ def registrarse(request):   # ESTO HABRIA QUE CAMBIARLOCON AYJAX
         diResult = {}
         upload_file(diResult)
         print(diResult)
-        print(diResult)
-        print(diResult)
-        print(diResult)
         if diResult['imagen']['file_error']==False:
             img = diResult['imagen']['file_name_new']
         else:
@@ -345,7 +357,7 @@ def cerrarSesion():
 # ---------------------- Manejo de subida de datos ---------------------------
 
 def upload_file (diResult) :
-    UPLOAD_EXTENSIONS = ['.jpg', '.png', '.gif']
+    UPLOAD_EXTENSIONS = ['.jpg', '.png', '.gif', '.jpeg']
     MAX_CONTENT_LENGTH = 1024 * 1024     
     if request.method == 'POST' :         
         for key in request.files.keys():  

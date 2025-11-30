@@ -71,13 +71,16 @@ header button {
   white-space: nowrap;   
 }
 
+#cuenta {
+  margin-right: 5%;
+}
+
 .usuario img {
   width: 90px;              
   height: auto;
   border-radius: 50%;
   border: 0.5% solid white;
   object-fit: cover;
-  text-align: right;
 }
 
 .usuario button:hover {

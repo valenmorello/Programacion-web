@@ -16,10 +16,10 @@
 
     </div>
     <div class="usuario">
+        <button id="cuenta" onclick="location.href='/cuenta'">Hola, {{param.get('usuario')}}! #{{param.get('codfam')}}</button>
         <button onclick="location.href='/cuenta'">
             <img src="../static/Images/{{param.get('img')}}" alt="Usuario">
         </button>
-        <button id="cuenta" onclick="location.href='/cuenta'">{{param.get('usuario')}}</button>
     </div>
     
   </header>

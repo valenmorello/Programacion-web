@@ -42,7 +42,6 @@ def consultarDB(mydb,sQuery="", val=None, title=False):  #recibe la consulta y l
         print("Error-->",e)
     return myresult
 
-
 def ejecutarDB(mydb,sQuery="",val=None):
     res=None
     try:
