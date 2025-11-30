@@ -190,7 +190,7 @@ function solicitarDinero (event){
         document.getElementById('solicitar').innerHTML = 'Complete los datos!'
     }
 }
-*/
+
 function aceptarSolicitudGrupo (){    
     document.getElementById('solicitudGrupo').innerHTML = ''
     document.getElementById('solicitudGrupo').innerHTML = 'Se ha aceptado la solicitud! ✅'
@@ -204,7 +204,7 @@ function rechazarSolicitudGrupo (){
     document.getElementById('botonAceptar').style.display = 'none';
     document.getElementById('botonRechazar').style.display = 'none';
 }
-
+*/
 function aceptarTransferencia (){    
     document.getElementById('solicitudTransferencia').innerHTML = ''
     document.getElementById('solicitudTransferencia').innerHTML = 'Se ha transferido el dinero! ✅'

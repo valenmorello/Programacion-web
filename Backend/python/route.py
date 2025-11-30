@@ -46,42 +46,55 @@ def route (app):
     
     @app.route('/notificaciones')
     def pag_notificaciones():
-        return mostrar_solicitudes()
-    @app.route('/aprobar/<id_solicitud>')
-    def aprobar_solicitud(id_solicitud):
-        return aprobar(id_solicitud)
+        return cargar_notificaciones()
 
-    @app.route('/rechazar/<id_solicitud>')
+
+    @app.route('/aprobar/<int:id_solicitud>')
+    def aprobar_solicitud(id_solicitud):
+        return aprobar(id_solicitud)     
+
+
+    @app.route('/rechazar/<int:id_solicitud>')
     def rechazar_solicitud(id_solicitud):
-         return rechazar(id_solicitud)
-    @app.route('/hijo/<id_hijo>')
+        return rechazar(id_solicitud)    
+
+
+    @app.route('/hijo/<int:id_hijo>')
     def pag_padre2(id_hijo):
-        return padre2(id_hijo)
-    
+        return padre2(id_hijo)           
+
+
     @app.route('/pendiente')
     def pag_pendiente():
-        return pendiente()
-    
-    @app.route('/quitar/<id_hijo>')
+        return pendiente()           
+
+
+    @app.route('/quitar/<int:id_hijo>')
     def pag_quitar(id_hijo):
-        return quitar(id_hijo)
-    
-    
-    @app.route("/solicitar", methods=["GET", "POST"])
+        return quitar(id_hijo)           
+
+
+    @app.route('/solicitar', methods=['GET','POST'])
     def pag_solicitar():
-        myrequest = {}
-        getRequest(myrequest)
-        print("DEBUG ruta /solicitar myrequest:", myrequest)
-        if "montoSolicitar" in myrequest:
-            return ejecutarsolicitud(request)
-        else:
-            return solicitar() 
-    
+        if request.method == "POST":
+            return ejecutar_solicitud(request)   
+        return solicitar()                       
     @app.route('/transferir')
     @app.route('/transferir/<id_hijo>')
     def pag_transferir(id_hijo=None):
         return transferir(id_hijo)
     
+    
+    @app.route('/aceptar_hijo/<int:id_hijo>')
+    def aceptar_hijo_controller(id_hijo):
+        aceptar_hijo(id_hijo)
+        return redirect('/notificaciones')
+
+
+    @app.route('/rechazar_hijo/<int:id_hijo>')
+    def rechazar_hijo_controller(id_hijo):
+        rechazar_hijo(id_hijo)
+        return redirect('/notificaciones')
 
     #get se ve, post no. get manda menos info.
     #archivos y contraseñas con post
