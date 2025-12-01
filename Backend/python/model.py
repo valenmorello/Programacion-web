@@ -143,6 +143,7 @@ def carga_transferencia(id_emisor, id_receptor, monto, motivo, fecha):
             (id, emisor, receptor, motivo, fecha, monto)
             VALUES (%s,%s,%s,%s,%s,%s)""",
             ('Null', id_emisor, id_receptor, motivo, fecha, monto))
+ 
 
         mydb.commit()
         res = mycursor.lastrowid
@@ -308,12 +309,12 @@ def consultar_solicitudes(codfam):
 
     return solicitudes
 
-def mis_soicitudes(id):
-    sQuery = "SELECT monto, fecha, estado, FROM solicitudes WHERE id_usuario = %s "
+def mis_solicitudes(id):
+    sQuery = "SELECT monto, fecha, estado FROM solicitudes WHERE id_usuario = %s ORDER BY fecha DESC LIMIT 5 "
     mydb = conectarDB(BASE)
     lista = consultarDB(mydb, sQuery, (id,))
     cerrarDB(mydb)
-    
+
     return lista
 
 def obtener_solicitud(id_solicitud):
@@ -326,9 +327,12 @@ def obtener_solicitud(id_solicitud):
 
 def actualizar_estado_solicitud(id_solicitud, estado):
     sQuery= "UPDATE solicitudes SET estado = %s WHERE id = %s"
+    val = (estado, id_solicitud)
     mydb = conectarDB(BASE)
-    ejecutarDB(mydb,  sQuery, (estado, id_solicitud))
+    res = ejecutarDB(mydb,  sQuery, val)
     cerrarDB(mydb)
+
+    return res
 
 
 def hijos_pendientes(codfam):

@@ -170,8 +170,10 @@ GROUP BY usuarios.nombres
 HAVING usuarios.nombres ='Juana';
 
 /*Borrar NO TOCAR*/
-DELETE * FROM solicitudes 
-WHERE id_usuario = 15 AND estado = 'pendiente'
+DELETE FROM solicitudes 
+WHERE estado = ''
+
+select * from solicitudes;
 
 /*Busco codigo familiar*/
 SELECT `codigo_Familiar` FROM usuarios WHERE `codigo_Familiar` = 234567

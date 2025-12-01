@@ -73,8 +73,10 @@ def route (app):
 
 
     @app.route('/solicitar')
-    def pag_solicitar():  
-        return solicitar() # la ruta del boton se lama /ejecutarsolicitud y la pase para abajo
+    @app.route('/solicitar/<error>')
+    def pag_solicitar(error=None):
+        param = {}
+        return solicitar(error) # la ruta del boton se lama /ejecutarsolicitud y la pase para abajo
                      
 
     @app.route('/transferir')
@@ -86,13 +88,13 @@ def route (app):
     @app.route('/aceptar_hijo/<int:id_hijo>')
     def aceptar_hijo_controller(id_hijo):
         aceptar_hijo(id_hijo)
-        return redirect('/notificaciones')
+        return notificaciones('Hijo aceptado!')
 
 
     @app.route('/rechazar_hijo/<int:id_hijo>')
     def rechazar_hijo_controller(id_hijo):
         rechazar_hijo(id_hijo)
-        return redirect('/notificaciones')
+        return notificaciones('Hijo Rechzado')
 
     @app.route('/logout')
     def logout(): 

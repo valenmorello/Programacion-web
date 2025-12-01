@@ -94,11 +94,16 @@ def transferir(id_hijo=None, error=None):
     return res
 
 
-def solicitar(error=None):
+def solicitar(error):
     if haySesion():
         param=diccionario_sesion()
-        param['mis_solicitudes'] = mis_soicitudes(param['id'])
-        param['error'] = error
+        param['mis_solicitudes'] = mis_solicitudes(param['id'])
+
+        if error != None:
+            param['error'] = 'error con la solicitud'
+        else:
+            param['error'] = 'solicitud aceptada'
+
         res = render_template('solicitar.html', param=param)
     else:
         res = redirect('/')
@@ -236,10 +241,9 @@ def ejecutar_solicitud(request):
     estado = "pendiente"
 
     if agregar_solicitud(id_hijo, monto, fecha, estado):
-        res = solicitar(error="Solicitud exitosa")
+        res = redirect('/solicitar')
     else:
-        res = solicitar(error="Hubo un error en la solicitud")
-    
+        res = redirect('/solicitar/<error>')
     return res
 
 def mostrar_solicitudes():
@@ -257,9 +261,9 @@ def mostrar_solicitudes():
 def rechazar(id_solicitud):
     error = None
     if obtener_solicitud(id_solicitud) != None:
-        actualizar_estado_solicitud(id_solicitud, 'rechazada')
+        actualizar_estado_solicitud(id_solicitud, 'rechazado')
         error = 'Solicitud rechazada'
-    return notificaciones()
+    return notificaciones(error)
 
 def aprobar(id_solicitud):
     error = None
@@ -275,9 +279,10 @@ def aprobar(id_solicitud):
 
                 fecha = datetime.now()
                 motivo = "Aprobación de solicitud"
-                carga_transferencia(id_padre, id_hijo, monto, motivo, fecha)
-                actualizar_estado_solicitud(id_solicitud, 'aprobada')
-                session['saldo'] = saldoactual(id_padre)
+                if carga_transferencia(id_padre, id_hijo, monto, motivo, fecha) != None:
+                    actualizar_estado_solicitud(id_solicitud, 'aprobado')
+                    session['saldo'] = saldoactual(id_padre)
+                    error = 'Solicitud aprobada'
 
             else:
                 error = 'Saldo Insuficiente para resolver la slicitud'
