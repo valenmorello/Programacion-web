@@ -26,7 +26,7 @@
   <main>
     <section class="section">
       <div class="solicitar">
-        <form  name="solicitar" onsubmit="return solicitarDinero(event)">
+        <form  action="/solicitar" method="POST">
           <h2>Solicitar dinero:</h2>
           <p>Ingrese la cantidad que desea solicitar:</p>
           <input name="montoSolicitar" type="number" placeholder="$ 0.00" class="input-solicitar" id="montoSolicitar">

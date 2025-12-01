@@ -76,9 +76,11 @@ def route (app):
 
     @app.route('/solicitar', methods=['GET','POST'])
     def pag_solicitar():
+        print("ROUTE /solicitar method=", request.method)
         if request.method == "POST":
             return ejecutar_solicitud(request)   
-        return solicitar()                       
+        return solicitar()                      
+
     @app.route('/transferir')
     @app.route('/transferir/<id_hijo>')
     def pag_transferir(id_hijo=None):

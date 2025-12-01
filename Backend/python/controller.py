@@ -34,6 +34,7 @@ def registro(param):
 
 
 def inicio(): #hijos
+    
     if haySesion():
         param = diccionario_sesion()
         res = render_template('inicio.html', param=param)
@@ -236,6 +237,7 @@ def ejecutar_solicitud(request):
     monto = int(myrequest.get('montoSolicitar', 0))
     fecha = datetime.now()
     estado = "pendiente"
+
     if agregar_solicitud(id_hijo, monto, fecha, estado):
         return solicitar(error="Solicitud exitosa")
     else:

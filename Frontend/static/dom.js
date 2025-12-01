@@ -218,7 +218,7 @@ function rechazarTransferencia (){
     document.getElementById('aceptarTransferencia').style.display = 'none';
     document.getElementById('rechazarTransferencia').style.display = 'none';
 }
-
+/*
 function quitar (){
     window.location.assign('quitar.html')
 }
@@ -234,7 +234,7 @@ function quitarDinero (event){
         document.getElementById('quitar').innerHTML = 'Complete el campo!'
         return false
     }
-}
+}*/
 
 function cerrarSesion (){
     window.location.replace('index.html')
