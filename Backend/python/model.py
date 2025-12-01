@@ -181,6 +181,22 @@ def find_id (nombre_usuario,):
     return res
 
 
+def ingreso_dinero(id, monto):
+    sQuery = "UPDATE usuarios set saldo = saldo + %s where id = %s"
+    val = (monto, id)
+    mydb=conectarDB(BASE)
+    res = ejecutarDB(mydb,sQuery,val)      
+    cerrarDB(mydb)
+    return res
+
+def quitado_dinero(id, monto):
+    sQuery = "UPDATE usuarios set saldo = saldo - %s where id = %s"
+    val = (monto, id)
+    mydb=conectarDB(BASE)
+    res = ejecutarDB(mydb,sQuery,val)      
+    cerrarDB(mydb)
+    return res
+
 #--------------- ACTIVIDAAAAAADDDDD-----------------------------
 
 def tabla_actividad(id):
@@ -352,20 +368,6 @@ def rechazar_hijo(id_hijo):
     mydb = conectarDB(BASE)
     ejecutarDB(mydb, query, (id_hijo,))
     cerrarDB(mydb)
-# ------- pruebas -----
 
-def ingreso_dinero(id, monto):
-    sQuery = "UPDATE usuarios set saldo = saldo + %s where id = %s"
-    val = (monto, id)
-    mydb=conectarDB(BASE)
-    res = ejecutarDB(mydb,sQuery,val)      
-    cerrarDB(mydb)
-    return res
 
-def quitado_dinero(id, monto):
-    sQuery = "UPDATE usuarios set saldo = saldo - %s where id = %s"
-    val = (monto, id)
-    mydb=conectarDB(BASE)
-    res = ejecutarDB(mydb,sQuery,val)      
-    cerrarDB(mydb)
-    return res
+

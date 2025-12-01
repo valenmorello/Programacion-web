@@ -183,8 +183,9 @@ def ejecutar_quitado(request, id_hijo):
     getRequest(myrequest)
 
     monto = int(myrequest['montoQuitar'])
-    if monto > 0 and monto <= session['saldo']: #saldo del hijo
-        if quitado_dinero(id_hijo, monto) != None and ingreso_dinero(session['id_usuario'], monto): 
+
+    if monto > 0 and monto <= saldoactual(id_hijo): #saldo del hijo
+        if quitado_dinero(id_hijo, monto) != None: 
                     session['saldo'] = saldoactual(id)
                     res = quitar(id_hijo, error="Quitado Exitoso! ✅")
 
