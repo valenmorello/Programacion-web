@@ -92,6 +92,7 @@ def transferir(id_hijo=None, error=None):
     else:
         res = redirect('/')
     return res
+
 def solicitar(error=None):
     if haySesion():
         param=diccionario_sesion()
@@ -227,7 +228,7 @@ def ejecutar_transferencia(request):
 
         return res
 #-----------------SOLICITAR-------------
-def ejecutarsolicitud(request):
+def ejecutar_solicitud(request):
     myrequest = {}
     getRequest(myrequest)
     id_hijo = session['id_usuario']
