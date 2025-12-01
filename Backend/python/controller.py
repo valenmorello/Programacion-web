@@ -69,11 +69,11 @@ def actividad(id_hijo):
         param = diccionario_sesion()
         
         if id_hijo == None:  # cargamos los datos propios del usuario
-            param['actividad'] = tabla_actividad(param['id']) #pasa su propio id
+            param['actividad'] = tabla_actividad(param['id'], param['usuario']) #pasa su propio id
 
         else:
             param['hijo_dic'] = buscar_por_id(id_hijo)
-            param['actividad'] = tabla_actividad(id_hijo)
+            param['actividad'] = tabla_actividad(id_hijo, param['hijo_dic']['nombre_usuario'])
 
         res = render_template('actividad.html', param=param)
 

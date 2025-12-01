@@ -192,39 +192,46 @@ def ingreso_dinero(id, monto):
 
 #--------------- ACTIVIDAAAAAADDDDD-----------------------------
 
-def tabla_actividad(id):
-    sQuery="SELECT * FROM actividades WHERE emisor=%s OR receptor=%s ORDER BY fecha DESC"
+def tabla_actividad(id, nombre_usuario):
+    sQuery="""
+    SELECT emi.nombre_usuario, emi.nombres, recep.nombre_usuario, recep.nombres,
+    act.monto, act.motivo, act.fecha   
+    FROM actividades AS act
+    INNER JOIN usuarios AS emi ON act.emisor = emi.id
+    INNER JOIN usuarios AS recep ON act.receptor = recep.id
+    WHERE act.emisor=%s OR act.receptor=%s 
+    ORDER BY fecha DESC
+    """
     val = (id,id)
     mydb = conectarDB(BASE)
     lista = consultarDB(mydb,sQuery,val) #lista de tuplas
     cerrarDB(mydb)
 
-    #armado de tabla 
-    # lista = (id, emisor, receptor, motivo, fecha, monto)
+    print(lista)
 
+    # desglose de lista, armado de tabla
+    # [(usuario_emisor, nombre_emisor, usuario_receptor, nombre_receptor, monto, motivo, fecha)]
     transacciones = []
-    if lista != []:
-        for act in lista:
+    if lista != [] and lista != None:
+        for tupla in lista:
             dic = {}
-            if act[1] == id: #si el usuario es emisor
-                usu_dic = buscar_por_id(act[2])   # porque en la base de datos esta por id
-                dic['usuario'] = usu_dic['nombre_usuario']
-                dic['nombre'] = usu_dic['nombre']
-                dic['monto'] = act[5] * -1 
+            if tupla[0] == nombre_usuario: # si el usuario es emisor
+                dic['usuario'] = tupla[2]
+                dic['nombre'] = tupla[3]    
+                dic['monto'] = int(tupla[4])*(-1)
 
-
-            elif act[2] == id:       # si el usuario recibe
-                usu_dic = buscar_por_id(act[1])   # porque en la base de datos esta por id
-                dic['usuario'] = usu_dic['nombre_usuario']
-                dic['nombre'] = usu_dic['nombre']
-                dic['monto'] = act[5]
-
-            dic['motivo'] = act[3]
-            dic['fecha'] = act[4]
+            elif tupla[2] == nombre_usuario: # si el usuario es receptor
+                dic['usuario'] = tupla[0]
+                dic['nombre'] = tupla[1] 
+                dic['monto'] = int(tupla[4])
+        
+            dic['motivo'] = tupla[5]
+            dic['fecha'] = tupla[6]
 
             transacciones.append(dic)
 
     return transacciones 
+
 
 # ------ HIJOOOOOOSSSSSSS -----------------------------------------------------------
 

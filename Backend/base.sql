@@ -11,7 +11,20 @@ SELECT * FROM actividades
 
 SELECT * FROM solicitudes
 
-UPDATE usuarios where id
+
+
+
+SELECT emi.nombre_usuario, emi.nombres, recep.nombre_usuario, recep.nombres,
+act.motivo, act.fecha, act.monto  
+FROM actividades AS act
+INNER JOIN usuarios AS emi ON act.emisor = emi.id
+INNER JOIN usuarios AS recep ON act.receptor = recep.id
+WHERE act.emisor=2 OR act.receptor=2 
+ORDER BY fecha DESC;
+
+
+
+
 
 
 INSERT INTO `usuarios` (`id`, `nombres`, `apellido`, `codigo_Familiar`, `es_padre`, `saldo`,  `contrasenia`, `nombre_usuario`, `admitido`, `img`) 
