@@ -94,15 +94,11 @@ def transferir(id_hijo=None, error=None):
     return res
 
 
-def solicitar(error):
+def solicitar(error=None):
     if haySesion():
         param=diccionario_sesion()
         param['mis_solicitudes'] = mis_solicitudes(param['id'])
-
-        if error != None:
-            param['error'] = 'error con la solicitud'
-        else:
-            param['error'] = 'solicitud aceptada'
+        param['error'] = error
 
         res = render_template('solicitar.html', param=param)
     else:
@@ -139,7 +135,6 @@ def notificaciones(error=None):
         return render_template('notificaciones.html', param=param)
     else:
         return redirect('/')
-
 
 def pendiente():
     return render_template('pendiente.html')
@@ -243,7 +238,7 @@ def ejecutar_solicitud(request):
     if agregar_solicitud(id_hijo, monto, fecha, estado):
         res = redirect('/solicitar')
     else:
-        res = redirect('/solicitar/<error>')
+        res = solicitar('error en la solicitud')
     return res
 
 def mostrar_solicitudes():
@@ -291,15 +286,14 @@ def aprobar(id_solicitud):
     return res
         
     
-
 # ---------------- LOG IN ------------------------------------------
 
 def validar_login(request):
     if crearSesion(request):
         if session['rol'] == 1:
-            res = iniciopadre()
+            res = redirect('/iniciopadre')
         elif session['rol'] == 0:
-            res = inicio()
+            res = redirect('/inicio')
     else:
         param={}
         param['error_login']="Error: Usuario y/o password inválidos"
@@ -363,9 +357,9 @@ def validar_registro(nombre_usuario, contrasenia):
     cargarSesion(dicUsuario)
 
     if session['rol'] == 1:
-        res = iniciopadre()
+        res = redirect('/iniciopadre')
     elif session['rol'] == 0:
-        res = pendiente()
+        res = redirect('/pendiente')
     return res
 
 # ----------------- Cambiar datos------------------------------------------
@@ -385,7 +379,7 @@ def cambiardatos(param, request):
             modificarapellido(id, myrequest.get('apellidoNuevo'))
             myrequest['apellidoNuevo'] = session['apellido']
 
-    return cuenta()
+    return redirect('/cuenta')
 
 # ---------------------------------------------------------------
 # Funciones de sesion
