@@ -210,12 +210,11 @@ def ejecutar_transferencia(request):
         if id_receptor != []: # [] es que no existe y none si hubo un error con conectDB()
 
             id = session['id_usuario'] 
-            saldo = saldoactual(id)
             monto = int(myrequest['monto'])
             motivo = myrequest['motivo']
             fecha = datetime.now()
 
-            if saldo >= monto:
+            if saldoactual(id) >= monto:
                 if carga_transferencia(id, id_receptor, monto, motivo, fecha) != None: 
                     
                     session['saldo'] = saldoactual(id)
@@ -229,7 +228,10 @@ def ejecutar_transferencia(request):
             res = transferir(error="USUARIO INVALIDO")
 
         return res
+
+
 #-----------------SOLICITAR-------------
+
 def ejecutar_solicitud(request):
     myrequest = {}
     getRequest(myrequest)
@@ -251,7 +253,10 @@ def mostrar_solicitudes():
     lista_solicitudes = consultar_solicitudes(id_padre)
 
     return notificaciones(solicitudes=lista_solicitudes)
-#---- MANEJO DE SOLICITUD POR PARTE DEL PADRE
+
+
+#---- MANEJO DE SOLICITUD POR PARTE DEL PADRE ------------
+
 def rechazar(id_solicitud):
     solicitud = obtener_solicitud(id_solicitud)
 
@@ -280,8 +285,6 @@ def aprobar(id_solicitud):
     actualizar_estado_solicitud(id_solicitud, 'aprobada')
     session['saldo'] = saldoactual(id_padre)
     return mostrar_solicitudes()
-
-
 
 
 # ---------------- LOG IN ------------------------------------------
