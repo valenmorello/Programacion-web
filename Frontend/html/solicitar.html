@@ -24,6 +24,21 @@
   </header>
 
   <main>
+
+    {% if param['mostrar_popup'] %}
+    <!-- POPUP -->
+    <div id="popup-overlay" class="overlay">
+      <div class="popup">
+        <h2>{{param['error']}}</h2>
+
+        <div class="pop_buttons">
+            <a href="/inicio" class="btn volver">Volver a inicio</a>
+            <a href="/solicitar" class="btn otra">Hacer otra solicitud</a>
+        </div>
+      </div>
+    </div>
+    {% endif %}
+
     <section class="section">
       <div class="solicitar">
         <form  action="/ejecutarsolicitud" method="POST">
@@ -32,10 +47,6 @@
           <input name="montoSolicitar" type="number" placeholder="$ 0.00" class="input-solicitar" id="montoSolicitar">
           <button type="submit" class="button">Solicitar</button>
         </form>
-
-        {%if param['error'] != None %}
-        <p>{{param['error']}}</p>
-        {% endif %}
         
       </div>
     </section>

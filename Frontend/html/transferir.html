@@ -37,11 +37,22 @@
 
   <main>
 
-    {% if param['error'] != None %}
-      <p>{{param['error']}}</p>
+    {% if param['mostrar_popup'] %}
+    <!-- POPUP -->
+    <div id="popup-overlay" class="overlay">
+      <div class="popup">
+        <h2>{{param['error']}}</h2>
+
+        <div class="pop_buttons">
+            <a href="{{destino}}" class="btn volver">Volver a inicio</a>
+            <a href="/transferir" class="btn otra">Hacer otra transferencia</a>
+        </div>
+      </div>
+    </div>
     {% endif %}
 
     <section class="section">
+
      <div class="saldo">
         <p>Saldo disponible:</p>
         <p id="saldoActual">$ {{param.get('saldo')}}</p>

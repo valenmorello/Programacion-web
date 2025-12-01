@@ -85,9 +85,13 @@ def actividad(id_hijo):
 def transferir(id_hijo=None, error=None):
     if haySesion():
         param = diccionario_sesion()
-        param['error'] = error
+        if error != None:
+            param['error'] = error
+            param['mostrar_popup'] = True
+
         if id_hijo != None:
             param['hijo_dic'] = buscar_por_id(id_hijo)
+
         res = render_template('transferir.html', param=param) 
     else:
         res = redirect('/')
@@ -98,7 +102,10 @@ def solicitar(error=None):
     if haySesion():
         param=diccionario_sesion()
         param['mis_solicitudes'] = mis_solicitudes(param['id'])
-        param['error'] = error
+
+        if error != None:
+            param['error'] = error
+            param['mostrar_popup'] = True
 
         res = render_template('solicitar.html', param=param)
     else:
@@ -118,12 +125,15 @@ def cuenta():
 def ingresar(error = None):
     if haySesion():
         param = diccionario_sesion()
-        param['error'] = error
+
+        if error != None:
+            param['error'] = error
+            param['mostrar_popup'] = True
+      
         res = render_template('ingresar.html', param=param)
     else:
         res = redirect('/')
-    return res
-    
+    return res   
      
 def notificaciones(error=None):
     if haySesion():
@@ -143,7 +153,11 @@ def quitar(id_hijo, error = None):
     if haySesion():
         param = diccionario_sesion()
         param['id_hijo'] = id_hijo
-        param['error'] = error
+
+        if error != None:
+            param['error'] = error
+            param['mostrar_popup'] = True
+        
         res = render_template('quitar.html', param=param)
     else:
         res = redirect('/')
@@ -236,9 +250,9 @@ def ejecutar_solicitud(request):
     estado = "pendiente"
 
     if agregar_solicitud(id_hijo, monto, fecha, estado):
-        res = redirect('/solicitar')
+        res = solicitar(error='Solicitud enviada!')
     else:
-        res = solicitar('error en la solicitud')
+        res = solicitar(error='Error en la solicitud')
     return res
 
 def mostrar_solicitudes():

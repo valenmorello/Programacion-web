@@ -24,6 +24,21 @@
   </header>
 
   <main>
+
+    {% if param['mostrar_popup'] %}
+    <!-- POPUP -->
+    <div id="popup-overlay" class="overlay">
+      <div class="popup">
+        <h2>{{param['error']}}</h2>
+
+        <div class="pop_buttons">
+            <a href="/iniciopadre" class="btn volver">Volver a inicio</a>
+            <a href="/quitar" class="btn otra">Quitar nuevamente</a>
+        </div>
+      </div>
+    </div>
+    {% endif %}
+
     <section class="section">
       <div class="solicitar">
         <form name="quitar" action="/quitado/{{param['id_hijo']}}" method="POST">
@@ -32,10 +47,6 @@
           <input name="montoQuitar" type="number" placeholder="$ 0.00" class="input-solicitar">
           <button type="submit" class="button">Quitar</button>
         </form>
-        {% if param['error'] != None %}
-        <br>
-        <span id="quitar">{{param['error']}}</span>
-        {% endif %}
       </div>
     </section>
   </main>
