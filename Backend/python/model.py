@@ -121,7 +121,7 @@ def modificarapellido(id, nuevoape):
     van a estar agrupadas en una sola operación atómica, hasta que hagas un commit() o un rollback().”
     '''
 
-def carga_transferencia(id, id_receptor, monto, motivo, fecha):
+def carga_transferencia(id_emisor, id_receptor, monto, motivo, fecha):
     
     mydb=conectarDB(BASE)
 
@@ -132,7 +132,7 @@ def carga_transferencia(id, id_receptor, monto, motivo, fecha):
 
         mycursor.execute(
             "UPDATE usuarios SET saldo = saldo - %s WHERE id=%s",
-            (monto, id)
+            (monto, id_emisor)
         )
         mycursor.execute(
             "UPDATE usuarios SET saldo = saldo + %s WHERE id=%s",
@@ -142,7 +142,7 @@ def carga_transferencia(id, id_receptor, monto, motivo, fecha):
             INSERT INTO actividades
             (id, emisor, receptor, motivo, fecha, monto)
             VALUES (%s,%s,%s,%s,%s,%s)""",
-            ('Null', id, id_receptor, motivo, fecha, monto))
+            ('Null', id_emisor, id_receptor, motivo, fecha, monto))
 
         mydb.commit()
         res = mycursor.lastrowid
@@ -189,13 +189,6 @@ def ingreso_dinero(id, monto):
     cerrarDB(mydb)
     return res
 
-def quitado_dinero(id, monto):
-    sQuery = "UPDATE usuarios set saldo = saldo - %s where id = %s"
-    val = (monto, id)
-    mydb=conectarDB(BASE)
-    res = ejecutarDB(mydb,sQuery,val)      
-    cerrarDB(mydb)
-    return res
 
 #--------------- ACTIVIDAAAAAADDDDD-----------------------------
 

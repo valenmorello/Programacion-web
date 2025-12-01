@@ -1,4 +1,4 @@
--- Active: 1762726616434@@mysql-tomasmaraval.alwaysdata.net@3306@tomasmaraval_familybank
+-- Active: 1763595836255@@mysql-tomasmaraval.alwaysdata.net@3306@tomasmaraval_familybank
 
 SHOW DATABASES;
 use tomasmaraval_familybank;
@@ -11,7 +11,7 @@ SELECT * FROM actividades
 
 SELECT * FROM solicitudes
 
-DESCRIBE usuarios;
+UPDATE usuarios where id
 
 
 INSERT INTO `usuarios` (`id`, `nombres`, `apellido`, `codigo_Familiar`, `es_padre`, `saldo`,  `contrasenia`, `nombre_usuario`, `admitido`, `img`) 
@@ -58,7 +58,6 @@ INSERT into `actividades` (`id`, `emisor`, `receptor`, `motivo`, `fecha`, `monto
 (Null, 3, 10, 'Entradas', '2025-11-03T10:43', 10000), 
 (Null, 2, 11, 'Vario', '2025-11-03T10:43', 5000)
 
-select * from solicitudes
 
 /* actividades por emisor*/
 SELECT emisor.nombre_usuario AS Emisor,  receptor.nombre_usuario AS Receptor,

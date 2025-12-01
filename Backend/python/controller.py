@@ -144,9 +144,9 @@ def cargar_notificaciones():
     hijos = hijos_pendientes(id_padre)
 
     return notificaciones(solicitudes=solicitudes, hijos=hijos)
+
 def pendiente():
     return render_template('pendiente.html')
-    
 
 def quitar(id_hijo, error = None):
     if haySesion():
@@ -184,9 +184,12 @@ def ejecutar_quitado(request, id_hijo):
     getRequest(myrequest)
 
     monto = int(myrequest['montoQuitar'])
+    id = session['id_usuario']
+    fecha = datetime.now()
+    motivo = 'Quitado por administrador ({})'.format(session['nombre']) 
 
-    if monto > 0 and monto <= saldoactual(id_hijo): #saldo del hijo
-        if quitado_dinero(id_hijo, monto) != None: 
+    if monto > 0 and monto <= saldoactual(id_hijo):  
+        if carga_transferencia(id_hijo, id, monto, motivo, fecha) != None: 
                     session['saldo'] = saldoactual(id)
                     res = quitar(id_hijo, error="Quitado Exitoso! ✅")
 
