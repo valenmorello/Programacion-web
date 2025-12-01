@@ -26,15 +26,46 @@
   <main>
     <section class="section">
       <div class="solicitar">
-        <form  action="/solicitar" method="POST">
+        <form  action="/ejecutarsolicitud" method="POST">
           <h2>Solicitar dinero:</h2>
           <p>Ingrese la cantidad que desea solicitar:</p>
           <input name="montoSolicitar" type="number" placeholder="$ 0.00" class="input-solicitar" id="montoSolicitar">
           <button type="submit" class="button">Solicitar</button>
         </form>
-        <span id="solicitar"></span>
+
+        {%if param['error'] != None %}
+        <p>{{param['error']}}</p>
+        {% endif %}
+        
       </div>
     </section>
+
+    <section class="section">
+      <div class="div_tabla">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Monto</th>
+                        <th>Fecha</th>
+                        <th>estado</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% if param['mis_solicitudes'] != None %}
+                    {% for list_element in param['mis_solicitudes'] %}
+                    <tr>
+                        <td>$ {{list_element[0]}}</td>
+                        <td>{{list_element[1]}}</td>
+                        <td>{{list_element[2]}}</td>
+
+                    </tr>
+                    {% endfor %}
+                    {% endif %}
+                    
+                </tbody>
+            </table>
+    </section>
+
   </main>
 
   <script src="../static/dom.js"></script>

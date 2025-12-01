@@ -103,7 +103,7 @@ insert into usuarios (`id`, `nombres`, `apellido`, `codigo_familiar`, `es_padre`
 values (null, 'Juan Ramon', 'Ramirez', 999999, 1, 0, 'juanRa02.', 'juanRamirez', 1, 'Frontend/Images/user.pmg')
 
 /*Modificar saldos para TRANSFERENCIA o INGRESOS*/
-update usuarios set saldo = 100000 where id = 16 
+update usuarios set nombre_usuario = 'violeorlando' where id = 13 
 
 /*Modificar datos del usuario*/
 update usuarios set nombres = 'Juana Ramona', apellido = 'Di Maria' where id = 16 ;

@@ -8,6 +8,8 @@ from werkzeug.utils import secure_filename
 
 def route (app):
 
+    # ----- RUTAS A PAGINAS ------
+
     @app.route('/')
     @app.route('/login')
     def pag_login():
@@ -31,7 +33,6 @@ def route (app):
     def pag_actividad(id_hijo=None):
         return actividad(id_hijo)
     
-
     @app.route('/cuenta')
     def pag_cuenta():
         return cuenta()
@@ -46,18 +47,15 @@ def route (app):
     
     @app.route('/notificaciones')
     def pag_notificaciones():
-        return cargar_notificaciones()
-
+        return notificaciones()
 
     @app.route('/aprobar/<int:id_solicitud>')
     def aprobar_solicitud(id_solicitud):
         return aprobar(id_solicitud)     
 
-
     @app.route('/rechazar/<int:id_solicitud>')
     def rechazar_solicitud(id_solicitud):
         return rechazar(id_solicitud)    
-
 
     @app.route('/hijo/<int:id_hijo>')
     def pag_padre2(id_hijo):
@@ -74,12 +72,10 @@ def route (app):
         return quitar(id_hijo)           
 
 
-    @app.route('/solicitar', methods=['GET','POST'])
-    def pag_solicitar():
-        print("ROUTE /solicitar method=", request.method)
-        if request.method == "POST":
-            return ejecutar_solicitud(request)   
-        return solicitar()                      
+    @app.route('/solicitar')
+    def pag_solicitar():  
+        return solicitar() # la ruta del boton se lama /ejecutarsolicitud y la pase para abajo
+                     
 
     @app.route('/transferir')
     @app.route('/transferir/<id_hijo>')
@@ -98,8 +94,12 @@ def route (app):
         rechazar_hijo(id_hijo)
         return redirect('/notificaciones')
 
-    #get se ve, post no. get manda menos info.
-    #archivos y contraseñas con post
+    @app.route('/logout')
+    def logout(): 
+        cerrarSesion()
+        return redirect('/')
+
+    # ----- RUTAS DE ENVIO -----
 
 
     @app.route('/signin', methods =["GET", "POST"])
@@ -115,15 +115,14 @@ def route (app):
         param={}
         return cambiardatos(param, request)
 
-    @app.route('/logout')
-    def logout(): 
-        cerrarSesion()
-        return redirect('/')
     
     @app.route('/ejecutartransferencia', methods=["GET","POST"])
     def ejecutar_tr(): 
         return ejecutar_transferencia(request)
     
+    @app.route('/ejecutarsolicitud', methods=['GET','POST'])
+    def eje_solicitar():
+        return ejecutar_solicitud(request)  
 
     @app.route('/ingreso', methods=["GET","POST"])
     def ejecutar_ing(): 

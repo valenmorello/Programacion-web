@@ -250,16 +250,6 @@ def encontrar_hijos(codfam):
     
     return diccionario_hijos
 
-
-def encontrar_codigo(id_padre):
-    mydb = conectarDB(BASE)
-    sQuery = "SELECT codigo_familiar FROM usuarios WHERE id=%s"
-    val = (id_padre,)
-    codigo = consultarDB(mydb, sQuery,val)
-    cerrarDB(mydb)
-   
-
-    return codigo[0][0]
     
 def agregar_solicitud(id_hijo, monto, fecha, estado):
     
@@ -273,18 +263,16 @@ def agregar_solicitud(id_hijo, monto, fecha, estado):
 
     try:
         ejecutarDB(mydb, sQuery, val)   # ← IMPORTANTE: ejecutarDB, no consultarDB
-        return True
+        res = True
     except Exception as e:
         print(f"Error en agregar_solicitud: {e}")
-        return False
+        res = False
     finally:
         cerrarDB(mydb)
+    return res
 
-def consultar_solicitudes(id_padre):
-    codfam = encontrar_codigo(id_padre)
 
-    if codfam is None:
-        return []
+def consultar_solicitudes(codfam):
 
     sQuery = """
         SELECT s.id, s.id_usuario, s.monto, s.fecha, u.nombre_usuario
@@ -299,53 +287,60 @@ def consultar_solicitudes(id_padre):
     cerrarDB(mydb)
 
     # Protección para evitar el TypeError
-    if not lista:
-        return []
-
     solicitudes = []
-    for sol in lista:
-        solicitudes.append({
-            'id': sol[0],
-            'id_hijo': sol[1],
-            'monto': sol[2],
-            'fecha': sol[3],
-            'nombre_hijo': sol[4]
-        })
+    if lista != None:
+
+        for sol in lista:
+            solicitudes.append({
+                'id': sol[0],
+                'id_hijo': sol[1],
+                'monto': sol[2],
+                'fecha': sol[3],
+                'nombre_hijo': sol[4]
+            })
 
     return solicitudes
 
+def mis_soicitudes(id):
+    sQuery = "SELECT monto, fecha, estado, FROM solicitudes WHERE id_usuario = %s "
+    mydb = conectarDB(BASE)
+    lista = consultarDB(mydb, sQuery, (id,))
+    cerrarDB(mydb)
+    
+    return lista
 
 def obtener_solicitud(id_solicitud):
-    mydb = conectarDB(BASE)
     sQuery = "SELECT id_usuario, monto, estado FROM solicitudes WHERE id = %s "
+    mydb = conectarDB(BASE)
     res = consultarDB(mydb, sQuery, (id_solicitud,))
     cerrarDB(mydb)
     return res[0] if res else None
 
+
 def actualizar_estado_solicitud(id_solicitud, estado):
-    mydb = conectarDB(BASE)
     sQuery= "UPDATE solicitudes SET estado = %s WHERE id = %s"
+    mydb = conectarDB(BASE)
     ejecutarDB(mydb,  sQuery, (estado, id_solicitud))
     cerrarDB(mydb)
 
-def hijos_pendientes(id_padre):
-    codfam = encontrar_codigo(id_padre)
-    if codfam is None:
-        return []
+
+def hijos_pendientes(codfam):
+    
     sQuery="SELECT id, nombre_usuario, nombres, apellido FROM usuarios WHERE codigo_Familiar = %s AND es_padre = 0 AND admitido = 0"
     mydb = conectarDB(BASE)
     res = consultarDB(mydb, sQuery, (codfam,))
     cerrarDB(mydb)
-    if not res:
-        return []
+
     hijos = []
-    for x in res:
-        hijos.append({
-            'id': x[0],
-            'username': x[1],
-            'nombre': x[2],
-            'apellido': x[3],
-        })
+    if res != None:
+        for x in res:
+            hijos.append({
+                'id': x[0],
+                'username': x[1],
+                'nombre': x[2],
+                'apellido': x[3],
+            })
+
     return hijos
 
 

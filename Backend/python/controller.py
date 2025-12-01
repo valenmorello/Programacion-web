@@ -33,8 +33,7 @@ def registro(param):
     return render_template('registro.html', param=param)
 
 
-def inicio(): #hijos
-    
+def inicio(): #hijos 
     if haySesion():
         param = diccionario_sesion()
         res = render_template('inicio.html', param=param)
@@ -94,14 +93,17 @@ def transferir(id_hijo=None, error=None):
         res = redirect('/')
     return res
 
+
 def solicitar(error=None):
     if haySesion():
         param=diccionario_sesion()
+        param['mis_solicitudes'] = mis_soicitudes(param['id'])
         param['error'] = error
         res = render_template('solicitar.html', param=param)
     else:
         res = redirect('/')
     return res
+
 
 def cuenta():
     if haySesion():
@@ -122,28 +124,17 @@ def ingresar(error = None):
     return res
     
      
-
-def notificaciones(solicitudes=None, hijos=None, error=None):
+def notificaciones(error=None):
     if haySesion():
         param = diccionario_sesion()
         param['error'] = error
-        param['solicitudes'] = solicitudes or []
-        param['hijos'] = hijos or []     
+        param['solicitudes'] = consultar_solicitudes(param['codfam'])
+        param['hijos'] = hijos_pendientes(param['codfam'])
 
         return render_template('notificaciones.html', param=param)
     else:
         return redirect('/')
 
-def cargar_notificaciones():
-    if not haySesion():
-        return redirect('/')
-
-    id_padre = session['id_usuario']
-
-    solicitudes = consultar_solicitudes(id_padre)
-    hijos = hijos_pendientes(id_padre)
-
-    return notificaciones(solicitudes=solicitudes, hijos=hijos)
 
 def pendiente():
     return render_template('pendiente.html')
@@ -238,22 +229,25 @@ def ejecutar_transferencia(request):
 def ejecutar_solicitud(request):
     myrequest = {}
     getRequest(myrequest)
+
     id_hijo = session['id_usuario']
     monto = int(myrequest.get('montoSolicitar', 0))
     fecha = datetime.now()
     estado = "pendiente"
 
     if agregar_solicitud(id_hijo, monto, fecha, estado):
-        return solicitar(error="Solicitud exitosa")
+        res = solicitar(error="Solicitud exitosa")
     else:
-        return solicitar(error="Hubo un error en la solicitud")
+        res = solicitar(error="Hubo un error en la solicitud")
+    
+    return res
 
 def mostrar_solicitudes():
     if not haySesion():
         return redirect('/')
 
-    id_padre = session['id_usuario']
-    lista_solicitudes = consultar_solicitudes(id_padre)
+    codfam = session['codfam']
+    lista_solicitudes = consultar_solicitudes(codfam)
 
     return notificaciones(solicitudes=lista_solicitudes)
 
@@ -261,34 +255,37 @@ def mostrar_solicitudes():
 #---- MANEJO DE SOLICITUD POR PARTE DEL PADRE ------------
 
 def rechazar(id_solicitud):
-    solicitud = obtener_solicitud(id_solicitud)
-
-    if not solicitud:
-        return mostrar_solicitudes(error="La solicitud no existe.")
-
-    actualizar_estado_solicitud(id_solicitud, 'rechazada')
-    return mostrar_solicitudes()
+    error = None
+    if obtener_solicitud(id_solicitud) != None:
+        actualizar_estado_solicitud(id_solicitud, 'rechazada')
+        error = 'Solicitud rechazada'
+    return notificaciones()
 
 def aprobar(id_solicitud):
-    solicitud = obtener_solicitud(id_solicitud)
-    if not solicitud:
-        return mostrar_solicitudes(error="La solicitud no existe.")
+    error = None
+    solicitud = obtener_solicitud(id_solicitud) #obtiene el resto de datos de la solicitud
+    if solicitud:
+        id_hijo, monto, estado = solicitud
+        if estado == 'pendiente':          #para asegruarnos de o resolver 2 veces 
+            
+            id_padre = session['id_usuario']
+            saldo_padre = saldoactual(id_padre)
 
-    id_hijo, monto, estado = solicitud
-    if estado != 'pendiente':
-        return mostrar_solicitudes(error="La solicitud ya fue procesada.")
-    id_padre = session['id_usuario']
-    saldo_padre = saldoactual(id_padre)
-    if saldo_padre < monto:
-        return mostrar_solicitudes(error="Saldo insuficiente para aprobar.")
+            if saldo_padre > monto:
+
+                fecha = datetime.now()
+                motivo = "Aprobación de solicitud"
+                carga_transferencia(id_padre, id_hijo, monto, motivo, fecha)
+                actualizar_estado_solicitud(id_solicitud, 'aprobada')
+                session['saldo'] = saldoactual(id_padre)
+
+            else:
+                error = 'Saldo Insuficiente para resolver la slicitud'
     
-    fecha = datetime.now()
-    motivo = "Aprobación de solicitud"
-    carga_transferencia(id_padre, id_hijo, monto, motivo, fecha)
-    actualizar_estado_solicitud(id_solicitud, 'aprobada')
-    session['saldo'] = saldoactual(id_padre)
-    return mostrar_solicitudes()
-
+    res = notificaciones(error)
+    return res
+        
+    
 
 # ---------------- LOG IN ------------------------------------------
 
