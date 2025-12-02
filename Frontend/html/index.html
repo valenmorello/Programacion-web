@@ -1,6 +1,4 @@
  
- <!-- onclick="registrarse()" -->
-<!--  onsubmit="loguearse(event)" -->
 
 <html>
     <head>
@@ -17,13 +15,17 @@
             </section>
             <img src="../static/Images/logo.jpg" class="imagen">
         
-            <form name="login" action="/signin" method="POST">
+            <form name="login" action="/signin" method="POST" onsubmit="return Validarcamposlogin(event)">
             <div class="datos">
                 <input type="text" class="input-datos" name="usuario" id="usuario" placeholder="Ingrese usuario">
                 <input type="password" class="input-datos" name="contrasenia" id="contraseña" placeholder="Ingrese contraseña">
+                
                 {% if param and param.get('error_login')!=None %}
                 <span>{{param.get('error_login')}}</span>
                 {% endif %}
+
+                <span id="error_login_js"></span>
+
             </div>
             <div class="acciones">
                 <button type="submit" class="button">Login</button>

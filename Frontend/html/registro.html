@@ -1,4 +1,4 @@
-<!--onclick="validarRegistro(event)"-->
+
 <html>
     <head>
         <meta charset="UTF-8">
@@ -14,7 +14,7 @@
                 <h1>BIENVENIDO</h1>
                 <h1>REGISTRO</h1>
             </section>
-            <form name="registro" action="/signup" method="POST" enctype="multipart/form-data">
+            <form name="registro" onclick="return validarRegistro(event)" action="/signup" method="POST" enctype="multipart/form-data">
                 <select class="select" name="select" id="select">
                         <option value="padre"> <p>PADRE</p></option>
                         <option value="hijo"> <P>HIJO</P></option>

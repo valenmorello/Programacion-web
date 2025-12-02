@@ -1,86 +1,87 @@
 <!DOCTYPE html>
 <html lang="es">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Solicitar Dinero - FamilyBank</title>
-  <link rel="stylesheet" href="../static/css/solicitar.css">
-</head>
-<body>
-  <header>
-    <div class="logo">
-        <button onclick="location.href='/inicio'">
-            <img src="../static/Images/logoinicio.jpg" class="imagen" alt="Logo">   
-        </button>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Solicitar Dinero - FamilyBank</title>
+    <link rel="stylesheet" href="../static/css/solicitar.css">
+  </head>
+  <body>
+    <header>
+      <div class="logo">
+          <button onclick="location.href='/inicio'">
+              <img src="../static/Images/logoinicio.jpg" class="imagen" alt="Logo">   
+          </button>
 
-    </div>
-    <div class="usuario">
-        <button id="cuenta" onclick="location.href='/cuenta'">Hola, {{param.get('usuario')}}!</button>
-        <button onclick="location.href='/cuenta'">
-            <img src="../static/Images/{{param.get('img')}}" alt="Usuario">
-        </button>
-    </div>
-    
-  </header>
+      </div>
+      <div class="usuario">
+          <button id="cuenta" onclick="location.href='/cuenta'">Hola, {{param.get('usuario')}}!</button>
+          <button onclick="location.href='/cuenta'">
+              <img src="../static/Images/{{param.get('img')}}" alt="Usuario">
+          </button>
+      </div>
+      
+    </header>
 
-  <main>
+    <main>
 
-    {% if param['mostrar_popup'] %}
-    <!-- POPUP -->
-    <div id="popup-overlay" class="overlay">
-      <div class="popup">
-        <h2>{{param['error']}}</h2>
+      {% if param['mostrar_popup'] %}
+      <!-- POPUP -->
+      <div id="popup-overlay" class="overlay">
+        <div class="popup">
+          <h2>{{param['error']}}</h2>
 
-        <div class="pop_buttons">
-            <a href="/inicio" class="btn volver">Volver a inicio</a>
-            <a href="/solicitar" class="btn otra">Hacer otra solicitud</a>
+          <div class="pop_buttons">
+              <a href="/inicio" class="btn volver">Volver a inicio</a>
+              <a href="/solicitar" class="btn otra">Hacer otra solicitud</a>
+          </div>
         </div>
       </div>
-    </div>
-    {% endif %}
+      {% endif %}
 
-    <section class="section">
-      <div class="solicitar">
-        <form  action="/ejecutarsolicitud" method="POST">
-          <h2>Solicitar dinero:</h2>
-          <p>Ingrese la cantidad que desea solicitar:</p>
-          <input name="montoSolicitar" type="number" placeholder="$ 0.00" class="input-solicitar" id="montoSolicitar">
-          <button type="submit" class="button">Solicitar</button>
-        </form>
-        
-      </div>
-    </section>
+      <section class="section">
+        <div class="solicitar">
+          <form  action="/ejecutarsolicitud" method="POST" onsubmit="return ValidarCamposSoicitar(event)">
+            <h2>Solicitar dinero:</h2>
+            <p>Ingrese la cantidad que desea solicitar:</p>
+            <p id="error_solicitar_js"></p>
+            <input name="montoSolicitar" type="number" placeholder="$ 0.00" class="input-solicitar" id="montoSolicitar">
+            <button type="submit" class="button">Solicitar</button>
+          </form>
+          
+        </div>
+      </section>
 
-    <section class="section">
-      <div class="div_tabla">
-            <table>
-                <thead>
-                    <tr>
-                        <th>Monto</th>
-                        <th>Fecha</th>
-                        <th>estado</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% if param['mis_solicitudes'] != None %}
-                    {% for list_element in param['mis_solicitudes'] %}
-                    <tr>
-                        <td>$ {{list_element[0]}}</td>
-                        <td>{{list_element[1]}}</td>
-                        <td>{{list_element[2]}}</td>
-                    </tr>
-                    {% endfor %}
-                    {% endif %}
-                    
-                </tbody>
-            </table>
-    </section>
+      <section class="section">
+        <div class="div_tabla">
+              <table>
+                  <thead>
+                      <tr>
+                          <th>Monto</th>
+                          <th>Fecha</th>
+                          <th>estado</th>
+                      </tr>
+                  </thead>
+                  <tbody>
+                      {% if param['mis_solicitudes'] != None %}
+                      {% for list_element in param['mis_solicitudes'] %}
+                      <tr>
+                          <td>$ {{list_element[0]}}</td>
+                          <td>{{list_element[1]}}</td>
+                          <td>{{list_element[2]}}</td>
+                      </tr>
+                      {% endfor %}
+                      {% endif %}
+                      
+                  </tbody>
+              </table>
+      </section>
 
-  </main>
+    </main>
 
-  <script src="../static/dom.js"></script>
-</body>
-<footer>
-  <p>© 2025 FamilyBank | Desarrollado por Tomás Maraval, Valentina Morello y Felicitas Orlando.</p>
-</footer>
+    <script src="../static/dom.js"></script>
+  </body>
+  <footer>
+    <p>© 2025 FamilyBank | Desarrollado por Tomás Maraval, Valentina Morello y Felicitas Orlando.</p>
+  </footer>
 </html>

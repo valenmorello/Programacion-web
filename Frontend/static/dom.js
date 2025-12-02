@@ -1,4 +1,4 @@
-let saldoActual = 0;
+
 
 let contraseña = document.forms['registro']['contraseña']
 let confirmar = document.forms['registro']['confirmar'];
@@ -38,8 +38,9 @@ eyeBtn.addEventListener("click", () => {
 });
 
 
-function validarRegistro (event){
-    if (event) event.preventDefault();
+
+function validarRegistro(event) {
+
     document.getElementById('errorUser').innerHTML = '';
     document.getElementById('errorNom').innerHTML = '';
     document.getElementById('errorApe').innerHTML = '';
@@ -47,247 +48,187 @@ function validarRegistro (event){
     document.getElementById('errorPass').innerHTML = '';
     document.getElementById('errorConf').innerHTML = '';
 
-    let user = document.forms['registro']['usuario'].value
-    let nombre = document.forms['registro']['nombre'].value
-    let apellido = document.forms['registro']['apellido'].value
-    let code = document.getElementById('codigoFamiliar').value
-    let rol = document.forms['registro']['select'].value
-    let imagen = document.forms['registro']['imagen'];
+    let form = document.forms['registro']; 
 
+    let user = form['usuario'].value;
+    let nombre = form['nombre'].value;
+    let apellido = form['apellido'].value;
+    let code = document.getElementById('codigoFamiliar').value;
+    let rol = form['select'].value;
+    let contraseña = form['contrasenia'];  
+    let confirmar = form['confirmar'];      
 
-    let valido = true
+    let valido = true; 
 
-    if (/[\d!@#$%^&*()_+\-=\[\]{};:"'\\|,.<>\/?~`]/.test(nombre)){
-        document.getElementById('errorNom').innerHTML = 'Ingrese solo letras'
-        valido = false
+    if (/[\d!@#$%^&*()_+\-=\[\]{};:"'\\|,.<>\/?~`]/.test(nombre)) {
+        document.getElementById('errorNom').innerHTML = 'Ingrese solo letras';
+        valido = false;
     }
-    if (/[\d!@#$%^&*()_+\-=\[\]{};:"'\\|,.<>\/?~`]/.test(apellido)){
-        document.getElementById('errorApe').innerHTML = 'Ingrese solo letras'
-        valido = false
+
+    if (/[\d!@#$%^&*()_+\-=\[\]{};:"'\\|,.<>\/?~`]/.test(apellido)) {
+        document.getElementById('errorApe').innerHTML = 'Ingrese solo letras';
+        valido = false;
     }
-    if (rol == 'hijo') {
+
+    if (rol === 'hijo') {
         if (!/^\d{6}$/.test(code)) {
             document.getElementById('errorCode').innerHTML = 'Código de 6 dígitos (solo números)';
             valido = false;
         }
     }
-    if (!/\d/.test(contraseña.value) || !/[!@#$%^&*()_+\-=\[\]{};:"'\\|,.<>\/?~`]/.test(contraseña.value) || !/.{6,}/.test(contraseña.value)){
-        document.getElementById('errorPass').innerHTML = 'Incluya al menos un número y un caracter especial. Minimo 6 caracteres.'
-        valido = false
-    }
-    if (contraseña.value != confirmar.value) {
-        document.getElementById('errorConf').innerHTML = 'Contraseñas no coincidentes.'
-        valido = false
-    }
-    if (valido != true){
-        return false
+
+    if (
+        !/\d/.test(contraseña.value) || 
+        !/[!@#$%^&*()_+\-=\[\]{};:"'\\|,.<>\/?~`]/.test(contraseña.value) ||
+        contraseña.value.length < 6
+    ) {
+        document.getElementById('errorPass').innerHTML =
+        'Incluya al menos un número, un caracter especial. Mínimo 6 caracteres.';
+        valido = false;
     }
 
-    if(document.forms['registro']['select'].value == "hijo"){
-        localStorage.setItem('user', user)            
-        localStorage.setItem('code', code)
-        localStorage.setItem('padre', false)
-        return true
+    if (contraseña.value !== confirmar.value) {
+        document.getElementById('errorConf').innerHTML = 'Contraseñas no coinciden.';
+        valido = false;
     }
-    else if (document.forms['registro']['select'].value == "padre"){        
-        localStorage.setItem('user', user)
-        localStorage.setItem('code', code)            
-        localStorage.setItem('padre', true)
-        return true
 
+    if (!valido) {                
+        event.preventDefault();   
+        return false;              
     }
+
+    return true;                   
 }
 
-function validarAdmision(admitido){
-    document.getElementById('errorAdmision').innerHTML = '';
-
-    if (admitido == 1){
-        window.location.replace('/inicio')
-    } else {
-        document.getElementById('errorAdmision').innerHTML = 'Su usuario todavia no ha sido admitido.'
-       
-    }
-}
 
  
-function loguearse (event){
-    if (event) event.preventDefault()
+function Validarcamposlogin(event) {
 
-    let user = document.forms['login']['usuario']
-    let password = document.forms['login']['contraseña']
-    /*document.getElementById('errorUser').innerHTML = '';
-    document.getElementById('errorPass').innerHTML = '';
-    document.getElementById('login').innerHTML = ''*/
-    user.style.border =  "2px solid #000852"
-    password.style.border =  "2px solid #000852"
+    let form = document.forms['login'];   
+    let user = form['usuario'];           
+    let password = form['contraseña'];    
 
-    let valido = true
+    document.getElementById('error_login_js').innerHTML = '';
 
-    console.log(user, password)
-    if (!/.{1.}/.test(user.value) || !/.{1.}/.test(password.value)){
-        document.getElementById('login').innerHTML = 'Complete los campos'
+    user.style.border = "2px solid #000852";
+    password.style.border = "2px solid #000852";
+
+    let valido = true;
+
+    if (user.value.trim().length === 0 || password.value.trim().length === 0) {
+        document.getElementById('error_login_js').innerHTML = 'Complete los campos';
+        valido = false;
+
+        if (user.value.trim().length === 0) {
+            user.style.border = "2px solid #ff0000ff"; 
+        }
+        if (password.value.trim().length === 0) {
+            password.style.border = "2px solid #ff0000ff"; 
+        }
+    }
+    
+    if (!valido) {            
+        event.preventDefault();  
+        return false;            
+    }
+
+    return true;                
+}
+
+
+function ValidarCamposTransferencia(event) {
+
+    let form = document.forms['transferir'];          
+    let userDestino = form['usuarioDestino'].value.trim();  
+    let monto = parseFloat(form['monto'].value);            
+    let motivo = form['motivo'].value.trim();               
+
+    document.getElementById('error_transferir_js').innerHTML = '';
+
+    let valido = true;   
+
+    if (userDestino.length < 1 || isNaN(monto) || monto < 1 || motivo.length < 1) {
+        document.getElementById('error_transferir_js').innerHTML = 'Complete los datos.';
+        valido = false;   
+    }
+
+    if (!valido) {                   
+        event.preventDefault();      
+        return false;               
+    }
+
+    return true;                  
+}
+
+
+function ValidarCamposIngresar(event) {
+    let form = document.forms['ingreso'];
+
+    let montoStr = form['montoIngresar'].value.trim();
+    let montoIngreso = parseFloat(montoStr);
+
+    document.getElementById('error_ingresar_js').innerHTML = '';
+
+    let valido = true;
+
+    if (isNaN(montoIngreso) || montoIngreso < 1 || montoStr.length < 1) {
+        document.getElementById('error_ingresar_js').innerHTML = 'Complete el monto';
+        valido = false;   
+    }
+
+    if (!valido) {                   
+        event.preventDefault();      
+        return false;               
+    }
+
+    return true;    
+}
+
+
+
+function ValidarCamposSoicitar(event){
+    let form = document.forms['solicitar'];
+
+    let montoStr = form['montoSolicitar'].value.trim();
+    let montoSolicitar = parseFloat(montoStr);
+
+    document.getElementById('error_solicitar_js').innerHTML = ''
+    let valido = true;
+
+    if (isNaN(montoSolicitar) || montoSolicitar < 1 || montoStr.length < 1){
+        document.getElementById('error_solicitar_js').innerHTML = 'Complete los datos';
         valido = false
-        if (user.value.length < 1){
-            user.style.border =  "2px solid #ff0000ff";            
-        }
-        if (password.value.length < 1){
-            password.style.border =  "2px solid #ff0000ff";            
-        }
     }
-
-}
-
-function inicio (){
-    if (localStorage.getItem('padre') === 'true'){
-        window.location.assign('iniciopadre.html')
-    } else {
-        window.location.assign('inicio.html')
+    if (!valido) {                   
+        event.preventDefault();      
+        return false;               
     }
-    
+    return true; 
 }
 
+function ValidarCamposQuitar(event){
+    let form = document.forms['quitar'];
 
-function validarTransferencia(event) {
-  if (event) event.preventDefault();
-  let userDestino = document.forms['transferir']['usuarioDestino'].value;
-  let monto = parseFloat(document.forms['transferir']['monto'].value)
-  let motivo = document.forms['transferir']['motivo'].value
-  document.getElementById('transferir').innerHTML = ''
+    let montoStr = form['montoQuitar'].value.trim();
+    let montoQuitar = parseFloat(montoStr);
 
-  if (userDestino.length < 1 || monto < 1 || motivo.length < 1) {
-    document.getElementById('transferir').innerHTML = 'Complete los datos.'
-  } else {
-    document.getElementById('transferir').innerHTML = 'Transferencia exitosa!'
-  }
-}
+    document.getElementById('error_quitar_js').innerHTML = ''
+    let valido = true;
 
-function ingresar(event) {
-  if (event) event.preventDefault();
-  let montoIngreso = parseFloat(document.forms['ingreso']['montoIngresar'].value)
-  //let saldoActual = parseInt(document.getElementById('saldoActual').value)
-  //let nuevoSaldo = saldoActual + montoIngreso;
-  let saldoActual = 0
-  document.getElementById('ingresar').innerHTML = ''
-  if (montoIngreso >= 1){
-    document.getElementById('ingresar').innerHTML = 'Se ha ingresado el dinero!'
-    saldoActual += montoIngreso
-    document.getElementById('saldoActual').innerHTML = "$ " + saldoActual;
-   
-  } else {
-    document.getElementById('ingresar').innerHTML = 'Complete el monto!'
-  }
-}
-
-
-/*
-function solicitarDinero (event){
-    document.getElementById('solicitar').innerHTML = ''
-    if (event) event.preventDefault();
-    let montoSolicitar = document.forms['solicitar']['montoSolicitar'].value
-    if (montoSolicitar >= 1){
-        document.getElementById('solicitar').innerHTML = 'Se ha solicitado el dinero!'
-    }else{
-        document.getElementById('solicitar').innerHTML = 'Complete los datos!'
+    if (isNaN(montoQuitar) || montoQuitar < 1 || montoStr.length < 1){
+        document.getElementById('error_quitar_js').innerHTML = 'Complete los datos';
+        valido = false
     }
-}
-
-function aceptarSolicitudGrupo (){    
-    document.getElementById('solicitudGrupo').innerHTML = ''
-    document.getElementById('solicitudGrupo').innerHTML = 'Se ha aceptado la solicitud! ✅'
-    document.getElementById('botonAceptar').style.display = 'none';
-    document.getElementById('botonRechazar').style.display = 'none';
-}
-
-function rechazarSolicitudGrupo (){    
-    document.getElementById('solicitudGrupo').innerHTML = ''
-    document.getElementById('solicitudGrupo').innerHTML = 'Se ha rechazado la solicitud! ❌'
-    document.getElementById('botonAceptar').style.display = 'none';
-    document.getElementById('botonRechazar').style.display = 'none';
-}
-*/
-function aceptarTransferencia (){    
-    document.getElementById('solicitudTransferencia').innerHTML = ''
-    document.getElementById('solicitudTransferencia').innerHTML = 'Se ha transferido el dinero! ✅'
-    document.getElementById('aceptarTransferencia').style.display = 'none';
-    document.getElementById('rechazarTransferencia').style.display = 'none';
-}
-
-function rechazarTransferencia (){    
-    document.getElementById('solicitudTransferencia').innerHTML = ''
-    document.getElementById('solicitudTransferencia').innerHTML = 'Se ha rechazado la transferencia! ❌'
-    document.getElementById('aceptarTransferencia').style.display = 'none';
-    document.getElementById('rechazarTransferencia').style.display = 'none';
-}
-/*
-function quitar (){
-    window.location.assign('quitar.html')
-}
-
-function quitarDinero (event){
-    document.getElementById('quitar').innerHTML = ''
-    if (event) event.preventDefault();
-    let quitar = document.forms['quitar']['montoQuitar'].value
-    if (quitar >= 1){
-        document.getElementById('quitar').innerHTML = 'Dinero quitado!'
-        return true
-    } else {
-        document.getElementById('quitar').innerHTML = 'Complete el campo!'
-        return false
+    if (!valido) {                   
+        event.preventDefault();      
+        return false;               
     }
-}*/
-
-function cerrarSesion (){
-    window.location.replace('index.html')
-    localStorage.removeItem('user')
-    localStorage.removeItem('code')
-}
-
-/*
-function validarModificaciones (event){
-    if (event) event.preventDefault();
-    let nombreNew = document.forms['datos']['nombreNuevo'].value;
-    let apNew = document.forms['datos']['apellidoNuevo'].value;
-    document.getElementById('cambioDatos').innerHTML = ''
-
-    modificarUser(nombreNew, apNew);
-}
-
-function modificarUser (nombreNew, apNew){
-    
-    if (nombreNew == "" && apNew != ""){
-        document.getElementById('cambioDatos').innerHTML = 'Usted ha modificado su apellido!'
-        return true
-    }
-    else if (apNew == "" && nombreNew != ""){
-        document.getElementById('cambioDatos').innerHTML = 'Usted ha modificado su nombre!'
-        return true
-    }
-    else if (apNew != "" && nombreNew != ""){
-        document.getElementById('cambioDatos').innerHTML = 'Usted ha modificado su nombre y apellido!'
-        return true
-    } else {
-        return false
-    }
-}
-*/
-
-function hijo(){
-    window.location.assign('padre2.html')
-}
-function aIngresar(){
-    window.location.assign("ingresar.html")
+    return true; 
 }
 
 
-function cargarCodigo (){
-    let codePag = document.getElementById('code')
-    codePag.innerHTML = `#${localStorage.getItem('code')}`
-}
 
-function cargarDatos (){
-    let codePag = document.getElementById('datosCode')
-    let nombrePag = document.getElementById('datosUser')
-    codePag.innerHTML = `#${localStorage.getItem('code')}`
-    nombrePag.innerHTML = `Hola, ${localStorage.getItem('user')}!`
 
-}
+
+
+

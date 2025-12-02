@@ -1,63 +1,66 @@
 <!DOCTYPE html>
 <html lang="es">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Solicitar Dinero - FamilyBank</title>
-  <link rel="stylesheet" href="../static/css/solicitar.css">
-</head>
-<body>
-  <header>
-    <div class="logo">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Solicitar Dinero - FamilyBank</title>
+    <link rel="stylesheet" href="../static/css/solicitar.css">
+  </head>
+  <body>
+    <header>
+      <div class="logo">
         <button onclick="location.href='/iniciopadre'">
             <img src="../static/Images/logoinicio.jpg" class="imagen" alt="Logo">   
         </button>
 
-    </div>
-    <div class="usuario">
+      </div>
+      <div class="usuario">
         <button id="cuenta" onclick="location.href='/cuenta'">Hola, {{param.get('usuario')}}! #{{param.get('codfam')}}</button>
         <button onclick="location.href='/cuenta'">
             <img src="../static/Images/{{param.get('img')}}" alt="Usuario">
         </button>
-    </div>  
+      </div>  
     
-  </header>
+    </header>
 
-  <main>
+    <main>
 
-    {% if param['mostrar_popup'] %}
-    <!-- POPUP -->
-    <div id="popup-overlay" class="overlay">
-      <div class="popup">
-        <h2>{{param['error']}}</h2>
+      {% if param['mostrar_popup'] %}
+      <!-- POPUP -->
+      <div id="popup-overlay" class="overlay">
+        <div class="popup">
+          <h2>{{param['error']}}</h2>
 
-        <div class="pop_buttons">
+          <div class="pop_buttons">
+
             <a href="/iniciopadre" class="btn volver">Volver a inicio</a>
-            <a href="/solicitar" class="btn otra">Hacer otra solicitud</a>
+            <a href="/ingresar" class="btn otra">Hacer otro ingreso</a>
+
+          </div>
         </div>
       </div>
-    </div>
-    {% endif %}
+      {% endif %}
 
-    <section class="section">
-      <div class="solicitar">
-        <h2>Ingresar dinero:</h2>
-          <div class="saldo">
-            <p>Saldo disponible:</p>
-            <p name="saldoActual" id="saldoActual">$ {{param.get('saldo')}}</p>
-          </div>
-        <form name="ingreso" action="/ingreso" method="POST">
-          <p>Ingrese la cantidad que desea ingresar:</p>
-          <input name="montoIngresar" type="number" placeholder="$ 0.00" class="input-solicitar" id="montoIngresar">
-          <button type="submit" class="button">Ingresar</button>
-        </form>
-      </div>
-    </section>
-  </main>
+      <section class="section">
+        <div class="solicitar">
+          <h2>Ingresar dinero:</h2>
+            <div class="saldo">
+              <p>Saldo disponible:</p>
+              <p name="saldoActual" id="saldoActual">$ {{param.get('saldo')}}</p>
+            </div>
+          <form name="ingreso" onsubmit="return ValidarCamposIngresar(event)" action="/ingreso" method="POST">
+            <p>Ingrese la cantidad que desea ingresar:</p>
+            <input name="montoIngresar" type="number" placeholder="$ 0.00" class="input-solicitar" id="montoIngresar">
+            <p id="error_ingresar_js"></p>
+            <button type="submit" class="button">Ingresar</button>
+          </form>
+        </div>
+      </section>
+    </main>
 
-  <script src="../dom.js"></script>
-</body>
-<footer>
-  <p>© 2025 FamilyBank | Desarrollado por Tomás Maraval, Valentina Morello y Felicitas Orlando.</p>
-</footer>
+    <script src="../static/dom.js"></script>
+  </body>
+  <footer>
+    <p>© 2025 FamilyBank | Desarrollado por Tomás Maraval, Valentina Morello y Felicitas Orlando.</p>
+  </footer>
 </html>
