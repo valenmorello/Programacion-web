@@ -173,7 +173,6 @@ HAVING usuarios.nombres ='Juana';
 DELETE FROM solicitudes 
 WHERE estado = ''
 
-select * from solicitudes;
 
 /*Busco codigo familiar*/
 SELECT `codigo_Familiar` FROM usuarios WHERE `codigo_Familiar` = 234567

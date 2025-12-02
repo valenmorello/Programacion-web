@@ -264,7 +264,7 @@ def mostrar_solicitudes():
 def rechazar(id_solicitud):
     error = None
     if obtener_solicitud(id_solicitud) != None:
-        actualizar_estado_solicitud(id_solicitud, 'rechazado')
+        actualizar_estado_solicitud(id_solicitud, "rechazado")
     return redirect('/notificaciones?status=Solicitud rechazada')
 
 def aprobar(id_solicitud):
@@ -272,7 +272,7 @@ def aprobar(id_solicitud):
     solicitud = obtener_solicitud(id_solicitud) #obtiene el resto de datos de la solicitud
     if solicitud:
         id_hijo, monto, estado = solicitud
-        if estado == 'pendiente':          #para asegruarnos de o resolver 2 veces 
+        if estado == "pendiente":          #para asegruarnos de o resolver 2 veces 
             
             id_padre = session['id_usuario']
             saldo_padre = saldoactual(id_padre)
@@ -282,7 +282,7 @@ def aprobar(id_solicitud):
                 fecha = datetime.now()
                 motivo = "Aprobación de solicitud"
                 if carga_transferencia(id_padre, id_hijo, monto, motivo, fecha) != None:
-                    actualizar_estado_solicitud(id_solicitud, 'aprobado')
+                    actualizar_estado_solicitud(id_solicitud, "aceptado")
                     session['saldo'] = saldoactual(id_padre)
                     res = redirect('/notificaciones?status=Solicitud aprobada')
             else:
