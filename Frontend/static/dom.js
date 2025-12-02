@@ -40,7 +40,6 @@ eyeBtn.addEventListener("click", () => {
 
 
 function validarRegistro(event) {
-
     document.getElementById('errorUser').innerHTML = '';
     document.getElementById('errorNom').innerHTML = '';
     document.getElementById('errorApe').innerHTML = '';

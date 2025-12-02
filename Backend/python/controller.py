@@ -28,10 +28,8 @@ def diccionario_sesion():
 def login(param):
     return render_template('index.html', param=param)
 
-
 def registro(param):
     return render_template('registro.html', param=param)
-
 
 def inicio(): #hijos 
     if haySesion():
@@ -40,7 +38,6 @@ def inicio(): #hijos
     else:
         res = redirect('/')
     return res
-   
 
 def iniciopadre(): #padres
     if haySesion():
@@ -52,7 +49,6 @@ def iniciopadre(): #padres
         res = redirect('/')
     return res
 
-
 def padre2(id_hijo):
     if haySesion():
         param = diccionario_sesion()
@@ -61,7 +57,6 @@ def padre2(id_hijo):
     else:
         res = redirect('/')
     return res
-
 
 def actividad(id_hijo):
     if haySesion():
@@ -82,6 +77,7 @@ def actividad(id_hijo):
     return res
 
   
+
 def transferir(id_hijo=None, error=None):
     if haySesion():
         param = diccionario_sesion()
@@ -97,7 +93,6 @@ def transferir(id_hijo=None, error=None):
         res = redirect('/')
     return res
 
-
 def solicitar(error=None):
     if haySesion():
         param=diccionario_sesion()
@@ -112,16 +107,6 @@ def solicitar(error=None):
         res = redirect('/')
     return res
 
-
-def cuenta():
-    if haySesion():
-        param = diccionario_sesion()
-        res = render_template('cuenta.html', param=param)
-    else:
-        res = redirect('/')
-    return res
-    
-
 def ingresar(error = None):
     if haySesion():
         param = diccionario_sesion()
@@ -133,21 +118,7 @@ def ingresar(error = None):
         res = render_template('ingresar.html', param=param)
     else:
         res = redirect('/')
-    return res   
-     
-def notificaciones(error=None):
-    if haySesion():
-        param = diccionario_sesion()
-        param['error'] = error
-        param['solicitudes'] = consultar_solicitudes(param['codfam'])
-        param['hijos'] = hijos_pendientes(param['codfam'])
-
-        return render_template('notificaciones.html', param=param)
-    else:
-        return redirect('/')
-
-def pendiente():
-    return render_template('pendiente.html')
+    return res  
 
 def quitar(id_hijo, error = None):
     if haySesion():
@@ -162,6 +133,31 @@ def quitar(id_hijo, error = None):
     else:
         res = redirect('/')
     return res
+
+
+
+def cuenta():
+    if haySesion():
+        param = diccionario_sesion()
+        res = render_template('cuenta.html', param=param)
+    else:
+        res = redirect('/')
+    return res
+        
+def notificaciones(error=None):
+    if haySesion():
+        param = diccionario_sesion()
+        param['error'] = error
+        param['solicitudes'] = consultar_solicitudes(param['codfam'])
+        param['hijos'] = hijos_pendientes(param['codfam'])
+
+        return render_template('notificaciones.html', param=param)
+    else:
+        return redirect('/')
+
+def pendiente():
+    return render_template('pendiente.html')
+
     
 #--------Ingresar Dinero ------------------
 
@@ -237,7 +233,6 @@ def ejecutar_transferencia(request):
 
         return res
 
-
 #-----------------SOLICITAR-------------
 
 def ejecutar_solicitud(request):
@@ -299,7 +294,6 @@ def aprobar(id_solicitud):
     res = notificaciones(error)
     return res
         
-    
 # ---------------- LOG IN ------------------------------------------
 
 def validar_login(request):
