@@ -146,10 +146,10 @@ def cuenta():
         res = redirect('/')
     return res
         
-def notificaciones(error=None):
+def notificaciones(status):
     if haySesion():
         param = diccionario_sesion()
-        param['error'] = error
+        param['status'] = status
         param['solicitudes'] = consultar_solicitudes(param['codfam'])
         param['hijos'] = hijos_pendientes(param['codfam'])
 
@@ -265,11 +265,10 @@ def rechazar(id_solicitud):
     error = None
     if obtener_solicitud(id_solicitud) != None:
         actualizar_estado_solicitud(id_solicitud, 'rechazado')
-        error = 'Solicitud rechazada'
-    return notificaciones(error)
+    return redirect('/notificaciones?status=Solicitud rechazada')
 
 def aprobar(id_solicitud):
-    error = None
+    res = None
     solicitud = obtener_solicitud(id_solicitud) #obtiene el resto de datos de la solicitud
     if solicitud:
         id_hijo, monto, estado = solicitud
@@ -285,12 +284,10 @@ def aprobar(id_solicitud):
                 if carga_transferencia(id_padre, id_hijo, monto, motivo, fecha) != None:
                     actualizar_estado_solicitud(id_solicitud, 'aprobado')
                     session['saldo'] = saldoactual(id_padre)
-                    error = 'Solicitud aprobada'
-
+                    res = redirect('/notificaciones?status=Solicitud aprobada')
             else:
-                error = 'Saldo Insuficiente para resolver la slicitud'
+                res = redirect('/notificaciones?status=Saldo Insuficiente para resolver la slicitud')
     
-    res = notificaciones(error)
     return res
         
 # ---------------- LOG IN ------------------------------------------

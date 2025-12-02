@@ -29,9 +29,9 @@
 
         <h2>Tus notificaciones</h2>
 
-        {% if param.error %}
+        {% if param['status'] %}
         <div class="mensaje-alerta">
-            <p>{{ param.error }}</p>
+            <p>{{param['status']}}</p>
         </div>
         {% endif %}
 

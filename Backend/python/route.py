@@ -46,7 +46,8 @@ def route (app):
     
     @app.route('/notificaciones')
     def pag_notificaciones():
-        return notificaciones()
+        status = request.args.get('status')
+        return notificaciones(status)
     
 
     @app.route('/hijo/<int:id_hijo>')
