@@ -206,7 +206,7 @@ def ejecutar_quitado(request, id_hijo):
         res = quitar(id_hijo, error="Ingrese un monto")
     return res
 
-# ----------------------Transferencias------------------------------------
+# ----------------------Transferencia------------------------------------
 
 def ejecutar_transferencia(request):
         
