@@ -13,14 +13,16 @@ def route (app):
     @app.route('/')
     @app.route('/login')
     def pag_login():
-        param ={}
         cerrarSesion()
+        param ={}
+        param['error_login'] = request.args.get('error')
         return login(param)
  
     @app.route('/registro')
     def pag_registro():
-        param ={}
         cerrarSesion()
+        param ={}
+        param['error'] = request.args.get('error')
         return registro(param)
     
     @app.route('/inicio')
@@ -40,9 +42,6 @@ def route (app):
     def pag_cuenta():
         return cuenta()
     
-    @app.route('/ingresar')
-    def pag_ingresar():
-        return ingresar()
     
     
     @app.route('/notificaciones')
@@ -59,21 +58,28 @@ def route (app):
     def pag_pendiente():
         return pendiente()           
 
-
+    @app.route('/ingresar')
+    def pag_ingresar():
+        status = request.args.get('status')
+        return ingresar(status)
+    
     @app.route('/quitar/<int:id_hijo>')
     def pag_quitar(id_hijo):
-        return quitar(id_hijo)           
+        status = request.args.get('status')
+        return quitar(id_hijo, status)           
 
 
     @app.route('/solicitar')
     def pag_solicitar():
-        return solicitar() # la ruta del boton se lama /ejecutarsolicitud y la pase para abajo
+        status = request.args.get('status')
+        return solicitar(status) # la ruta del boton se lama /ejecutarsolicitud y la pase para abajo
                      
 
     @app.route('/transferir')
     @app.route('/transferir/<id_hijo>')
     def pag_transferir(id_hijo=None):
-        return transferir(id_hijo)
+        status = request.args.get('status')
+        return transferir(status, id_hijo)
     
 
     @app.route('/logout')

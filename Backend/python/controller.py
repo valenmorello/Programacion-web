@@ -1,4 +1,4 @@
-from flask import request, session, redirect, render_template
+from flask import request, session, redirect, render_template, url_for
 from datetime import datetime
 from model import *
 from werkzeug.utils import secure_filename
@@ -78,12 +78,13 @@ def actividad(id_hijo):
 
   
 
-def transferir(id_hijo=None, error=None):
+def transferir(status, id_hijo=None):
     if haySesion():
         param = diccionario_sesion()
-        if error != None:
-            param['error'] = error
+
+        if status != None:
             param['mostrar_popup'] = True
+            param['status'] = status
 
         if id_hijo != None:
             param['hijo_dic'] = buscar_por_id(id_hijo)
@@ -93,13 +94,13 @@ def transferir(id_hijo=None, error=None):
         res = redirect('/')
     return res
 
-def solicitar(error=None):
+def solicitar(status):
     if haySesion():
         param=diccionario_sesion()
         param['mis_solicitudes'] = mis_solicitudes(param['id'])
 
-        if error != None:
-            param['error'] = error
+        if status != None:
+            param['status'] = status
             param['mostrar_popup'] = True
 
         res = render_template('solicitar.html', param=param)
@@ -107,12 +108,12 @@ def solicitar(error=None):
         res = redirect('/')
     return res
 
-def ingresar(error = None):
+def ingresar(status):
     if haySesion():
         param = diccionario_sesion()
 
-        if error != None:
-            param['error'] = error
+        if status != None:
+            param['status'] = status
             param['mostrar_popup'] = True
       
         res = render_template('ingresar.html', param=param)
@@ -120,14 +121,15 @@ def ingresar(error = None):
         res = redirect('/')
     return res  
 
-def quitar(id_hijo, error = None):
+def quitar(id_hijo, status):
     if haySesion():
         param = diccionario_sesion()
         param['id_hijo'] = id_hijo
 
-        if error != None:
-            param['error'] = error
+        if status != None:
             param['mostrar_popup'] = True
+            param['status'] = status
+            
         
         res = render_template('quitar.html', param=param)
     else:
@@ -167,15 +169,14 @@ def ejecutar_ingreso(request):
 
     id = session['id_usuario']
     monto = int(myrequest['montoIngresar'])
-    if monto > 0:
-        if ingreso_dinero(id, monto) != None: 
-                    session['saldo'] = saldoactual(id)
-                    res = ingresar(error="Ingreso Exitoso! ✅")
+    
+    if ingreso_dinero(id, monto) != None: 
+        session['saldo'] = saldoactual(id)
+        res = redirect('/ingresar?status=Ingreso Exitoso!')
 
-        else: 
-            res = ingresar(error="Hubo un error con el ingreso") #hizo rollback
-    else:
-        res = ingresar(error="Ingrese un monto")
+    else: 
+        res = redirect('/ingresar?status=ERROR CON EL INGRESO')
+    
     return res
 
 #-----Quitar dinero-----------------
@@ -189,17 +190,15 @@ def ejecutar_quitado(request, id_hijo):
     fecha = datetime.now()
     motivo = 'Quitado por administrador ({})'.format(session['nombre']) 
 
-    if monto > 0 and monto <= saldoactual(id_hijo):  
+    if monto <= saldoactual(id_hijo):  
         if carga_transferencia(id_hijo, id, monto, motivo, fecha) != None: 
                     session['saldo'] = saldoactual(id)
-                    res = quitar(id_hijo, error="Quitado Exitoso! ✅")
-
+                    res = redirect(url_for('pag_quitar', id_hijo=id_hijo, status='QUITE EXITOSO'))
         else: 
-            res = quitar(id_hijo, error="Hubo un error con el ingreso") #hizo rollback
-    elif monto > 0 and monto > session['saldo']:
-        res = quitar(id_hijo, error="El monto es mayor al saldo") 
+            res = redirect(url_for('pag_quitar', id_hijo=id_hijo, status='ERROR CON EL QUITE'))
     else:
-        res = quitar(id_hijo, error="Ingrese un monto")
+        res = redirect(url_for('pag_quitar', id_hijo=id_hijo, status='SALDO MENOR AL MONTO A QUITAR'))
+    
     return res
 
 # ----------------------Transferencia------------------------------------
@@ -222,14 +221,14 @@ def ejecutar_transferencia(request):
                 if carga_transferencia(id, id_receptor, monto, motivo, fecha) != None: 
                     
                     session['saldo'] = saldoactual(id)
-                    res = transferir(error="¡Transferencia Exitosa! ✅")
+                    res = redirect('/transferir?status=Transferencia exitosa')
 
                 else: 
-                    res = transferir(error="Hubo un error con la transferencia") #hizo rollback
+                    res = redirect('/transferir?status=Error con la transferencia')
             else:
-                res = transferir(error="SALDO INSUFICIENTE ❌")
+                res = redirect('/transferir?status=SALDO INSUFICIENTE')
         else:
-            res = transferir(error="USUARIO INVALIDO")
+            res = redirect('/transferir?status=USUARIO INVALIDO')
 
         return res
 
@@ -245,9 +244,9 @@ def ejecutar_solicitud(request):
     estado = "pendiente"
 
     if agregar_solicitud(id_hijo, monto, fecha, estado):
-        res = solicitar(error='Solicitud enviada!')
+        res = redirect('/solicitar?status=Solicitud enviada')
     else:
-        res = solicitar(error='Error en la solicitud')
+        res = redirect('/solicitar?status=Error en la solicitud')
     return res
 
 def mostrar_solicitudes():
@@ -303,9 +302,8 @@ def validar_login(request):
         elif session['rol'] == 0:
             res = redirect('/inicio')
     else:
-        param={}
-        param['error_login']="Error: Usuario y/o password inválidos"
-        res = login(param)
+        res = redirect('/login?error=USUARIO Y/O PASSWORD INVALIDOS')
+        
     return res  
 
 # ---------------- REGISTRO ------------------------------------------
@@ -348,14 +346,9 @@ def registrarse(request):   # ESTO HABRIA QUE CAMBIARLOCON AYJAX
             res = validar_registro (nombre_usuario, contrasenia)
 
         else:
-            param = {}
-            param['error']="ERROR. intentelo nuevamente" # ESTO HABRIA QUE CAMBIARLOCON AYJAX
-            res = registro(param)
-
+            res = redirect('/registro?error=ERROR DESCONOCIDO')
     else:
-        param = {}
-        param['error']="Usuario existente" # ESTO HABRIA QUE CAMBIARLOCON AYJAX
-        res = registro(param)
+        res = redirect('/registro?error=USUARIO EXISTENTE')
 
     return res
 
