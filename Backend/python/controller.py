@@ -43,7 +43,6 @@ def iniciopadre(): #padres
     if haySesion():
         param = diccionario_sesion()
         param['hijos'] = encontrar_hijos(param['codfam']) #este elemento del diccionario es un diccionario
-        print(param['hijos'])
         res = render_template('iniciopadre.html', param=param)
     else:
         res = redirect('/')
@@ -157,8 +156,8 @@ def notificaciones(status):
     else:
         return redirect('/')
 
-def pendiente():
-    return render_template('pendiente.html')
+def pendiente(param):
+    return render_template('pendiente.html', param=param)
 
     
 #--------Ingresar Dinero ------------------
@@ -379,6 +378,7 @@ def cambiardatos(param, request):
 
     return redirect('/cuenta')
 
+
 # ---------------------------------------------------------------
 # Funciones de sesion
 
@@ -415,6 +415,16 @@ def cerrarSesion():
         session.clear()
     except:
         pass
+
+
+def admision():
+    param = {}
+    if verificar_admision(session['id_usuario']) == 1:
+        return inicio() 
+    else:
+        param['admitido'] = 0
+        return render_template('pendiente.html', param=param) 
+    
 
 # ---------------------- Manejo de subida de datos ---------------------------
 

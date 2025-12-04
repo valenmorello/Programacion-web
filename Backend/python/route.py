@@ -57,7 +57,8 @@ def route (app):
 
     @app.route('/pendiente')
     def pag_pendiente():
-        return pendiente()           
+        param = {}
+        return pendiente(param)           
 
     @app.route('/ingresar')
     def pag_ingresar():
@@ -147,3 +148,7 @@ def route (app):
     @app.route('/rechazar/<int:id_solicitud>')
     def rechazar_solicitud(id_solicitud):
         return rechazar(id_solicitud)
+    
+    @app.route('/validar')
+    def validar_admision():
+        return admision()

@@ -18,7 +18,11 @@
     <div class="usuario">
         <button id="cuenta" onclick="location.href='/cuenta'">Hola, {{param.get('usuario')}}! #{{param.get('codfam')}}</button>
         <button onclick="location.href='/cuenta'">
-            <img src="../static/Images/{{param.get('img')}}" alt="Usuario">
+          {% if param.get('img') and param.get('img')|length > 1 %}
+        <img src="../static/Images/{{ param.get('img') }}" alt="Usuario">
+        {% else %}
+          <img src="../static/Images/user.png" alt="Usuario">
+        {% endif %}
         </button>
     </div>
     
@@ -44,7 +48,11 @@
         {% for id_hijo, hijo in param['hijos'].items() %}
         <div>
           <button onclick="location.href='/hijo/{{ id_hijo }}'">
-            <img class="img_hijo" src="../static/Images/user.png" alt="Usuario">
+            {% if hijo['img'] and hijo['img']|length > 1 %}
+        <img class="img_hijo" src="../static/Images/hijo['img']" alt="Usuario">
+        {% else %}
+          <img class="img_hijo" src="../static/Images/user.png" alt="Usuario">
+        {% endif %}
             <h2>{{hijo['nombre']}}</h2>
           </button>
         </div>

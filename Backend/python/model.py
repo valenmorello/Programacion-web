@@ -206,9 +206,8 @@ def tabla_actividad(id, nombre_usuario):
     val = (id,id)
     mydb = conectarDB(BASE)
     lista = consultarDB(mydb,sQuery,val) #lista de tuplas
-    cerrarDB(mydb)
-
     print(lista)
+    cerrarDB(mydb)
 
     # desglose de lista, armado de tabla
     # [(usuario_emisor, nombre_emisor, usuario_receptor, nombre_receptor, monto, motivo, fecha)]
@@ -230,7 +229,7 @@ def tabla_actividad(id, nombre_usuario):
             dic['fecha'] = tupla[6]
 
             transacciones.append(dic)
-
+        print(transacciones)
     return transacciones 
 
 
@@ -255,7 +254,7 @@ def encontrar_hijos(codfam):
         } 
 
         # me termina quedando un diccionario de diccionarios
-    
+    print(diccionario_hijos)
     return diccionario_hijos
 
     
@@ -368,5 +367,11 @@ def rechazar_hijo(id_hijo):
     ejecutarDB(mydb, query, (id_hijo,))
     cerrarDB(mydb)
 
-
+def verificar_admision(id):
+    sQuery = "SELECT admitido FROM usuarios where id = %s"
+    val=(id,)
+    mydb = conectarDB(BASE)
+    res = consultarDB(mydb, sQuery, val)
+    print(res)
+    return res[0][0]
 

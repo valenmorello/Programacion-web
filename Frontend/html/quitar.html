@@ -17,7 +17,11 @@
       <div class="usuario">
           <button id="cuenta" onclick="location.href='/cuenta'">Hola, {{param.get('usuario')}}! #{{param.get('codfam')}}</button>
           <button onclick="location.href='/cuenta'">
-              <img src="../static/Images/{{param.get('img')}}" alt="Usuario">
+              {% if param.get('img') and param.get('img')|length > 1 %}
+        <img src="../static/Images/{{ param.get('img') }}" alt="Usuario">
+        {% else %}
+          <img src="../static/Images/user.png" alt="Usuario">
+        {% endif %}
           </button>
       </div>
       
