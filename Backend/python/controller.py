@@ -370,14 +370,13 @@ def cambiardatos(param, request):
 
         if myrequest.get('nombreNuevo') != "" :
             modificarnombre(id, myrequest.get('nombreNuevo'))
-            myrequest['nombreNuevo'] = session['nombre']
+            session['nombre']=myrequest['nombreNuevo'] 
 
         if myrequest.get('apellidoNuevo') != "" :
             modificarapellido(id, myrequest.get('apellidoNuevo'))
-            myrequest['apellidoNuevo'] = session['apellido']
+            session['apellido']=myrequest['apellidoNuevo'] 
 
     return redirect('/cuenta')
-
 
 # ---------------------------------------------------------------
 # Funciones de sesion
