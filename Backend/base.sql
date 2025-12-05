@@ -1,4 +1,4 @@
--- Active: 1761570068921@@mysql-tomasmaraval.alwaysdata.net@3306@tomasmaraval_familybank
+-- Active: 1763595836255@@mysql-tomasmaraval.alwaysdata.net@3306@tomasmaraval_familybank
 
 SHOW DATABASES;
 use tomasmaraval_familybank;
@@ -12,7 +12,7 @@ SELECT * FROM actividades
 SELECT * FROM solicitudes
 
 
-
+update usuarios set img = 'nicoorlando.png' where id = 12
 
 INSERT INTO `usuarios` (`id`, `nombres`, `apellido`, `codigo_Familiar`, `es_padre`, `saldo`,  `contrasenia`, `nombre_usuario`, `admitido`, `img`) 
 VALUES (Null, 'Tomas', 'Maraval', 123456, True, 100000, 'AguanteCentral1!', 'tomimaraval', True, 'foto.jpg');
