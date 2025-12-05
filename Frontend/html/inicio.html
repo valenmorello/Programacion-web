@@ -19,6 +19,7 @@
         <button id="cuenta" onclick="location.href='/cuenta'">Hola, {{param.get('usuario')}}!</button>
         <button onclick="location.href='/cuenta'">
             {% if param.get('img') and param.get('img')|length > 1 %}
+            
         <img src="../static/Images/{{ param.get('img') }}" alt="Usuario">
         {% else %}
           <img src="../static/Images/user.png" alt="Usuario">
