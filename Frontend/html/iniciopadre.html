@@ -49,7 +49,7 @@
         <div>
           <button onclick="location.href='/hijo/{{ id_hijo }}'">
             {% if hijo['img'] and hijo['img']|length > 1 %}
-        <img class="img_hijo" src="../static/Images/hijo['img']" alt="Usuario">
+        <img class="img_hijo" src="../static/Images/{{hijo['img']}}" alt="Usuario">
         {% else %}
           <img class="img_hijo" src="../static/Images/user.png" alt="Usuario">
         {% endif %}

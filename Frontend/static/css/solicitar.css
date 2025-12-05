@@ -58,6 +58,11 @@ header button {
   align-items: center;
 }
 
+.usuario p {
+  color: #ffffff;
+  font-size: 150%;         
+  font-weight: bold; 
+}
 
 #cuenta {
   margin-right: 5%;

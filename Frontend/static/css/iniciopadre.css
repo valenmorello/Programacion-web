@@ -73,6 +73,14 @@ header button {
   align-items: center;
 }
 
+.usuario button:hover {
+  opacity: 0.8;
+}
+
+.usuario button:hover {
+    opacity: 0.8;
+}
+
 #cuenta {
   margin-right: 5%;
 }

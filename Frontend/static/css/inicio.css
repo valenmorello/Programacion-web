@@ -37,23 +37,21 @@ header {
 }
 
 header button {
-  border: none;
-  background: transparent;
-  cursor: pointer;
-  color: inherit;
-  font-size: 1rem;
+  border: 0;
+  background:#131b45;
 }
 
 
 .logo img {
-  height: 70px;
-  width: auto;
+  height: 100px;
+  max-height: 50%;
+  margin-left: 5%;
 }
 
 .usuario {
   display: flex;
   align-items: center;
-  gap: 15px;
+  justify-content: flex-end; 
 }
 .notificaciones {
   display: flex;
@@ -62,16 +60,17 @@ header button {
 }
 
 .usuario p {
-  font-size: 1.1rem;
-  font-weight: 500;
   color: #ffffff;
+  font-size: 150%;         
+  font-weight: bold; 
 }
 
 .usuario button {
-  background: none;
+   background: transparent;
   border: none;
   color: #ffffff;
-  font-size: 1rem;
+  font-size: 150%;         
+  font-weight: bold;
   cursor: pointer;
   display: flex;
   align-items: center;

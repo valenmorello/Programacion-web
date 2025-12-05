@@ -42,22 +42,32 @@ header button {
 }
 
 .logo img {
-  height: 80px;
+  height: 100px;
+  max-height: 50%;
+  margin-left: 5%;
 }
 
 .usuario {
   display: flex;
   align-items: center;
-  gap: 16px;
+  justify-content: flex-end; 
 }
 
 .usuario button {
-  background: transparent;
+   background: transparent;
   border: none;
-  color: #fff;
-  font-size: 10px;
+  color: #ffffff;
+  font-size: 150%;         
   font-weight: bold;
   cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+.usuario p {
+  color: #ffffff;
+  font-size: 150%;         
+  font-weight: bold; 
 }
 
 #cuenta {

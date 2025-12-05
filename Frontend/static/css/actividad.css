@@ -55,8 +55,13 @@ header button {
 .usuario {
   display: flex;
   justify-content: flex-end; 
-  align-items: center;   
-  gap: 5%;               
+  align-items: center;                 
+}
+
+.usuario p {
+  color: #ffffff;
+  font-size: 150%;         
+  font-weight: bold; 
 }
 
 .usuario button {

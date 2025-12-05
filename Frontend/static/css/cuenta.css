@@ -28,13 +28,16 @@ header button {
 }
 
 .logo img {
-  height: 70px;
+  height: 100px;
+  max-height: 50%;
+  margin-left: 5%;
 }
 
 .usuario {
   display: flex;
+  justify-content: flex-end; 
   align-items: center;
-  gap: 16px;
+  
 }
 
 .usuario button {
